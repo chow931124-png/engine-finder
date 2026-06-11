@@ -1,6 +1,6 @@
 export const meta = {
   name: 'stock-screener',
-  description: '🔬引擎1·Serenity深度辩论选股 — 自上而下(十五五政策→产业链闭环→关键节点)+自下而上(全市场活跃标的→资金面)→4维魔鬼代言人辩论(卡脖子+致命攻击+多方反驳+洞察+反向指标)→确信度仓位映射。两条路径交叉验证，只选能扛住空头最狠攻击的标的。🚦流量灯前置·唯一性评分·红绿灯乘数调仓。综合=唯一性×20%+预测×40%+辩论×40%。',
+  description: '🔬引擎1·Serenity深度辩论选股 — 自上而下(十五五政策→产业链闭环→关键节点)+自下而上(全市场活跃标的→资金面)→4+1维魔鬼代言人辩论(卡脖子+致命攻击+多方反驳+洞察+反向指标+📡美股映射)→确信度仓位映射。两条路径交叉验证，只选能扛住空头最狠攻击的标的。🚦流量灯前置·美股锚定分修正。',
   phases: [
     { title: '十五五产业链分析', detail: '十五五政策方向→产业链闭环→关键卡脖子节点→对应标的池' },
     { title: '全市场活跃标的初筛', detail: '自下而上：按成交活跃度筛选，捕获上升趋势标的' },
@@ -8,8 +8,8 @@ export const meta = {
     { title: '资金面筛选+分类', detail: '大单资金流入+情绪龙头/基本面硬核/混合型分类' },
     { title: 'AI标的分类', detail: '深度分类确认' },
     { title: '持有周期分析', detail: '判断超短线/波段/长期持有' },
-    { title: '4维魔鬼代言人辩论', detail: 'Serenity级深度：致命攻击+多方反驳+卡脖子分析+反向指标' },
-    { title: '综合裁决与报告', detail: '产业链位置评估+确信度→仓位映射，完整投资报告' },
+    { title: '4+1维魔鬼代言人辩论', detail: 'Serenity级深度：4维传统辩论 + 📡美股映射锚定分析' },
+    { title: '综合裁决与报告', detail: '产业链位置评估+确信度→仓位映射+美股锚定分修正，完整投资报告' },
   ],
 }
 
@@ -579,7 +579,31 @@ if (debateCandidates.length === 0) {
         plan: candidate.entry_plan || candidate.core_logic || '',
       }
 
-      const [tech, finance, valuation, catalyst] = await parallel([
+      // 美股映射表（内联，供各维度参考）
+      const US_ANCHOR_MAP_LOOKUP = {
+        '海光信息': 'NVDA(🔗强) 国产GPU唯一对标',
+        '中际旭创': 'NVDA(🔗强) 英伟达光模块核心供应商',
+        '天孚通信': 'NVDA(🔗强) 英伟达光引擎供应商',
+        '雅克科技': 'NVDA(🔗强) SK海力士HBM前驱体',
+        '工业富联': 'NVDA(🔗强) AI服务器主力代工',
+        '沪电股份': 'NVDA(🔗中) AI服务器PCB',
+        '通富微电': 'AMD(🔗中) 先进封装',
+        '北方华创': 'SOX(🔗中) 半导体设备龙头',
+        '中微公司': 'SOX(🔗中) 刻蚀设备',
+        '盛美上海': 'SOX(🔗中) 清洗设备',
+        '拓荆科技': 'SOX(🔗中) 薄膜沉积',
+        '昊华科技': 'SOX(🔗中) 电子特气',
+        '兆易创新': 'MU(🔗中) 存储芯片',
+        '澜起科技': 'MU(🔗中) 内存接口',
+        '立讯精密': 'AAPL(🔗中) 消费电子',
+        '歌尔股份': 'AAPL(🔗中) 声学/VR',
+        '拓普集团': 'TSLA(🔗中) 汽配',
+        '三花智控': 'TSLA(🔗中) 热管理',
+        '金山办公': 'MSFT(🔗中) AI办公',
+      }
+      const usAnchorInfo = US_ANCHOR_MAP_LOOKUP[info.name] || null
+
+      const [tech, finance, valuation, catalyst, usAnchor] = await parallel([
         // 🔬 技术壁垒魔鬼代言人
         () => agent(
           `你是Serenity式的AI魔鬼代言人，专门从【技术壁垒与产业链卡脖子位置】维度攻击"${info.name}(${info.symbol})"。
@@ -755,18 +779,61 @@ if (debateCandidates.length === 0) {
 - score标准: >85=绝佳买点(催化剂即将兑现+技术面回调到位+情绪中性)，70-85=可分批建仓，50-70=等待更好时机，<50=现在绝对不能买`,
           { label: `⚡时机:${info.name}`, phase: '4维魔鬼代言人辩论', schema: DEBATE_DIMENSION_SCHEMA }
         ),
+        // 📡 美股映射锚定分析
+        () => agent(
+          `你是Serenity式的AI魔鬼代言人，专门从【📡 美股映射与全球定价锚】维度分析"${info.name}(${info.symbol})"。
+
+## 美股映射信息
+${usAnchorInfo ? `${info.name} 在美股映射表中的映射关系: ${usAnchorInfo}` : `${info.name} 无美股映射（内需/政策驱动为主），本维度自动赋分 0 分。`}
+
+## 分析任务
+${usAnchorInfo ? `
+1. WebSearch: "NVDA 股价 最新 今日 2026年6月" 获取英伟达最新走势
+2. WebSearch: "费城半导体指数 SOX 最新 走势"
+3. WebSearch: "${info.name} 海外营收占比 出口 境外业务"
+
+## 映射强度判定
+- 如果这只标的的业绩直接依赖美股龙头（供应商/代工），映射为🔗强
+- 如果只是行业趋势相关，映射为🔗中
+- 如果以内需/政策驱动为主，映射为⚪弱
+
+## 评分标准（基于 美股趋势 × 映射级别 矩阵）
+
+| 映射级别 | 美股🟢上升 | 美股🟡震荡 | 美股🔴下降 |
+|---------|:---------:|:---------:|:---------:|
+| 🔗强映射 | +10 | 0 | -5 |
+| 🔗中映射 | +5 | 0 | -3 |
+| ⚪弱映射 | 0 | 0 | 0 |
+
+## 判断美股趋势
+- 🟢 上升: MA20>MA60，股价在MA20上方，近5日无破位
+- 🟡 震荡: MA20和MA60纠缠或方向不明
+- 🔴 下降: 股价在MA60下方，MA20<MA60或形成下降通道
+
+## 输出要求
+- fatal_attack: 🔥美股映射的最大风险（美股回调对A股标的的传导冲击）
+- key_insight: 💡美股对这只标的的"隐性定价"——有多少涨幅是美股带的？多少是自己的？
+- score标准: 基于映射矩阵的修正分，如果无映射=0，强映射+美股上升=10，强映射+美股下降=-5` :
+`
+本维度的判断规则：无需进一步分析，直接输出 score=0，verdict="pass"，fatal_attack="无美股映射，内需驱动"，key_insight="内需独立逻辑，不受美股影响"。
+
+直接按规则输出即可。`},
+          { label: `📡美股:${info.name}`, phase: '4维魔鬼代言人辩论', schema: DEBATE_DIMENSION_SCHEMA }
+        ),
       ])
 
-      return { candidate: info, dimensions: { tech, finance, valuation, catalyst } }
+      return { candidate: info, dimensions: { tech, finance, valuation, catalyst, usAnchor } }
     },
     // Stage 2: 综合裁决
     async (debateData) => {
       if (!debateData) return null
       const { candidate, dimensions } = debateData
-      const { tech, finance, valuation, catalyst } = dimensions
+      const { tech, finance, valuation, catalyst, usAnchor } = dimensions
 
       const synthesis = await agent(
-        `你是Serenity本尊。四位魔鬼代言人已完成对 ${candidate.name}(${candidate.symbol}) 的四维交叉辩论。请给出最终裁决。
+        `你是Serenity本尊。五位魔鬼代言人已完成对 ${candidate.name}(${candidate.symbol}) 的四+一维交叉辩论（传统4维 + 📡美股映射锚定分）。请给出最终裁决，注意美股映射分作为修正系数影响总分。
+
+## 辩论结果
 
 ## 辩论结果
 
@@ -804,18 +871,34 @@ if (debateCandidates.length === 0) {
 洞察: ${catalyst?.key_insight || 'N/A'}
 判决: ${catalyst?.verdict || 'N/A'}
 
+### 📡 美股映射锚定分（修正系数）
+评分: ${usAnchor?.score || '0'}
+致命攻击: ${usAnchor?.fatal_attack || 'N/A'}
+多方反驳: ${usAnchor?.bullish_rebuttal || 'N/A'}
+攻击成立: ${usAnchor?.attack_wins ? '是——空头胜' : '否——多方反驳有效'}
+洞察: ${usAnchor?.key_insight || 'N/A'}
+判决: ${usAnchor?.verdict || 'N/A'}
+
 ## 裁决标准
-- ✅ 通过 — 可建仓：4维≥3个pass，无一fail，加权分≥70，确信度中或高
-- ⚠️ 有条件通过：≥2个pass，无致命fail，但时机/估值有瑕疵
-- ❌ 不通过：≥2个fail 或 存在无法反驳的致命攻击
+- ✅ 通过 — 可建仓：传统4维≥3个pass，无一fail，加权分≥70，且美股映射分不是严重负分
+- ⚠️ 有条件通过：≥2个pass，无致命fail，但时机/估值/美股映射有瑕疵
+- ❌ 不通过：≥2个fail 或 存在无法反驳的致命攻击 或 美股映射分=-5且无国内对冲逻辑
+
+## 美股映射分修正规则（重要）
+- +10分：强映射+美股上升趋势 → 加分，但注意估值溢价风险
+- +5分：中映射+美股上升 → 小幅加分
+- -5分：强映射+美股下降 → significant risk, 除非有国产替代对冲否则建议不通过
+- -3分：中映射+美股下降 → 注意风险
+- 0分：无映射或震荡 → 不影响
 
 ## 确信度→仓位映射
 - 高确信 → 正常仓位(6-8成)
 - 中确信 → 半仓(3-5成)
 - 低确信 → 观察仓(1-2成)
+- 美股映射分=-5 且无国内对冲逻辑 → 不建仓
 
 ## 输出
-给出综合评分、确信度、仓位建议、一句做多逻辑、一句做空逻辑、具体操作建议、最需警惕的风险`,
+给出综合评分、确信度、仓位建议、一句做多逻辑、一句做空逻辑、具体操作建议、最需警惕的风险。注意：综合评分应该在传统4维基础上，考虑美股映射分的修正。`,
         {
           label: `裁决:${candidate.name}`,
           phase: '4维魔鬼代言人辩论',

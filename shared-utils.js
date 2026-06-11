@@ -1,7 +1,9 @@
 // ============================================================
 // 三引擎共享工具模块
-// 情绪周期 + 游资数据库 + 炸板模型 + 矛盾仲裁
+// 情绪周期 + 游资数据库 + 炸板模型 + 矛盾仲裁 + 美股映射
 // ============================================================
+
+import { US_ANCHOR_MAP, checkTrafficLight as _checkTrafficLight } from './shared-us.js'
 
 // ============================================================
 // 1. 市场情绪周期判断
@@ -213,5 +215,115 @@ function arbitrate(e1, e2, e3, sentiment) {
   return { action:'正常仓位(3-5成)', priority:'🥈', reason:'正常市场环境', conviction:'中' }
 }
 
+// ============================================================
+// 5. 美股映射 — 流量灯红灯加成
+// ============================================================
+
+/**
+ * 对候选标的应用美股异动红灯
+ * @param {Array} candidates - 候选标的列表，每项需有 name 或 symbol
+ * @param {object} usMarket - 美股隔夜数据 { nvdaChange, soxChange, tslaChange, vixClose }
+ * @returns {Array} 附加上红灯信息的标的列表
+ */
+function applyUSTrafficLight(candidates, usMarket) {
+  return candidates.map(stock => {
+    const anchor = US_ANCHOR_MAP[stock.name]
+    if (!anchor || anchor.level === '⚪弱' || anchor.level === '⚪') {
+      return { ...stock, usRedLight: false, usRedReasons: [] }
+    }
+    const result = _checkTrafficLight(usMarket, anchor.level)
+    return {
+      ...stock,
+      usRedLight: result.triggered,
+      usRedReasons: result.triggered ? result.reasons : [],
+      redLightCount: (stock.redLightCount || 0) + (result.triggered ? 1 : 0),
+    }
+  })
+}
+
+// ============================================================
+// 6. 美股量化空仓判定
+// ============================================================
+
+/**
+ * 检查是否触发美股空仓规则
+ * @param {object} usData - { nasdaqWeeklyChange, vixClose, soxMonthlyChange, northboundOutflowDays, northboundOutflowAmount, nasdaqDailyChange }
+ * @returns {{ triggered: boolean, level: string, rules: Array<{ rule: string, action: string, priority: string }> }}
+ */
+function checkUSEmptyPosition(usData) {
+  const triggered = []
+
+  // 规则1：纳斯达克单周累计跌 > 8%
+  if (usData.nasdaqWeeklyChange && usData.nasdaqWeeklyChange < -8) {
+    triggered.push({ rule: '纳斯达克单周跌>8%', action: '强制降至≤2成仓位', priority: '🥇' })
+  }
+
+  // 规则2：VIX > 35
+  if (usData.vixClose && usData.vixClose > 35) {
+    triggered.push({ rule: 'VIX>35', action: '暂停所有科技股开仓', priority: '🥇' })
+  }
+
+  // 规则3：SOX月跌幅 > 12%
+  if (usData.soxMonthlyChange && usData.soxMonthlyChange < -12) {
+    triggered.push({ rule: 'SOX月跌>12%', action: 'A股映射标的全部减半仓', priority: '🥇' })
+  }
+
+  // 规则4：北向连续3日单日净流出 > 50亿
+  if (usData.northboundOutflowDays >= 3 && usData.northboundOutflowAmount > 50) {
+    triggered.push({ rule: '北向连续3日净流出>50亿/日', action: '外资重仓股权重降至≤5%', priority: '🥈' })
+  }
+
+  // 规则5：纳斯达克100单日跌 > 4%
+  if (usData.nasdaqDailyChange && usData.nasdaqDailyChange < -4) {
+    triggered.push({ rule: '纳斯达克100单日跌>4%', action: '次日不开新仓，观察半天', priority: '🥈' })
+  }
+
+  return {
+    triggered: triggered.length > 0,
+    isEmptyPosition: triggered.some(t => t.priority === '🥇'),
+    level: triggered.some(t => t.priority === '🥇') ? '🔴强制' : '🟡警告',
+    rules: triggered,
+  }
+}
+
+/**
+ * 美股映射增强版矛盾仲裁
+ * 在原有仲裁基础上，考虑美股异动因素
+ */
+function arbitrateWithUS(e1, e2, e3, sentiment, usEmptyPosition) {
+  const base = arbitrate(e1, e2, e3, sentiment)
+
+  // 美股触发空仓 → 覆盖原有决策
+  if (usEmptyPosition?.isEmptyPosition) {
+    return {
+      ...base,
+      action: '空仓/≤2成',
+      priority: '—',
+      reason: `🚫 美股量化空仓触发: ${usEmptyPosition.rules.map(r => r.rule).join('; ')}。${base.reason}`,
+      conviction: '—',
+    }
+  }
+
+  // 美股触发警告 → 降权处理
+  if (usEmptyPosition?.triggered) {
+    const currentAction = base.action || ''
+    const riskNote = `⚠️ 美股异动警告(${usEmptyPosition.rules.map(r => r.rule).join(',')})`
+
+    // 原重仓→降半仓
+    if (currentAction.includes('重仓')) {
+      return { ...base, action: '降半仓(3-5成)', reason: `${riskNote}。${base.reason}` }
+    }
+    return { ...base, reason: `${riskNote}。${base.reason}` }
+  }
+
+  return base
+}
+
 // 导出
-export { SENTIMENT_STAGES, detectSentimentStage, getStrategyByStage, SEAT_DB, identifySeat, getStrategyForSeat, calculateExplosionProbability, arbitrate }
+export {
+  SENTIMENT_STAGES, detectSentimentStage, getStrategyByStage,
+  SEAT_DB, identifySeat, getStrategyForSeat,
+  calculateExplosionProbability,
+  arbitrate,
+  applyUSTrafficLight, checkUSEmptyPosition, arbitrateWithUS,
+}

@@ -148,7 +148,7 @@
   <h1>🧠 A股三引擎选股系统</h1>
   <div class="date" id="header-date"></div>
   <div class="engines">
-    <span class="engine-badge" style="border-color:var(--green)">🔬 引擎1: Serenity深度辩论</span>
+    <span class="engine-badge" style="border-color:var(--green)">🔬 引擎1: Serenity深度辩论+📡美股锚定</span>
     <span class="engine-badge" style="border-color:var(--orange)">🎯 引擎2: 聪明钱投机</span>
     <span class="engine-badge" style="border-color:var(--orange)">📈 引擎3: 主升趋势中继</span>
     <span class="engine-badge" style="border-color:var(--purple)">🔄 引擎4: 回调重启</span>
@@ -197,6 +197,11 @@
     <tr><td>华电辽能</td><td>●●</td><td>○</td><td class="yellow">+2</td><td>跌停破位·MACD死叉</td></tr>
   </table>
   <div class="attack" style="margin-top:8px"><b>⚠️ 教训：新亚强排名第13/14(40分)+今天炸板=双重警告。不在推荐列表里的票不要碰。</b></div>
+  <div class="small" style="margin-top:8px;padding:8px;background:rgba(63,185,80,.06);border-radius:6px">
+    <b>📡 新增·美股异动红灯规则（仅作用于强/中映射标的）：</b><br>
+    🔴 SOX费城半导体单日跌＞3% | 🔴 NVDA单日跌＞5% | 🔴 TSLA单日跌＞5% | 🔴 VIX＞30<br>
+    <span class="dim">生效时长：触发后2个交易日自动解除。内需/弱映射标的（军工/电力/消费/公用事业）不受影响。</span>
+  </div>
 </div>
 
 <div class="card" style="border-color:var(--yellow)">
@@ -386,6 +391,14 @@
     <tr><td>🟡</td><td><b>连续亏损3笔后</b></td><td>暂停1天·复盘再战</td></tr>
     <tr><td>🟡</td><td><b>连板晋级率<15%</b></td><td>短线生态恶劣·引擎2暂停</td></tr>
   </table>
+  <div class="small" style="margin-top:8px;padding:8px 12px;background:rgba(63,185,80,.06);border-radius:6px">
+    <b>📡 新增·美股量化空仓触发：</b><br>
+    • 🥇 纳斯达克单周跌＞8% → 强制≤2成仓位<br>
+    • 🥇 VIX＞35 → 暂停所有科技股开仓<br>
+    • 🥇 SOX月跌＞12% → A股映射标的全部减半仓<br>
+    • 🥈 北向连续3日单日净流出＞50亿 → 外资重仓股权重降至≤5%<br>
+    • 🥈 纳斯达克100单日跌＞4% → 次日不开新仓，观察半天
+  </div>
 </div>
 
 <!-- 空仓+卖出+跟踪 -->
@@ -496,13 +509,13 @@
 <div class="card">
   <h2>🔬 引擎1：产业链卡脖子位置 × 基本面质量 × 估值安全边际</h2>
   <p class="dim">核心问题：<b>从国家战略产业链的卡脖子节点出发，哪些A股标的在产业链中绕不开、基本面过硬、估值可接受？</b></p>
-  <p class="dim">方法：8维统一评分(全市场排名) → 18条产业链卡脖子节点映射 → Serenity级4维辩论 → 确信度仓位</p>
+  <p class="dim">方法：8维统一评分(全市场排名) → 18条产业链卡脖子节点映射 → Serenity级4+1维辩论（含📡美股锚定分） → 确信度仓位</p>
 </div>
 
 <!-- ====== 全量排名 ====== -->
 <div class="card">
   <h2>📊 全市场统一评分 TOP18</h2>
-  <p class="dim">8维度自动打分：资金15%+持续10%+成长20%+PEG15%+机构10%+北向10%+链位10%+技术10%</p>
+  <p class="dim">8维度自动打分：资金15%+持续10%+成长20%+PEG15%+机构10%+北向10%+链位10%+技术10% <span style="color:var(--blue);font-weight:bold">+ 📡美股锚定分(±10/-5)修正</span></p>
   <table style="font-size:0.85em">
     <tr><th>#</th><th>标的</th><th>产业链位置</th><th>成长</th><th>PEG</th><th>资金</th><th>链位</th><th>总分</th><th>判断</th></tr>
     <tr style="background:rgba(240,136,62,.08)"><td>1</td><td><b style="color:var(--orange)">中钨高新</b></td><td>稀有金属·钨全链</td><td class="green">+264%</td><td class="green"><0.1</td><td class="green">+5.0亿</td><td>🟡</td><td><b>70</b></td><td class="green">🟢极度低估·PEG<0.1</td></tr>
@@ -544,6 +557,46 @@
     <tr><td><b>军工航空</b></td><td><span class="yellow">🟡航发动力28分</span>(等止跌)</td></tr>
     <tr><td colspan="2" class="small">低空经济(中信海直)·6G(中兴/亨通)·储能(宁德/赣锋)·量子(国盾)·脑机(博睿康)·生物制造(华大)·数据(中国软件)·新能源车(宁德/比亚迪)：今日均未入TOP18，等待轮动催化。</td></tr>
   </table>
+</div>
+
+<!-- ====== 📡 美股映射表 ====== -->
+<div class="card" style="border-color:var(--blue)">
+  <h2>📡 新增·美股映射锚定表</h2>
+  <p class="dim">A股标的与美股龙头的映射关系，用于引擎1美股锚定分修正 + 引擎3趋势修正系数 + 引擎5事件传导 + 流量灯红灯加成 + 空仓量化触发。</p>
+  <div class="grid2">
+    <div>
+      <h4>🔗 强映射（评分权重±10/-5）</h4>
+      <table style="font-size:0.83em">
+        <tr><th>A股</th><th>美股锚定</th><th>赛道</th><th>传导T+0振幅</th></tr>
+        <tr><td>中际旭创</td><td>NVDA</td><td>光模块</td><td>±2~4%</td></tr>
+        <tr><td>天孚通信</td><td>NVDA</td><td>光引擎</td><td>±2~4%</td></tr>
+        <tr><td>雅克科技</td><td>NVDA</td><td>HBM前驱体</td><td>±2~4%</td></tr>
+        <tr><td>工业富联</td><td>NVDA</td><td>AI服务器</td><td>±2~4%</td></tr>
+        <tr><td>海光信息</td><td>NVDA</td><td>GPU对标</td><td>±2~3%</td></tr>
+      </table>
+    </div>
+    <div>
+      <h4>🔗 中映射（评分权重±5/-3）</h4>
+      <table style="font-size:0.83em">
+        <tr><th>A股</th><th>美股锚定</th><th>赛道</th><th>修正系数</th></tr>
+        <tr><td>北方华创/盛美/中微</td><td>SOX</td><td>半导体设备</td><td>×0.92~1.08</td></tr>
+        <tr><td>兆易创新/澜起科技</td><td>MU</td><td>存储</td><td>×0.92~1.08</td></tr>
+        <tr><td>拓普集团/三花智控</td><td>TSLA</td><td>新能源车</td><td>×0.92~1.08</td></tr>
+        <tr><td>立讯精密/歌尔股份</td><td>AAPL</td><td>消费电子</td><td>×0.92~1.08</td></tr>
+        <tr><td>金山办公</td><td>MSFT</td><td>AI办公</td><td>×0.92~1.08</td></tr>
+      </table>
+    </div>
+  </div>
+  <div style="margin-top:12px;font-size:0.83em;padding:8px 12px;background:rgba(88,166,255,.06);border-radius:6px">
+    <b>📡 美股趋势判定规则：</b><br>
+    🟢 上升趋势 = MA20＞MA60 且股价在MA20上方 | 🟡 震荡 = 均线纠缠 | 🔴 下降趋势 = MA20＜MA60 且股价在MA60下方
+  </div>
+  <div style="margin-top:8px;font-size:0.83em;padding:8px 12px;background:rgba(63,185,80,.06);border-radius:6px">
+    <b>修正系数矩阵：</b><br>
+    强映射+美股🟢上升 = +10分（趋势强度×1.15） | 强映射+美股🔴下降 = -5分（趋势强度×0.85）<br>
+    中映射+美股🟢上升 = +5分（趋势强度×1.08） | 中映射+美股🔴下降 = -3分（趋势强度×0.92）<br>
+    ⚪弱映射（内需/军工/电力/消费）→ 美股修正=0，不受影响
+  </div>
 </div>
 
 <!-- ====== 深度辩论 TOP5 ====== -->
