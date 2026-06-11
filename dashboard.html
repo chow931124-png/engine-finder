@@ -97,8 +97,49 @@
 
   .tag { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.8em; border:1px solid var(--border); margin:2px; }
 </style>
+<style>
+  /* Login overlay */
+  .login-overlay {
+    position:fixed; inset:0; background:var(--bg);
+    display:flex; align-items:center; justify-content:center; z-index:9999;
+  }
+  .login-overlay.hidden { display:none; }
+  .login-box {
+    background:var(--card); border:1px solid var(--border); border-radius:16px;
+    padding:48px; max-width:400px; width:90%; text-align:center;
+  }
+  .login-box h1 { font-size:1.6em; margin-bottom:8px; background:linear-gradient(135deg,var(--green),var(--blue)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .login-box p { color:var(--dim); font-size:0.9em; margin-bottom:24px; }
+  .login-box input {
+    width:100%; padding:12px 16px; background:var(--bg); border:1px solid var(--border);
+    border-radius:8px; color:var(--text); font-size:1em; outline:none; box-sizing:border-box;
+    font-family:inherit;
+  }
+  .login-box input:focus { border-color:var(--blue); }
+  .login-box .error { color:var(--red); font-size:0.85em; margin-top:8px; min-height:1.2em; }
+  .login-box button {
+    margin-top:16px; width:100%; padding:12px; border:none; border-radius:8px;
+    background:var(--blue); color:#fff; font-size:1em; cursor:pointer; font-family:inherit;
+    transition:opacity .2s;
+  }
+  .login-box button:hover { opacity:.85; }
+  .login-box .hint { color:var(--dim); font-size:0.75em; margin-top:20px; }
+</style>
 </head>
 <body>
+
+<!-- ====== LOGIN OVERLAY ====== -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <h1>🔒 A股三引擎选股系统</h1>
+    <p>请输入访问密码</p>
+    <input type="password" id="loginPass" placeholder="输入密码" autocomplete="off" />
+    <div class="error" id="loginError"></div>
+    <button onclick="verifyLogin()">确认</button>
+    <div class="hint">首次使用请联系管理员获取密码</div>
+  </div>
+</div>
+
 <div class="container">
 
 <!-- ====== HEADER ====== -->
@@ -1182,6 +1223,40 @@
 </div><!-- /container -->
 
 <script>
+// ====== 密码验证 ======
+// 如需修改密码：将下方 'stock2024' 替换后，用浏览器控制台运行
+//   crypto.subtle.digest('SHA-256', new TextEncoder().encode('你的密码'))
+//   .then(h => console.log(btoa(String.fromCharCode(...new Uint8Array(h)))))
+// 将结果粘贴到 PASS_HASH
+const PASS_HASH = 'AGe6sbFVxDFs/LIWbA5FlbUCpByxMQ85R/Wx1NCZvJ0='; // stock2024
+
+async function verifyLogin() {
+  const input = document.getElementById('loginPass');
+  const err = document.getElementById('loginError');
+  const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input.value));
+  const b64 = btoa(String.fromCharCode(...new Uint8Array(hash)));
+  if (b64 === PASS_HASH) {
+    document.getElementById('loginOverlay').classList.add('hidden');
+    sessionStorage.setItem('stock_auth', '1');
+    err.textContent = '';
+  } else {
+    err.textContent = '❌ 密码错误，请重试';
+    input.value = '';
+    input.focus();
+  }
+}
+// 回车提交
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('loginPass');
+  if (sessionStorage.getItem('stock_auth') === '1') {
+    document.getElementById('loginOverlay').classList.add('hidden');
+  } else {
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') verifyLogin(); });
+    setTimeout(() => input.focus(), 100);
+  }
+});
+
+// ====== 日期自动更新 ======
 const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六'];
 const today = new Date();
 const tomorrow = new Date(today);
