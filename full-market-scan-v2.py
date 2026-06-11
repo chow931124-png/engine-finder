@@ -97,6 +97,51 @@ def scan_all():
     return all_stocks
 
 # ============================================================
+# 美股数据
+# ============================================================
+
+US_SYMBOLS = {
+    "AAPL": "苹果", "MSFT": "微软", "GOOGL": "谷歌", "AMZN": "亚马逊", "META": "Meta",
+    "NVDA": "英伟达", "TSLA": "特斯拉", "AMD": "AMD", "AVGO": "博通", "QQQ": "纳指ETF",
+    "SMH": "半导体ETF", "TQQQ": "纳指3倍", "TLT": "长债ETF", "XLK": "科技ETF",
+}
+
+def fetch_us_stocks():
+    """拉取美股关键标的前日收盘数据"""
+    symbols = list(US_SYMBOLS.keys())
+    codes = [f"gb_{s.lower()}" for s in symbols]
+    url = "https://hq.sinajs.cn/list=" + ",".join(codes)
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent":"Mozilla/5.0","Referer":"https://finance.sina.com.cn"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            text = r.read().decode("gbk")
+    except:
+        return []
+
+    results = []
+    for line in text.strip().split("\n"):
+        if "hq_str_gb_" not in line: continue
+        parts = line.split('"')[1].split(",")
+        code_raw = line.split('hq_str_gb_')[1].split('"')[0].upper()
+        if len(parts) < 4: continue
+        try:
+            price = float(parts[1]) if parts[1] else 0
+            change_pct = float(parts[2]) if parts[2] else 0
+            prev_close = float(parts[26]) if len(parts) > 26 and parts[26] else 0
+            high = float(parts[6]) if parts[6] else 0
+            low = float(parts[7]) if parts[7] else 0
+            name = US_SYMBOLS.get(code_raw, parts[0])
+            results.append({
+                "symbol": code_raw, "name": name,
+                "price": round(price, 2), "change_pct": round(change_pct, 2),
+                "prev_close": round(prev_close, 2), "high": round(high, 2),
+                "low": round(low, 2),
+            })
+        except:
+            continue
+    return results
+
+# ============================================================
 # 五引擎独立评分系统
 # ============================================================
 
@@ -549,6 +594,14 @@ if __name__ == "__main__":
         print(f"  {name}: 均值{avg:.1f} 第一={top3[0]['name']}({fn(top3[0]):.0f})", file=sys.stderr)
 
     dashboard = generate_dashboard(stocks)
+
+    print(f"\n🗽 拉取美股数据...", file=sys.stderr)
+    us_stocks = fetch_us_stocks()
+    if us_stocks:
+        dashboard["usStocks"] = us_stocks
+        up = sum(1 for s in us_stocks if s["change_pct"] > 0)
+        dn = len(us_stocks) - up
+        print(f"   美股: {len(us_stocks)}只, {up}涨{dn}跌", file=sys.stderr)
 
     path = "dashboard-data.json"
     with open(path, "w", encoding="utf-8") as f:
