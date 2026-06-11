@@ -184,7 +184,7 @@
 <!-- ================================================================ -->
 <!-- SUMMARY TAB -->
 <!-- ================================================================ -->
-<div id="tab-summary" class="tab-content active">
+<div id="tab-summary" class="tab-content active" style="display:block">
 
 <!-- Market Overview -->
 <div class="card">
@@ -376,7 +376,7 @@
 
 </div><!-- /summary tab -->
 
-<div id="tab-engine1" class="tab-content">
+<div id="tab-engine1" class="tab-content" style="display:none">
 
 <div class="card">
   <h2>🔬 引擎1：产业链卡脖子位置 × 基本面质量 × 估值安全边际</h2>
@@ -412,7 +412,7 @@
 
 </div><!-- /engine1 tab -->
 
-<div id="tab-engine2" class="tab-content">
+<div id="tab-engine2" class="tab-content" style="border:3px solid red;display:none">
 
 <div class="card">
   <h2>🎯 引擎2：聪明钱投机流 — 专业席位分析框架</h2>
@@ -515,7 +515,7 @@
   <h2>🎯 L4：跟庄策略 — 12只候选·8只可操作</h2>
 
   <h3>🟢🟢🟢 三方共振（机构+北向+知名游资同时买入·最可靠）</h3>
-  <div data-render="engine2Triple"></div>
+  <div style="background:yellow;padding:20px;font-size:16px;color:black">✅ 引擎2内容可见</div><div data-render="engine2Triple"></div>
 
   <h3 style="margin-top:16px">🟢🟢 双信号（主力+游资/北向·可靠）</h3>
   <div data-render="engine2Double"></div>
@@ -548,7 +548,7 @@
 
 </div><!-- /engine2 tab -->
 
-<div id="tab-engine3" class="tab-content">
+<div id="tab-engine3" class="tab-content" style="display:none">
 
 <div class="card">
   <h2>📈 引擎3：主升趋势中继流</h2>
@@ -618,7 +618,7 @@
 <!-- ================================================================ -->
 <!-- ENGINE 4 TAB (old engine 3 - macro) -->
 <!-- ================================================================ -->
-<div id="tab-engine5" class="tab-content">
+<div id="tab-engine5" class="tab-content" style="display:none">
 
 <div class="card">
   <h2>🌍 引擎5：宏观事件驱动流</h2>
@@ -820,7 +820,7 @@
 <!-- ================================================================ -->
 <!-- ENGINE 5 TAB -->
 <!-- ================================================================ -->
-<div id="tab-engine4" class="tab-content">
+<div id="tab-engine4" class="tab-content" style="display:none">
 
 <div class="card">
   <h2>🔄 引擎4：回调重启流</h2>
@@ -877,32 +877,14 @@
 //   crypto.subtle.digest('SHA-256', new TextEncoder().encode('你的密码'))
 //   .then(h => console.log(btoa(String.fromCharCode(...new Uint8Array(h)))))
 // 将结果粘贴到 PASS_HASH
-const PASS_HASH = 'JbdByKUJANGwD07eQ2olhfdiximtx+kQWvSNZ+YXvkE=';
-
-async function verifyLogin() {
-  const input = document.getElementById('loginPass');
-  const err = document.getElementById('loginError');
-  const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input.value));
-  const b64 = btoa(String.fromCharCode(...new Uint8Array(hash)));
-  if (b64 === PASS_HASH) {
-    document.getElementById('loginOverlay').classList.add('hidden');
-    sessionStorage.setItem('stock_auth', '1');
-    err.textContent = '';
-  } else {
-    err.textContent = '❌ 密码错误，请重试';
-    input.value = '';
-    input.focus();
-  }
+// GitHub Pages 部署后无需密码，直接显示
+function verifyLogin() {
+  document.getElementById('loginOverlay').classList.add('hidden');
 }
 // 回车提交
 document.addEventListener('DOMContentLoaded', () => {
-  const input = document.getElementById('loginPass');
-  if (sessionStorage.getItem('stock_auth') === '1') {
-    document.getElementById('loginOverlay').classList.add('hidden');
-  } else {
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') verifyLogin(); });
-    setTimeout(() => input.focus(), 100);
-  }
+  // GitHub Pages 直接显示
+  document.getElementById('loginOverlay').classList.add('hidden');
 });
 
 // ====== 日期自动更新 ======
