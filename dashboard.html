@@ -898,19 +898,12 @@ document.getElementById('header-date').textContent =
   `📅 ${fmt(today)}（周${WEEKDAYS[today.getDay()]}）盘后 → 明日${fmt(tomorrow)}建仓`;
 
 function showTab(name, btn) {
-  document.getElementById('tab-summary').style.display = 'none';
-  document.getElementById('tab-engine1').style.display = 'none';
-  document.getElementById('tab-engine2').style.display = 'none';
-  document.getElementById('tab-engine3').style.display = 'none';
-  document.getElementById('tab-engine4').style.display = 'none';
-  document.getElementById('tab-engine5').style.display = 'none';
-  var target = document.getElementById('tab-' + name);
-  if (target) {
-    target.style.display = 'block';
-    target.style.border = '2px solid red';
-  }
-  var bs = document.querySelectorAll('.tab');
-  for (var i = 0; i < bs.length; i++) { bs[i].classList.remove('active'); }
+  var all = document.querySelectorAll('.tab-content');
+  for (var i = 0; i < all.length; i++) { all[i].classList.remove('active'); }
+  var t = document.getElementById('tab-' + name);
+  if (t) t.classList.add('active');
+  var b = document.querySelectorAll('.tab');
+  for (var i = 0; i < b.length; i++) { b[i].classList.remove('active'); }
   if (btn) btn.classList.add('active');
   window.scrollTo(0,0);
 }
