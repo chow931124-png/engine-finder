@@ -926,7 +926,7 @@ function switchTab(name) {
   window.scrollTo(0,0);
 }
 document.querySelectorAll('.tab').forEach((t,i) => {
-  t.onclick = () => switchTab(['summary','engine1','engine2','engine3','engine4','engine5'][i]);
+  t.addEventListener('click', () => switchTab(['summary','engine1','engine2','engine3','engine4','engine5'][i]));
 });
 
 // ====== 渲染引擎 ======
@@ -1245,7 +1245,7 @@ function renderLearning(trades, stats, dataVer) {
     <div>
       <div style="font-size:1.1em;margin-bottom:12px"><b>🧠 自学习建议</b></div>
       ${stats.suggestions.length ? '<ul class="suggest-list">'+stats.suggestions.map(s=>`<li>${s}</li>`).join('')+'</ul>' : '<p class="dim">继续积累交易记录...</p>'}
-      ${stats.byEngine.length ? '<div style="margin-top:16px"><b>⚡ 引擎绩效排名</b>'+rTable(stats.byEngine,['引擎','交易','胜率','均盈亏'],[{key:'engine'},{key:'total'},{key:'winRate',_render:(d)=>coloredTd(d.winRate)},{key:'avgPnl',_render:(d)=>coloredTd(d.avgPnl)}])+'</div>' : ''}
+      ${stats.byEngine.length ? '<div style="margin-top:16px"><b>⚡ 引擎绩效排名</b>'+rTable(stats.byEngine,['引擎','交易','胜率','均盈亏'],[{key:'engine'},{key:'total'},{key:'winRate',_render:(v)=>coloredTd(v)},{key:'avgPnl',_render:(v)=>coloredTd(v)}])+'</div>' : ''}
     </div>
   </div>`;
 }
