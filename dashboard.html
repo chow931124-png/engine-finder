@@ -948,6 +948,8 @@ function colored(v) { const c=valClass(v); return c?`<span class="${c}">${v}</sp
 function coloredTd(v) { return valClass(v)?`<td class="${valClass(v)}">${v}</td>`:`<td>${v}</td>`; }
 function verdict(s) { return s==='pass'?'<span class="verdict pass">✅</span>':s==='cond'?'<span class="verdict cond">🟡</span>':'<span class="verdict fail">❌</span>'; }
 function conviction(s) { return `<span class="conviction ${CONV_MAP[s]||'conv-low'}">${s}</span>`; }
+// cTd(key) - coloredTd 包装器，从行对象提取字段值
+function cTd(k) { return (d)=> { const v=d[k]; const c=valClass(v); return c?`<td class="${c}">${v}</td>`:`<td>${v}</td>`; }; }
 
 let D={};
 async function loadData() {
@@ -964,7 +966,7 @@ async function loadData() {
 function renderAll() {
   document.querySelectorAll('[data-render]').forEach(el=>{
     const fn=renderFns[el.dataset.render];
-    if (fn) el.innerHTML=fn();
+    if (fn) try { el.innerHTML=fn(); } catch(e) { console.error('渲染错误('+el.dataset.render+'):', e); el.innerHTML='<p class="red">⚠️ 渲染错误</p>'; }
   });
 }
 const renderFns={};
@@ -973,7 +975,7 @@ const renderFns={};
 function rTable(data, headers, fields, opts={}) {
   if (!data||!data.length) return '<p class="dim">暂无数据</p>';
   const rowFn=opts.rowFn||((d,i)=>fields.map(f=>{
-    if (f._render) return f._render(d,i);
+    if (f._render) return f._render(d, i);
     return `<td>${d[f.key]!==undefined?colored(d[f.key]):''}</td>`;
   }));
   return `<table style="font-size:${opts.fontSize||'0.85em'}">
@@ -1044,8 +1046,8 @@ renderFns.engine1Top18 = function() {
   return rTable(D.engine1.top18, ['#','标的','产业链位置','成长','PEG','资金','链位','总分','判断'],
     [{key:'rank',_render:(d)=>`<td>${d.rank}</td>`},
      {key:'name',_render:(d)=>`<td>${d.style?`<b style="color:var(--${d.style})">${d.name}</b>`:`<b>${d.name}</b>`}</td>`},
-     {key:'chain'},{key:'growth',_render:coloredTd},
-     {key:'peg'},{key:'money',_render:coloredTd},
+     {key:'chain'},{key:'growth',_render:cTd('growth')},
+     {key:'peg'},{key:'money',_render:cTd('money')},
      {key:'chainPos',_render:(d)=>`<td>${d.chainPos}</td>`},
      {key:'score',_render:(d)=>`<td>${scorePill(d.score)}</td>`},
      {key:'judgment',_render:(d)=>`<td class="${d.score>=70?'green':d.score>=50?'yellow':'orange'}">${d.judgment}</td>`}]);
@@ -1081,7 +1083,7 @@ renderFns.engine1Recs = function() {
 
 renderFns.engine2Triple = function() {
   return rTable(D.engine2.tripleConfirm,['标的','机构','北向','游资','连板','炸板率','策略','仓位'],
-    [{key:'name'},{key:'inst',_render:coloredTd},{key:'north',_render:coloredTd},{key:'youzi'},{key:'board',_render:(d)=>`<td>${d.board}板</td>`},{key:'blowRate'},{key:'strategy'},{key:'position'}]);
+    [{key:'name'},{key:'inst',_render:cTd('inst')},{key:'north',_render:cTd('north')},{key:'youzi'},{key:'board',_render:(d)=>`<td>${d.board}板</td>`},{key:'blowRate'},{key:'strategy'},{key:'position'}]);
 };
 
 renderFns.engine2Double = function() {
@@ -1104,7 +1106,7 @@ renderFns.engine3Early = function() {
 renderFns.engine3Mid = function() {
   return rTable(D.engine3.midStage,['标的','行业','已涨','剩余空间','估值','情绪','综合','入场/止损'],
     [{key:'name',_render:(d)=>`<td><b>${d.name}</b><br><span class="small">${d.code}</span></td>`},{key:'industry'},
-     {key:'gained',_render:coloredTd},{key:'remaining',_render:coloredTd},{key:'valuation'},{key:'sentiment'},
+     {key:'gained',_render:cTd('gained')},{key:'remaining',_render:cTd('remaining')},{key:'valuation'},{key:'sentiment'},
      {key:'score',_render:(d)=>`<td>${scorePill(d.score)}</td>`},{key:'action'}]);
 };
 
@@ -1121,7 +1123,7 @@ renderFns.engine4Pending = function() {
 renderFns.engine4Confirmed = function() {
   return rTable(D.engine4.confirmed,['标的','方向','企稳确认','空间','评分','操作'],
     [{key:'name',_render:(d)=>`<td><b>${d.name}</b><br><span class="small">${d.code}</span></td>`},{key:'direction'},{key:'signal'},
-     {key:'upside',_render:coloredTd},{key:'score',_render:(d)=>`<td>${scorePill(d.score)}</td>`},{key:'action'}]);
+     {key:'upside',_render:cTd('upside')},{key:'score',_render:(d)=>`<td>${scorePill(d.score)}</td>`},{key:'action'}]);
 };
 
 renderFns.engine4Waiting = function() {
@@ -1135,13 +1137,13 @@ renderFns.engine5Prep = function() {
 
 renderFns.sectorInflow = function() {
   return rTable(D.sectorFlow.inflow,['板块','净流入(亿)','信号'],
-    [{key:'sector',_render:(d)=>`<td><b>${d.sector}</b></td>`},{key:'amount',_render:coloredTd},
+    [{key:'sector',_render:(d)=>`<td><b>${d.sector}</b></td>`},{key:'amount',_render:cTd('amount')},
      {key:'signal',_render:(d)=>`<td>${d.signal}${d.detail?'<br><span class="small">'+d.detail+'</span>':''}</td>`}]);
 };
 
 renderFns.sectorOutflow = function() {
   return rTable(D.sectorFlow.outflow,['板块','净流出(亿)','信号'],
-    [{key:'sector',_render:(d)=>`<td><b>${d.sector}</b></td>`},{key:'amount',_render:coloredTd},{key:'signal'}]);
+    [{key:'sector',_render:(d)=>`<td><b>${d.sector}</b></td>`},{key:'amount',_render:cTd('amount')},{key:'signal'}]);
 };
 
 renderFns.sectorRotation = function() {
