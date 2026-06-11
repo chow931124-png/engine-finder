@@ -97,6 +97,22 @@
 
   .tag { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.8em; border:1px solid var(--border); margin:2px; }
 
+  /* 自学习系统表单 */
+  .form-row { display:flex; gap:8px; margin:8px 0; flex-wrap:wrap; }
+  .form-row input,.form-row select { padding:8px 12px; background:var(--bg); border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:0.85em; font-family:inherit; flex:1; min-width:100px; }
+  .form-row input:focus,.form-row select:focus { border-color:var(--blue); outline:none; }
+  .btn { padding:8px 20px; border:none; border-radius:6px; font-size:0.85em; font-family:inherit; cursor:pointer; }
+  .btn-primary { background:var(--blue); color:#fff; }
+  .btn-danger { background:var(--red); color:#fff; }
+  .btn-small { padding:4px 10px; font-size:0.78em; }
+  .stat-box { text-align:center; padding:12px; background:var(--bg); border-radius:8px; border:1px solid var(--border); }
+  .stat-box .num { font-size:1.6em; font-weight:bold; }
+  .stat-box .label { color:var(--dim); font-size:0.78em; }
+  .trade-list { max-height:300px; overflow-y:auto; font-size:0.83em; }
+  .trade-list tr:hover { background:rgba(255,255,255,.03); }
+  .suggest-list { font-size:0.9em; }
+  .suggest-list li { margin:6px 0; padding:6px 12px; background:rgba(88,166,255,.06); border-radius:6px; list-style:none; }
+
   /* Login overlay */
   .login-overlay { position:fixed; inset:0; background:var(--bg); display:flex; align-items:center; justify-content:center; z-index:9999; }
   .login-overlay.hidden { display:none; }
@@ -197,30 +213,9 @@
 
 <!-- 🆕 绩效追踪 -->
 <div class="card" style="border-color:var(--purple)">
-  <h2>📊 绩效追踪与自动优化 <span style="font-size:0.7em;color:var(--dim)">[自学习系统]</span></h2>
-  <div class="grid2">
-    <div>
-      <table>
-        <tr><th>优化规则</th><th>触发条件</th><th>状态</th></tr>
-        <tr><td>🎯引擎权重动态调整</td><td>某引擎胜率≥70%→加仓；≤40%→减仓</td><td class="yellow">⏳待数据积累</td></tr>
-        <tr><td>🚫退潮期引擎2禁用</td><td>情绪=退潮 + 引擎2胜率≤40%</td><td class="yellow">⏳待验证</td></tr>
-        <tr><td>📐PEG<2.5硬过滤</td><td>PEG>2.5的票胜率≤40%→跳过</td><td class="yellow">⏳待验证</td></tr>
-        <tr><td>⚡紫阳东路最优周期</td><td>回测T+3胜率最高→默认T+3走</td><td class="yellow">⏳待验证</td></tr>
-        <tr><td>🔗产业链动态调权</td><td>某链胜率≤30%→降权重/等右侧</td><td class="yellow">⏳待验证</td></tr>
-      </table>
-    </div>
-    <div style="text-align:center; padding:20px">
-      <div style="font-size:2em">🔬</div>
-      <div style="font-size:1.2em"><b>自学习引擎</b></div>
-      <p class="dim">当前数据: <b>7笔待验证</b> | 0笔已完成</p>
-      <p class="dim">需要≥5笔完成交易后<br>自动产出优化建议</p>
-      <div style="margin-top:8px">
-        <span class="badge badge-yellow">⏳学习中</span>
-      </div>
-    </div>
-  </div>
-  <div class="insight" style="margin-top:12px">
-    <b>💡 工作方式：</b>每天更新trade-log.json中每笔交易的盈亏→系统自动回测→发现模式→产出优化规则→下次推荐时自动应用。你不需要手动调参数，系统自己学习。
+  <h2>📊 绩效追踪与自学习系统 <span style="font-size:0.7em;color:var(--dim)">[实时]</span></h2>
+  <div id="learning-dashboard" style="min-height:100px">
+    <p class="dim">⏳ 加载交易数据...</p>
   </div>
 </div>
 
@@ -377,12 +372,6 @@
   <table>
     <tr><th>组件</th><th>状态</th><th>说明</th></tr>
     <tr><td>WebSearch</td><td class="green">✅ 正常</td><td>今日主力数据源</td></tr>
-    <tr><td>东财API全量扫描</td><td class="red">❌ 盘后限流</td><td>run-scanner.sh待API恢复</td></tr>
-    <tr><td>akshare MCP</td><td class="red">❌ 常断</td><td>备选数据源</td></tr>
-    <tr><td>5个工作流</td><td class="red">❌ DeepSeek不兼容</td><td>需切Sonnet才能跑</td></tr>
-    <tr><td>trade-log</td><td class="yellow">⏳ 7笔待验证</td><td>0笔完成·暂无胜率数据</td></tr>
-    <tr><td>自学习引擎</td><td class="yellow">⏳ 数据不足</td><td>需≥5笔完成交易后激活</td></tr>
-    <tr><td>仪表盘</td><td class="green">✅ 正常</td><td>1307行·5引擎·18链</td></tr>
   </table>
 </div>
 
