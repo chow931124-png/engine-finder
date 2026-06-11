@@ -1,0 +1,38 @@
+{
+  "_comment": "聪明钱跟踪流 — 跟踪北向资金/机构/龙虎榜的布局动向，与活跃资金流互补交叉验证",
+  "northbound": {
+    "min_consecutive_inflow_days": 5,
+    "min_holding_pct": 2.0,
+    "prefer_increasing_position": true
+  },
+  "institutional": {
+    "min_institutional_holding_pct": 20.0,
+    "prefer_qoq_increase": true,
+    "prefer_pension_social_security": true
+  },
+  "dragon_tiger": {
+    "lookback_days": 10,
+    "prefer_institutional_seats": true,
+    "min_net_buy": 1000
+  },
+  "fundamental_filter": {
+    "min_roe": 8.0,
+    "require_positive_operating_cf": true,
+    "exclude_st": true,
+    "exclude_consecutive_loss": true
+  },
+  "debate": {
+    "pass_threshold": 70,
+    "conviction_mapping": {
+      "高": { "position": "正常仓位(6-8成)", "condition": "双工作流交叉验证+辩论通过" },
+      "中": { "position": "半仓(3-5成)", "condition": "单工作流通过+辩论通过" },
+      "低": { "position": "观察仓(1-2成)", "condition": "辩论有条件通过" }
+    }
+  },
+  "cross_validation": {
+    "both_pass": "🟢 双重验证 — 活跃资金 + 聪明钱都看好，置信度最高",
+    "active_only": "🟡 仅活跃资金流看好 — 短线资金驱动，注意追高风险",
+    "smart_money_only": "🔵 仅聪明钱看好 — 机构在布局但市场还没反应，可能处于启动前",
+    "neither": "⚪ 两套逻辑均未通过"
+  }
+}

@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股三引擎选股系统</title>
+<style>
+  :root {
+    --bg: #0d1117; --card: #161b22; --border: #30363d;
+    --text: #e6edf3; --dim: #8b949e; --green: #3fb950;
+    --red: #f85149; --yellow: #d2991d; --blue: #58a6ff;
+    --purple: #bc8cff; --orange: #f0883e;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'SF Mono','Menlo','Consolas',monospace; line-height:1.6; padding:20px; }
+  .container { max-width:1400px; margin:0 auto; }
+
+  /* Header */
+  .header { text-align:center; padding:40px 0 30px; border-bottom:2px solid var(--border); margin-bottom:30px; }
+  .header h1 { font-size:2em; background:linear-gradient(135deg,var(--green),var(--blue)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .header .date { color:var(--dim); margin-top:8px; }
+  .header .engines { display:flex; gap:12px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
+  .engine-badge { padding:6px 16px; border-radius:20px; font-size:0.85em; border:1px solid var(--border); }
+
+  /* Tabs */
+  .tabs { display:flex; gap:4px; margin-bottom:24px; flex-wrap:wrap; }
+  .tab { padding:10px 24px; background:var(--card); border:1px solid var(--border); color:var(--dim); cursor:pointer; border-radius:8px 8px 0 0; font-size:0.9em; transition:.2s; }
+  .tab.active { background:var(--blue); color:#fff; border-color:var(--blue); }
+  .tab:hover:not(.active) { color:var(--text); border-color:var(--text); }
+
+  /* Cards */
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:20px; }
+  .card h2 { font-size:1.3em; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .card h3 { font-size:1.1em; margin:20px 0 12px; color:var(--blue); }
+  .card h4 { margin:16px 0 8px; }
+
+  /* Table */
+  table { width:100%; border-collapse:collapse; margin:12px 0; font-size:0.9em; }
+  th, td { padding:8px 12px; text-align:left; border-bottom:1px solid var(--border); }
+  th { color:var(--dim); font-weight:500; }
+  .green { color:var(--green); } .red { color:var(--red); }
+  .yellow { color:var(--yellow); } .blue { color:var(--blue); }
+  .purple { color:var(--purple); } .orange { color:var(--orange); }
+
+  /* Score pills */
+  .score { display:inline-block; padding:2px 10px; border-radius:12px; font-weight:bold; font-size:0.9em; }
+  .score-high { background:rgba(63,185,80,.2); color:var(--green); }
+  .score-mid { background:rgba(210,153,29,.2); color:var(--yellow); }
+  .score-low { background:rgba(248,81,73,.2); color:var(--red); }
+
+  /* Verdict badges */
+  .verdict { display:inline-block; padding:4px 14px; border-radius:6px; font-size:0.85em; font-weight:bold; }
+  .pass { background:rgba(63,185,80,.15); color:var(--green); border:1px solid var(--green); }
+  .cond { background:rgba(210,153,29,.15); color:var(--yellow); border:1px solid var(--yellow); }
+  .fail { background:rgba(248,81,73,.15); color:var(--red); border:1px solid var(--red); }
+
+  /* Resonance matrix */
+  .matrix td { text-align:center; }
+  .dot-green { color:var(--green); font-size:1.3em; }
+  .dot-yellow { color:var(--yellow); font-size:1.3em; }
+  .dot-none { color:var(--dim); }
+
+  /* Attack/Rebuttal blocks */
+  .attack { background:rgba(248,81,73,.08); border-left:3px solid var(--red); padding:12px 16px; margin:8px 0; border-radius:0 8px 8px 0; }
+  .rebuttal { background:rgba(63,185,80,.08); border-left:3px solid var(--green); padding:12px 16px; margin:8px 0; border-radius:0 8px 8px 0; }
+  .insight { background:rgba(88,166,255,.08); border-left:3px solid var(--blue); padding:12px 16px; margin:8px 0; border-radius:0 8px 8px 0; }
+  .contrarian { background:rgba(240,136,62,.08); border-left:3px solid var(--orange); padding:12px 16px; margin:8px 0; border-radius:0 8px 8px 0; }
+
+  /* Conviction */
+  .conviction { display:inline-block; padding:4px 12px; border-radius:4px; font-weight:bold; }
+  .conv-high { background:var(--green); color:#000; }
+  .conv-mid { background:var(--yellow); color:#000; }
+  .conv-low { background:var(--red); color:#fff; }
+
+  /* Grid */
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  @media(max-width:900px) { .grid2,.grid3 { grid-template-columns:1fr; } }
+
+  /* Final plan */
+  .final-plan { background:linear-gradient(135deg,rgba(63,185,80,.1),rgba(88,166,255,.1)); border:2px solid var(--green); }
+  .final-plan h2 { border-color:var(--green); }
+
+  /* Section divider */
+  .divider { border:0; border-top:1px solid var(--border); margin:24px 0; }
+
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+
+  .small { font-size:0.85em; color:var(--dim); }
+  .badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.8em; margin:0 2px; }
+  .badge-green { background:rgba(63,185,80,.2); color:var(--green); }
+  .badge-red { background:rgba(248,81,73,.2); color:var(--red); }
+  .badge-blue { background:rgba(88,166,255,.2); color:var(--blue); }
+  .badge-yellow { background:rgba(210,153,29,.2); color:var(--yellow); }
+  .badge-orange { background:rgba(240,136,62,.2); color:var(--orange); }
+
+  .tag { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.8em; border:1px solid var(--border); margin:2px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ====== HEADER ====== -->
+<div class="header">
+  <h1>🧠 A股三引擎选股系统</h1>
+  <div class="date" id="header-date"></div>
+  <div class="engines">
+    <span class="engine-badge" style="border-color:var(--green)">🔬 引擎1: Serenity深度辩论</span>
+    <span class="engine-badge" style="border-color:var(--orange)">🎯 引擎2: 聪明钱投机</span>
+    <span class="engine-badge" style="border-color:var(--orange)">📈 引擎3: 主升趋势中继</span>
+    <span class="engine-badge" style="border-color:var(--purple)">🔄 引擎4: 回调重启</span>
+    <span class="engine-badge" style="border-color:var(--blue)">🌍 引擎5: 宏观事件驱动</span>
+  </div>
+</div>
+
+<!-- ====== TABS ====== -->
+<div class="tabs">
+  <div class="tab active">🔗 汇总</div>
+  <div class="tab">🔬 引擎1: 深度辩论</div>
+  <div class="tab">🎯 引擎2: 聪明钱投机</div>
+  <div class="tab">📈 引擎3: 趋势中继</div>
+  <div class="tab">🔄 引擎4: 回调重启</div>
+  <div class="tab">🌍 引擎5: 宏观驱动</div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SUMMARY TAB -->
+<!-- ================================================================ -->
+<div id="tab-summary" class="tab-content active">
+
+<!-- Market Overview -->
+<div class="card">
+  <h2>📊 今日市场</h2>
+  <div class="grid3">
+    <div><span class="dim">上证指数</span><br><span class="red">3976 (-0.85%)</span></div>
+    <div><span class="dim">深证成指</span><br><span class="red">14820 (-1.20%)</span></div>
+    <div><span class="dim">创业板指</span><br><span class="red">3820 (-1.50%)</span></div>
+  </div>
+  <p style="margin-top:12px">成交 <b>2.58万亿</b> | 涨停76 跌停74 | 隔夜美股暴跌(Dow-950)+CPI 4.2%三年新高→A股低开震荡。高位科技继续退潮，半导体材料逆势走强，银行保险护盘。6/11变盘窗口。</p>
+</div>
+
+<!-- 市场温度计 -->
+
+<!-- 🚫 今日避开 -->
+<div class="card" style="border-color:var(--red)">
+  <h2>🚫 流量灯过滤·今日避开</h2>
+  <p class="dim">以下标的触发多条红灯→不推荐。新亚强=典型案例:涨停秒炸板+主力出货=明日大概率低开。</p>
+  <table style="font-size:0.85em">
+    <tr><th>标的</th><th>红灯</th><th>绿灯</th><th>净</th><th>为何避开</th></tr>
+    <tr style="background:rgba(248,81,73,.08)"><td><b>新亚强</b></td><td>●●●</td><td>●</td><td class="red">+2</td><td class="red">今日炸板·主力-1614万·拉高出货·排13/14</td></tr>
+    <tr style="background:rgba(248,81,73,.05)"><td><b>天娱数科</b></td><td>●●●●</td><td>●●</td><td class="red">+2</td><td class="red">4连板+换手21%+假机构+公司澄清=跌停</td></tr>
+    <tr style="background:rgba(248,81,73,.05)"><td><b>金安国纪</b></td><td>●●●●</td><td>●●</td><td class="red">+2</td><td class="red">RSI91+开板8次+PE107+公司警告</td></tr>
+    <tr><td>天洋新材</td><td>●●</td><td>○</td><td class="yellow">+2</td><td>主力连续5日净流出1.89亿</td></tr>
+    <tr><td>华电辽能</td><td>●●</td><td>○</td><td class="yellow">+2</td><td>跌停破位·MACD死叉</td></tr>
+  </table>
+  <div class="attack" style="margin-top:8px"><b>⚠️ 教训：新亚强排名第13/14(40分)+今天炸板=双重警告。不在推荐列表里的票不要碰。</b></div>
+</div>
+
+<div class="card" style="border-color:var(--yellow)">
+  <h2>🌡️ 市场温度计</h2>
+  <div class="grid2">
+    <div><table>
+      <tr><td>涨停65只</td><td class="green">🟢</td><td>最高4连板</td><td class="yellow">🟡</td></tr>
+      <tr><td>跌停55只</td><td class="red">🔴</td><td>晋级率20%</td><td class="red">🔴</td></tr>
+      <tr><td>上涨占比28%</td><td class="red">🔴</td><td>炸板率23%</td><td class="green">🟢</td></tr>
+    </table></div>
+    <div style="text-align:center"><span style="font-size:2em">🌤️</span><br><b>回暖期</b><br><span class="dim">分化行情·正常交易</span></div>
+  </div>
+</div>
+
+<!-- 🆕 绩效追踪 -->
+<div class="card" style="border-color:var(--purple)">
+  <h2>📊 绩效追踪与自动优化 <span style="font-size:0.7em;color:var(--dim)">[自学习系统]</span></h2>
+  <div class="grid2">
+    <div>
+      <table>
+        <tr><th>优化规则</th><th>触发条件</th><th>状态</th></tr>
+        <tr><td>🎯引擎权重动态调整</td><td>某引擎胜率≥70%→加仓；≤40%→减仓</td><td class="yellow">⏳待数据积累</td></tr>
+        <tr><td>🚫退潮期引擎2禁用</td><td>情绪=退潮 + 引擎2胜率≤40%</td><td class="yellow">⏳待验证</td></tr>
+        <tr><td>📐PEG<2.5硬过滤</td><td>PEG>2.5的票胜率≤40%→跳过</td><td class="yellow">⏳待验证</td></tr>
+        <tr><td>⚡紫阳东路最优周期</td><td>回测T+3胜率最高→默认T+3走</td><td class="yellow">⏳待验证</td></tr>
+        <tr><td>🔗产业链动态调权</td><td>某链胜率≤30%→降权重/等右侧</td><td class="yellow">⏳待验证</td></tr>
+      </table>
+    </div>
+    <div style="text-align:center; padding:20px">
+      <div style="font-size:2em">🔬</div>
+      <div style="font-size:1.2em"><b>自学习引擎</b></div>
+      <p class="dim">当前数据: <b>7笔待验证</b> | 0笔已完成</p>
+      <p class="dim">需要≥5笔完成交易后<br>自动产出优化建议</p>
+      <div style="margin-top:8px">
+        <span class="badge badge-yellow">⏳学习中</span>
+      </div>
+    </div>
+  </div>
+  <div class="insight" style="margin-top:12px">
+    <b>💡 工作方式：</b>每天更新trade-log.json中每笔交易的盈亏→系统自动回测→发现模式→产出优化规则→下次推荐时自动应用。你不需要手动调参数，系统自己学习。
+  </div>
+</div>
+
+<!-- 四引擎综合分析 -->
+<div class="card" style="border-color:var(--green)">
+  <h2>🧠 引擎1-4整体综合分析</h2>
+
+  <h3>🔬 引擎1深度辩论：产业链卡脖子节点 × 市场验证</h3>
+  <p>18条十五五产业链，今日<b>5条产业链</b>出现关键标的与市场共振：</p>
+  <table style="font-size:0.85em">
+    <tr><th>产业链</th><th>卡脖子节点</th><th>核心标的</th><th>辩论评分</th><th>信号</th></tr>
+    <tr style="background:rgba(63,185,80,.05)"><td>集成电路·HBM</td><td class="red">前驱体</td><td><b>雅克科技</b>/通富微电/昊华科技</td><td><span class="score score-high">85</span> ✅</td><td class="green">🟢全线共振</td></tr>
+    <tr style="background:rgba(63,185,80,.05)"><td>集成电路·AI算力</td><td class="red">GPU</td><td><b>海光信息</b>/寒武纪/中芯国际</td><td><span class="score score-mid">78</span> ✅</td><td class="green">🟢主线确认</td></tr>
+    <tr><td>集成电路·CPO</td><td class="red">光芯片</td><td><b>光迅科技</b>/中际旭创/天孚通信</td><td>待辩论</td><td class="yellow">🟡政策刚出</td></tr>
+    <tr><td>集成电路·设备</td><td class="red">清洗</td><td><b>盛美上海</b>/北方华创/中微公司</td><td>待辩论</td><td class="green">🟢趋势上行</td></tr>
+    <tr><td>低空经济</td><td class="yellow">适航+飞控</td><td><b>中信海直</b>/万丰奥威/宗申动力</td><td>—</td><td class="yellow">🟡分化中</td></tr>
+    <tr><td>光伏/新能源</td><td class="red">钙钛矿+逆变器</td><td><b>隆基绿能</b>/阳光电源/晶澳科技</td><td>—</td><td class="yellow">🟡刚反弹</td></tr>
+    <tr><td>电力/电网</td><td class="yellow">特高压</td><td><b>国电南瑞</b>/北京科锐/和顺电气</td><td>—</td><td class="green">🟢国网放量</td></tr>
+    <tr><td>具身智能</td><td class="yellow">减速器</td><td><b>中大力德</b>/绿的谐波/拓斯达</td><td>—</td><td class="green">🟢趋势上行</td></tr>
+    <tr><td colspan="5" class="small">其他10条产业链(6G/量子/氢能/脑机/生物制造/储能/商业航天/生物医药/锂电/数据/军工)今日暂无明显共振，等待催化剂。</td></tr>
+  </table>
+
+  <h3 style="margin-top:16px">🎯 引擎2聪明钱：投机热度与跟庄机会</h3>
+  <p>游资活跃但连板晋级率仅20%，高低切换明显。紫阳东路主导金安国纪3连板。连板概率最高的是拓维信息(~65%，首板+华为催化)。</p>
+
+  <h3 style="margin-top:12px">📈 引擎3趋势中继：什么在涨还能涨？</h3>
+  <p>主升初期(刚启动)：埃科光电82分、盛美上海78分、厦门钨业76分。主升中继(已有趋势)：欧科亿76分、中大力德74分。</p>
+
+  <h3 style="margin-top:12px">🌍 引擎5宏观驱动：未来机会</h3>
+  <p>CPO政策刚出+板块大跌=提前埋伏窗口。6/16美联储会议最关键。存储/HBM超级周期持续至2027H2。</p>
+
+  <div class="insight" style="margin-top:12px">
+    <b>💡 四引擎综合判断：</b><br>
+    • <b>短期(1-3天)</b>：雅克科技(引擎1+3共振) + 拓维信息(引擎2连板概率65%)<br>
+    • <b>中期(1-4周)</b>：盛美上海(引擎1产业链+引擎3趋势) + 光迅科技(引擎1CPO节点+引擎5政策)<br>
+    • <b>长期(1月+)</b>：海光信息(国产GPU唯一) + 隆基绿能(光伏底部确认)<br>
+    • <b>最大风险</b>：6/16美联储+全球加息潮+CPO板块继续探底
+  </div>
+</div>
+
+<!-- 🆕 板块资金流向+轮动预测 -->
+<div class="card" style="border-color:var(--blue)">
+  <h2>💰 板块资金流向 & 轮动预测</h2>
+  <div class="grid2">
+    <div>
+      <h3>🟢 主力净流入板块</h3>
+      <table style="font-size:0.85em">
+        <tr><th>板块</th><th>净流入(亿)</th><th>信号</th></tr>
+        <tr><td><b>基础化工</b></td><td class="green">+9.55</td><td>🟢唯一申万一级净流入<br><span class="small">昊华/三孚/双星/圣泉涨停</span></td></tr>
+        <tr><td><b>证券</b></td><td class="green">+12.67</td><td>🟢护盘主力</td></tr>
+        <tr><td><b>保险</b></td><td class="green">+9.65</td><td>🟢涨3.19%</td></tr>
+        <tr><td><b>银行</b></td><td class="green">+8.84</td><td>🟢建行新高</td></tr>
+        <tr><td><b>能源金属</b></td><td class="green">+7.82</td><td>🟢</td></tr>
+        <tr><td><b>白酒</b></td><td class="green">+6.02</td><td>🟡防御回流</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>🔴 主力净流出板块</h3>
+      <table style="font-size:0.85em">
+        <tr><th>板块</th><th>净流出(亿)</th><th>信号</th></tr>
+        <tr><td><b>电子</b></td><td class="red">-266.71</td><td>🔴半导体内部轮动·材料强设计弱</td></tr>
+        <tr><td><b>电力设备</b></td><td class="red">-101.52</td><td>🔴光伏试探回流中</td></tr>
+        <tr><td><b>通信</b></td><td class="red">-83.46</td><td>🔴CPO/光模块获利了结</td></tr>
+        <tr><td><b>机械设备</b></td><td class="red">-66.12</td><td>🔴机器人回调</td></tr>
+        <tr><td><b>计算机</b></td><td class="red">-21.82</td><td>🟡AI应用分化</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3 style="margin-top:16px">🔄 板块轮动预测</h3>
+  <table style="font-size:0.85em">
+    <tr><th>阶段</th><th>方向</th><th>逻辑</th><th>对应标的</th></tr>
+    <tr style="background:rgba(63,185,80,.05)">
+      <td><b>🔥 当前主线</b></td>
+      <td><b>半导体材料/设备</b></td>
+      <td>电子板块资金-266亿但材料逆势流入·资金从设计/存储切向上游材料·国产替代+AI拉动双重逻辑</td>
+      <td>雅克科技·昊华科技·盛美上海·北方华创</td>
+    </tr>
+    <tr style="background:rgba(63,185,80,.05)">
+      <td><b>🟢 持续看好</b></td>
+      <td><b>银行/保险/红利</b></td>
+      <td>防御底仓·建行新高·全球加息潮利好金融·哑铃型配置防守端</td>
+      <td>建设银行·邮储银行·中国平安</td>
+    </tr>
+    <tr style="background:rgba(210,153,29,.05)">
+      <td><b>🟡 轮动中</b></td>
+      <td><b>机器人→回调蓄力</b></td>
+      <td>6/5资金涌入→6/9-10再度承压·人形机器人逻辑没变·等调整充分后二次启动</td>
+      <td>绿的谐波·中大力德·拓斯达</td>
+    </tr>
+    <tr style="background:rgba(210,153,29,.05)">
+      <td><b>🟡 试探回流</b></td>
+      <td><b>光伏</b></td>
+      <td>6/11尾盘异动·爱旭/晶澳涨停·资金从科技切出后在试探新能源·需次日放量确认</td>
+      <td>隆基绿能·晶澳科技·阳光电源</td>
+    </tr>
+    <tr style="background:rgba(248,81,73,.05)">
+      <td><b>🔴 短期回避</b></td>
+      <td><b>CPO/光模块/液冷</b></td>
+      <td>前期涨幅过大·通信-83亿·天孚-7%/中际-3%/沪电-7%·等充分回调</td>
+      <td>中际旭创·天孚通信·沪电股份</td>
+    </tr>
+    <tr style="background:rgba(248,81,73,.05)">
+      <td><b>🔴 高位兑现</b></td>
+      <td><b>半导体设计/存储</b></td>
+      <td>博通指引不及预期+美日韩暴跌传导·兆易-4%/佰维存储大跌·等待调整到位</td>
+      <td>兆易创新·寒武纪</td>
+    </tr>
+  </table>
+
+  <div class="insight" style="margin-top:12px">
+    <b>💡 轮动规律总结：</b>当前市场处于<b>"科技内部高低切换+防御板块吸金"</b>阶段。<br>
+    • 资金路径：CPO/光模块(高潮→退潮) → 半导体材料/设备(当前主线) → 机器人(下一个轮动方向) → 光伏(试探)<br>
+    • 哑铃策略：进攻端(半导体材料+机器人回调后)+防守端(银行保险红利)<br>
+    • <b>关键前瞻：</b>如果6/16美联储鹰派→利好银行保险·利空高估值科技；如果鸽派→科技全面反弹
+  </div>
+</div>
+
+<!-- 🆕 每日操作SOP -->
+<div class="card" style="border-color:var(--green)">
+  <h2>📋 每日操作SOP</h2>
+  <table>
+    <tr><td>1</td><td>看<b>市场温度计</b></td><td>确认情绪阶段→调整总仓位上限</td><td>回暖=正常·退潮=空仓</td></tr>
+    <tr><td>2</td><td>看<b>空仓判定</b></td><td>5条触发任一→仓位≤2成</td><td>今日✅正常</td></tr>
+    <tr><td>3</td><td>看<b>引擎1辩论通过</b></td><td>选通过✅的标的→看买入条件</td><td>雅克/海光</td></tr>
+    <tr><td>4</td><td>看<b>引擎2跟庄</b></td><td>有知名游资+炸板概率<35%→跟</td><td>金安国纪/拓维</td></tr>
+    <tr><td>5</td><td>看<b>引擎3趋势</b></td><td>主升初期→建仓·主升中继→等回调</td><td>埃科/盛美</td></tr>
+    <tr><td>6</td><td>看<b>引擎4回调</b></td><td>企稳确认→正常买·反弹待确认→轻仓</td><td>中信海直</td></tr>
+    <tr><td>7</td><td>看<b>引擎5宏观</b></td><td>政策催化+提前埋伏→极小仓位布局</td><td>光迅/航发</td></tr>
+    <tr><td>8</td><td>看<b>板块集中度</b></td><td>单板块>50%→减仓该板块</td><td>⚠️见下方</td></tr>
+    <tr><td>9</td><td><b>执行卖出规则</b></td><td>检查已有持仓是否触发止损/止盈</td><td>—</td></tr>
+    <tr><td>10</td><td><b>更新trade-log</b></td><td>记录当日盈亏→系统自学习</td><td>—</td></tr>
+  </table>
+</div>
+
+<!-- 🆕 板块集中度 -->
+<div class="card" style="border-color:var(--red)">
+  <h2>⚠️ 板块集中度预警</h2>
+  <table>
+    <tr><th>板块</th><th>推荐标的</th><th>占比</th><th>风险</th></tr>
+    <tr style="background:rgba(248,81,73,.08)"><td><b>半导体</b></td><td>雅克·海光·金安国纪·盛美·光迅·中际</td><td class="red"><b>6/11=60%</b></td><td class="red">🔴过高！半导体跌5%=组合跌3%</td></tr>
+    <tr><td>低空经济</td><td>中信海直</td><td>1/10=10%</td><td class="green">🟢</td></tr>
+    <tr><td>机器人</td><td>中大力德·绿的谐波</td><td>2/10=20%</td><td class="yellow">🟡</td></tr>
+    <tr><td>光伏</td><td>隆基绿能</td><td>1/10=10%</td><td class="green">🟢</td></tr>
+  </table>
+  <div class="attack">
+    <b>🔴 建议：</b>半导体占比60%过高。优先保留雅克(最强)+海光(最稀缺)，金安国纪/盛美/光迅/中际择2-3只，其余暂缓或减半仓位。加配低空(中信海直)+机器人(绿的谐波)+光伏(隆基)做分散。
+  </div>
+</div>
+
+<!-- 🆕 系统自检 -->
+<div class="card" style="border-color:var(--yellow)">
+  <h2>🔧 系统自检面板</h2>
+  <table>
+    <tr><th>组件</th><th>状态</th><th>说明</th></tr>
+    <tr><td>WebSearch</td><td class="green">✅ 正常</td><td>今日主力数据源</td></tr>
+    <tr><td>东财API全量扫描</td><td class="red">❌ 盘后限流</td><td>run-scanner.sh待API恢复</td></tr>
+    <tr><td>akshare MCP</td><td class="red">❌ 常断</td><td>备选数据源</td></tr>
+    <tr><td>5个工作流</td><td class="red">❌ DeepSeek不兼容</td><td>需切Sonnet才能跑</td></tr>
+    <tr><td>trade-log</td><td class="yellow">⏳ 7笔待验证</td><td>0笔完成·暂无胜率数据</td></tr>
+    <tr><td>自学习引擎</td><td class="yellow">⏳ 数据不足</td><td>需≥5笔完成交易后激活</td></tr>
+    <tr><td>仪表盘</td><td class="green">✅ 正常</td><td>1307行·5引擎·18链</td></tr>
+  </table>
+</div>
+
+<!-- 🆕 禁用场景 -->
+<div class="card" style="border-color:var(--red)">
+  <h2>🚫 什么时候不该用这个系统</h2>
+  <table>
+    <tr><td>🔴</td><td><b>大盘暴跌(单日跌>3%)</b></td><td>系统性风险下选股失效·先避险再选股</td></tr>
+    <tr><td>🔴</td><td><b>全球黑天鹅</b></td><td>战争/制裁/美联储紧急加息→空仓观望</td></tr>
+    <tr><td>🔴</td><td><b>政策真空期</b></td><td>两会前/重大政策出台前·不确定性格局</td></tr>
+    <tr><td>🟡</td><td><b>长假前3天</b></td><td>缩量+避险·仓位降至3成以下</td></tr>
+    <tr><td>🟡</td><td><b>连续亏损3笔后</b></td><td>暂停1天·复盘再战</td></tr>
+    <tr><td>🟡</td><td><b>连板晋级率<15%</b></td><td>短线生态恶劣·引擎2暂停</td></tr>
+  </table>
+</div>
+
+<!-- 空仓+卖出+跟踪 -->
+<div class="card" style="border-color:var(--red)">
+  <h2>🚫 空仓判定</h2>
+  <table>
+    <tr><td>情绪退潮</td><td>涨停<30且跌停>50</td><td class="green">否</td></tr>
+    <tr><td>大盘破位</td><td>上证<3900</td><td class="green">否(3993)</td></tr>
+    <tr><td>跌停潮</td><td>跌停>涨停</td><td class="green">否</td></tr>
+    <tr style="background:rgba(63,185,80,.08)"><td colspan="3"><b>✅ 今日正常交易，不触发空仓</b></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>🎯 明日(6/11)综合操作</h2>
+  <table>
+    <tr><th>优先级</th><th>标的</th><th>引擎来源</th><th>仓位</th><th>入场</th><th>止损</th></tr>
+    <tr><td>🥇</td><td><b>雅克科技</b></td><td>引擎1✅85+引擎3趋势</td><td class="green">6成</td><td>&lt;3%高开</td><td>115元</td></tr>
+    <tr><td>🥈</td><td><b>海光信息</b></td><td>引擎1✅78+引擎3趋势</td><td class="blue">3成</td><td>270元低吸</td><td>250元</td></tr>
+    <tr><td>🥉</td><td><b>金安国纪</b></td><td>引擎2紫阳跟庄</td><td class="orange">2成</td><td>平开&lt;3%</td><td>70.38元</td></tr>
+    <tr><td>4</td><td><b>拓维信息</b></td><td>引擎2连板65%+引擎1</td><td class="yellow">1成</td><td>&lt;3%高开</td><td>29元</td></tr>
+    <tr><td>💎</td><td><b>光迅科技</b></td><td>引擎1CPO链+引擎5政策</td><td>1成</td><td>现价埋伏</td><td>-8%</td></tr>
+  </table>
+</div>
+
+<!-- 跟踪 -->
+<div class="card">
+  <h2>📊 推荐跟踪</h2>
+  <table><tr><th>标的</th><th>入场</th><th>状态</th><th>盈亏</th></tr>
+  <tr><td>雅克科技</td><td>待入场</td><td>⏳</td><td>—</td></tr>
+  <tr><td>海光信息</td><td>等270元</td><td>⏳</td><td>—</td></tr>
+  <tr><td>金安国纪</td><td>待入场</td><td>⏳</td><td>—</td></tr></table>
+  <p class="small">跟踪文件: trade-log.json | 累积数据后自动算胜率</p>
+</div>
+
+<!-- 🆕 7轮搜索全量数据池 -->
+<div class="card">
+  <h2>🗂️ 7轮搜索全量数据池 <span class="dim" style="font-size:0.7em">约700只·13轮交叉去重</span></h2>
+
+  <h3>🟢🟢🟢 4轮以上命中（最强信号·7只）</h3>
+  <table style="font-size:0.8em"><tr><th>标的</th><th>命中轮次</th><th>信号来源</th></tr>
+  <tr><td><b>雅克科技</b></td><td>4轮</td><td>主力③+龙虎榜+北向+涨停</td></tr>
+  <tr><td><b>金安国纪</b></td><td>5轮</td><td>主力+龙虎榜+北向+涨停+缩量洗盘</td></tr>
+  <tr><td><b>双星新材</b></td><td>4轮</td><td>主力+龙虎榜+涨停+放量突破</td></tr>
+  <tr><td><b>天娱数科</b></td><td>4轮</td><td>龙虎榜+北向+涨停+金叉</td></tr>
+  <tr><td><b>中科三环</b></td><td>4轮</td><td>主力+龙虎榜①+北向+涨停</td></tr>
+  <tr><td><b>昊华科技</b></td><td>3轮</td><td>主力+涨停+行业流入</td></tr>
+  <tr style="background:rgba(240,136,62,.08)"><td><b>中钨高新</b></td><td>3轮</td><td>主力⑤+5亿·钨链全球龙头·Q1+264%·PE23倍</td></tr>
+  <tr><td><b>拓维信息</b></td><td>4轮</td><td>主力④+涨停+放量突破+金叉</td></tr>
+  </table>
+
+  <h3>🟢🟢 2轮命中（可靠·17只）</h3>
+  <table style="font-size:0.78em"><tr><th>标的</th><th>信号</th><th>标的</th><th>信号</th><th>标的</th><th>信号</th></tr>
+  <tr><td><b>海光信息</b></td><td>主力①+北向+调研</td><td><b>康强电子</b></td><td>主力+涨停+突破</td><td><b>宗申动力</b></td><td>主力+连板</td></tr>
+  <tr><td><b>江丰电子</b></td><td>主力+上涨</td><td><b>中微公司</b></td><td>主力+北向</td><td><b>圣泉集团</b></td><td>涨停+缩量+突破</td></tr>
+  <tr><td><b>和远气体</b></td><td>涨停+缩量+连板</td><td><b>百合花</b></td><td>涨停+缩量+连板</td><td><b>中船特气</b></td><td>涨停+缩量+新高</td></tr>
+  <tr><td><b>三孚股份</b></td><td>主力+涨停+连板</td><td><b>索辰科技</b></td><td>缩量+上涨</td><td><b>博迁新材</b></td><td>缩量+MLCC</td></tr>
+  <tr><td><b>东威科技</b></td><td>缩量+上涨</td><td><b>长盈通</b></td><td>缩量+光纤</td><td><b>三孚新科</b></td><td>缩量+PCB</td></tr>
+  <tr><td><b>德福科技</b></td><td>缩量+铜箔</td><td><b>铜冠铜箔</b></td><td>缩量+铜箔</td><td></td><td></td></tr>
+  </table>
+
+  <h3>💰 主力净流入TOP50</h3>
+  <p class="small">海光12.9亿·宏景9.3·雅克7.8·拓维7.2·有研新材6.3·中信证6.0·江丰6.0·宗申5.9·<b style="color:var(--orange)">中钨高新5.0</b>·中微4.9·中科三环4.7·华丰4.5·盛新锂能4.3·粤传媒4.1·康强4.0·长川3.8·昊华3.8·平安3.8·天华3.7·华泰3.7·三孚3.6·招行3.6·金螳3.4·拓邦3.4·飞凯3.1·巨化3.1·菲利华3.1·华特2.9·茅台2.7·双星2.7·华虹2.6·北方华创2.6·美利云2.6·融捷2.5·铜陵2.3·恒瑞2.3·兴业2.3·睿创2.2·泰嘉2.2·有研粉材2.2·东芯2.1·三祥2.1·中国电2.1·山东玻纤2.0·湘潭2.0·太保2.0·中科金财2.0·品高2.0·盛科1.9·华安1.9</p>
+
+  <h3>🔥 涨停股(76只)</h3>
+  <p class="small">有研粉材+20%·富信+20%·怡达+20%·美邦+20%·中船特气+16%·常友+15%·苏大维格+12%·聚石+11%·悦安+11%·中巨芯+11%·山东玻纤+10%·百合花+10%·康强+10%·昊华+10%·金安国纪+10%·和远气体+10%·华亚+10%·法狮龙+10%·圣泉+10%·三孚+10%·惠泉+10%·金螳螂+10%·美利云+10%·中科三环+10%·湘潭+10%·中科金财+10%·拓维+10%·雅克+10%·天娱+10%·双星+10%·爱旭+10%·京基+10%·宏昌+10%·天地源+10%·劲拓+10%·华正+9%·温州宏丰+9%·江丰+8%·亚翔+8%·凡拓+8%·逸豪+7%·三祥+7%·远东+7%·燕京+6%·珠江+6%·天创+6%·红星+6%·洪田+5%·有研硅+5%·亨通+5%·东材+5%·百润+5%·旭光+4%·中兰+4%·重庆啤酒+4%·万朗+4%·福莱+4%·索辰+3%·东威+3%·沃格+3%·京源+3%·友邦+3%·汇成+2%·青岛啤酒+2%·得邦+2%·光智+2%·安联+2%</p>
+
+  <h3>🐉 龙虎榜净买入TOP15</h3>
+  <p class="small">中科三环+3.14亿·雅克+2.08亿·大普微+1.59亿·天娱+1.45亿·王子新材+1.07亿·怡达+0.98亿·太极实业+0.78亿·双星+0.68亿·九州一轨+0.62亿·鑫科+0.50亿·山东玻纤+0.25亿·苏豪汇鸿+0.44亿·佳创+0.36亿·京基+0.72亿·康达-0.83亿</p>
+
+  <h3>📈 放量突破+均线多头(189只中精选)</h3>
+  <p class="small">常友科技·中力股份·西域旅游·华体科技·西藏旅游·一诺威·厦门银行·返利科技·邮储银行·云南旅游·天地源·双星新材·金安国纪·中化国际·拓维信息·中晶科技·康强电子·三孚股份·宏昌电子·圣泉集团·康达新材·苏大维格·森鹰窗业·中贝通信·天娱数科·民德电子·三花智控·思进智能·莲花控股·贝斯特·长盛轴承·江苏雷利·雷赛智能·汉威科技·北方华创·通富微电·沪硅产业·亨通光电·有研粉材·三孚新科</p>
+
+  <h3>🔄 缩量回调·二次启动(21只)</h3>
+  <p class="small">中船特气·索辰科技·博迁新材·长盈通·三孚新科·德福科技·铜冠铜箔·东威科技·海川智能·金安国纪·利和兴·圣泉集团·博硕科技·江化微·和远气体·金海高科·晶华新材·百合花·奥康国际·凯瑞德·浙江众成</p>
+
+  <h3>🌍 北向资金增持(龙虎榜)</h3>
+  <p class="small">宏昌电子+4.12亿·春秋电子+1.46亿·天娱+1.48亿·中科三环+1.06亿·雅克+9358万·爱旭+6492万·京基+3621万·金安国纪+6514万·太极实业+9217万·双星新材·雄韬股份·王子新材</p>
+
+  <h3>🔬 机构密集调研TOP10</h3>
+  <p class="small">怡合达292家·乐鑫253·汇川技术148·中科曙光146·海光信息145·稳健医疗144·百利天恒136·中科创达130·孩子王123·天孚通信112</p>
+
+  <div class="small" style="margin-top:12px">📐 数据来源：证券之星/东方财富/同花顺/证券时报/财联社 2026-06-11 收盘 | 13轮搜索合并去重约700只
+  <h3>🏆 隐形冠军·行业龙头(8轮)</h3>
+  <p class="small">长盛轴承(自润滑轴承全球第三)·兴业银行(PB0.45/PE5.1/股息6%)·春光集团(软磁铁氧体单项冠军)·瑞丰新材(润滑油添加剂龙头/PE21)·日联科技(X射线检测)·美德乐(智能输送+18亿订单)·腾景科技(精密光学/量子)</p>
+
+  <h3>📈 中报业绩预增(9轮)</h3>
+  <p class="small">AI算力硬件(PCB/液冷订单+80%)·存储芯片(HBM+200%/DDR5+120%)·先进封装(排至2027Q1)·光通信CPO(800G+50%·净利+60-90%)</p>
+
+  <h3>📉 超跌反弹(10轮)</h3>
+  <p class="small">消费电子·元器件·机器人·液冷跌幅居前·超跌修复非反转·等放量确认</p>
+
+  <h3>🔬 专精特新小巨人(11轮)</h3>
+  <p class="small">春光集团·恒运昌(射频电源)·日联科技(X射线)·美德乐(18亿订单)·长盛轴承(机器人轴承PE20)·腾景科技(光学)·皓元医药(ADC/CDMO)</p>
+
+  <h3>💰 高股息红利(12轮)</h3>
+  <p class="small">汇洁11%·荣晟8.7%·立霸8.3%·君正7.9%·神华7.3%·陕煤6.9%·工行5.4%·长电5.7%·石化5.4%·大秦5.8%·茅台4%·建行5.5%</p>
+
+  <h3>💵 超大单增仓(13轮)</h3>
+  <p class="small">双星新材(超大单+3亿·5日+6亿)·怡达股份(超大单+1.6亿)·同宇新材(换手42%)·中泰证券(超大单+8741万)</p>
+</div>
+</div>
+
+</div><!-- /summary tab -->
+
+<div id="tab-engine1" class="tab-content">
+
+<div class="card">
+  <h2>🔬 引擎1：产业链卡脖子位置 × 基本面质量 × 估值安全边际</h2>
+  <p class="dim">核心问题：<b>从国家战略产业链的卡脖子节点出发，哪些A股标的在产业链中绕不开、基本面过硬、估值可接受？</b></p>
+  <p class="dim">方法：8维统一评分(全市场排名) → 18条产业链卡脖子节点映射 → Serenity级4维辩论 → 确信度仓位</p>
+</div>
+
+<!-- ====== 全量排名 ====== -->
+<div class="card">
+  <h2>📊 全市场统一评分 TOP18</h2>
+  <p class="dim">8维度自动打分：资金15%+持续10%+成长20%+PEG15%+机构10%+北向10%+链位10%+技术10%</p>
+  <table style="font-size:0.85em">
+    <tr><th>#</th><th>标的</th><th>产业链位置</th><th>成长</th><th>PEG</th><th>资金</th><th>链位</th><th>总分</th><th>判断</th></tr>
+    <tr style="background:rgba(240,136,62,.08)"><td>1</td><td><b style="color:var(--orange)">中钨高新</b></td><td>稀有金属·钨全链</td><td class="green">+264%</td><td class="green"><0.1</td><td class="green">+5.0亿</td><td>🟡</td><td><b>70</b></td><td class="green">🟢极度低估·PEG<0.1</td></tr>
+    <tr style="background:rgba(63,185,80,.06)"><td>2</td><td><b>海光信息</b></td><td>AI算力·GPU</td><td class="green">+57%</td><td>2.0</td><td class="green">+12.9亿</td><td class="red">🔑</td><td><b>68</b></td><td class="green">🟢国产GPU唯一</td></tr>
+    <tr style="background:rgba(63,185,80,.06)"><td>3</td><td><b>雅克科技</b></td><td>HBM·前驱体</td><td class="green">+30%</td><td>1.2</td><td class="green">+7.8亿</td><td class="red">🔑全球仅3家</td><td><b>68</b></td><td class="green">🟢HBM必经之路</td></tr>
+    <tr><td>4</td><td><b>埃科光电</b></td><td>设备·机器视觉</td><td class="green">+169%</td><td class="green"><0.5</td><td>+</td><td>🟡</td><td><b>60</b></td><td class="green">🟢国产替代先锋</td></tr>
+    <tr><td>5</td><td><b>金安国纪</b></td><td>材料·覆铜板</td><td class="green">+764%</td><td>—</td><td class="green">多方共振</td><td>🟡</td><td><b>60</b></td><td class="yellow">🟡跟庄标的</td></tr>
+    <tr><td>6</td><td><b>厦门钨业</b></td><td>稀有金属·钨</td><td class="green">+183%</td><td class="green"><0.3</td><td>+</td><td>🟡</td><td><b>56</b></td><td class="green">🟢低估资源</td></tr>
+    <tr><td>7</td><td><b>中科三环</b></td><td>稀土·永磁</td><td>+</td><td>—</td><td class="green">龙虎①</td><td>🟡</td><td><b>56</b></td><td class="green">🟢稀土龙头</td></tr>
+    <tr><td>8</td><td><b>盛美上海</b></td><td>设备·清洗</td><td class="green">+40%</td><td>~1.5</td><td>+</td><td class="red">🔑</td><td><b>52</b></td><td class="green">🟢清洗唯一</td></tr>
+    <tr><td>9</td><td><b>昊华科技</b></td><td>材料·电子特气</td><td class="green">+30%</td><td>—</td><td class="green">+3.8亿</td><td>🟡</td><td><b>51</b></td><td>🟢</td></tr>
+    <tr><td>10</td><td><b>双星新材</b></td><td>材料·复合铜箔</td><td>扭亏</td><td>—</td><td class="green">2连板</td><td>🟡</td><td><b>51</b></td><td>🟢</td></tr>
+    <tr style="background:rgba(188,140,255,.04)"><td>11</td><td><b style="color:var(--purple)">绿的谐波</b></td><td>机器人·谐波减速器</td><td>+61%</td><td>—</td><td>+</td><td class="red">🔑全球第二</td><td><b>48</b></td><td class="yellow">🟡等回调</td></tr>
+    <tr><td>12</td><td>北方华创</td><td>设备·刻蚀/薄膜</td><td>+</td><td>~2</td><td>+</td><td class="red">🔑</td><td><b>46</b></td><td>🟢</td></tr>
+    <tr><td>13</td><td>天娱数科</td><td>AI应用</td><td>扭亏</td><td>—</td><td>北向1.5亿</td><td>—</td><td><b>45</b></td><td class="yellow">⚠️</td></tr>
+    <tr><td>14</td><td>康强电子</td><td>封装·引线框架</td><td>+</td><td>—</td><td class="green">+4.0亿</td><td>🟡</td><td><b>38</b></td><td>🟢</td></tr>
+    <tr><td>15</td><td>拓维信息</td><td>算力租赁</td><td>-4.7%</td><td>—</td><td class="green">+7.2亿</td><td>—</td><td><b>37</b></td><td class="yellow">⚠️壁垒弱</td></tr>
+    <tr><td>16</td><td>隆基绿能</td><td>光伏·组件</td><td>底</td><td>—</td><td>刚反弹</td><td>🟡</td><td><b>33</b></td><td class="yellow">🟡等确认</td></tr>
+    <tr><td>17</td><td>亿华通</td><td>氢能·燃料电池</td><td>亏损收窄</td><td>—</td><td>底部</td><td>🟡</td><td><b>28</b></td><td class="yellow">🟡极小仓位</td></tr>
+    <tr><td>18</td><td>航发动力</td><td>军工·发动机</td><td>+14.8%</td><td>—</td><td>底部·12机构买</td><td class="red">🔑唯一</td><td><b>28</b></td><td class="yellow">🟡等止跌</td></tr>
+  </table>
+</div>
+
+<!-- ====== 产业链分布 ====== -->
+<div class="card">
+  <h2>🗺️ 18条产业链 × 评分映射</h2>
+  <p class="dim">每条产业链的核心标的在统一评分中的位置。🟢=TOP10 | 🟡=TOP18 | ⚪=未入榜</p>
+  <table style="font-size:0.78em">
+    <tr><th>产业链</th><th>核心标的及评分</th></tr>
+    <tr><td><b>集成电路·HBM</b></td><td><span class="green">🟢雅克科技68分</span> | 通富微电⚪ | 昊华科技51分</td></tr>
+    <tr><td><b>集成电路·AI算力</b></td><td><span class="green">🟢海光信息68分</span> | 寒武纪⚪ | 中芯国际⚪</td></tr>
+    <tr><td><b>集成电路·CPO</b></td><td><span class="yellow">🟡光迅科技</span> | 中际旭创⚪ | 天孚⚪(等回调)</td></tr>
+    <tr><td><b>集成电路·设备</b></td><td><span class="green">🟢盛美上海52分</span> | <span class="yellow">🟡北方华创46分</span> | 中微⚪</td></tr>
+    <tr><td><b>稀有金属·钨</b></td><td><span class="green">🟢🟢中钨高新70分</span> | <span class="green">🟢厦门钨业56分</span></td></tr>
+    <tr><td><b>稀土永磁</b></td><td><span class="green">🟢中科三环56分</span> | 北方稀土⚪</td></tr>
+    <tr><td><b>智能机器人</b></td><td><span class="yellow">🟡绿的谐波48分</span> | <span class="yellow">🟡中大力德</span> | 拓斯达⚪</td></tr>
+    <tr><td><b>光伏/新能源</b></td><td><span class="yellow">🟡隆基绿能33分</span> | 阳光电源⚪ | 晶澳⚪</td></tr>
+    <tr><td><b>氢能</b></td><td><span class="yellow">🟡亿华通28分</span>(底部)</td></tr>
+    <tr><td><b>军工航空</b></td><td><span class="yellow">🟡航发动力28分</span>(等止跌)</td></tr>
+    <tr><td colspan="2" class="small">低空经济(中信海直)·6G(中兴/亨通)·储能(宁德/赣锋)·量子(国盾)·脑机(博睿康)·生物制造(华大)·数据(中国软件)·新能源车(宁德/比亚迪)：今日均未入TOP18，等待轮动催化。</td></tr>
+  </table>
+</div>
+
+<!-- ====== 深度辩论 TOP5 ====== -->
+<div class="card">
+  <h2>⚔️ Serenity级深度辩论 — TOP5</h2>
+
+  <h3>🥇 中钨高新 — 70分 <span class="verdict pass">✅</span></h3>
+  <div class="insight"><b>⛓️ 产业链位置：</b>钨全产业链一体化(矿山→冶炼→深加工→工具)。硬质合金产量<b>全球第一</b>。PCB微钻50倍长径比<b>全球唯一量产</b>。五矿集团持股53%·中国钨储量占全球50%。</div>
+  <div class="attack"><b>🔥 致命攻击：</b>钨价年内最大涨幅131%也出现了41%的回撤。利润高度依赖钨价——如果钨价回调30%，利润可能腰斩。Q1+264%的增速不可持续。</div>
+  <div class="rebuttal"><b>🛡️ 多方反驳：</b>PE仅23倍、PEG<0.1——即使增速从264%降到50%，仍然极度低估。柿竹园+远景钨业注入后自给率持续提升，量增可以部分对冲价跌。PCB微钻受益AI服务器需求是结构性增长，不依赖钨价。</div>
+  <div class="insight"><b>💡 洞察：</b>市场把它当周期股给23倍PE——但它有全球独家的PCB微钻(25%净利率)+数控刀具(成长业务)，这些是成长股逻辑。一旦市场重估为"资源+成长"，估值可能翻倍至50倍。</div>
+  <p><b>确信度：</b><span class="conviction conv-high">高</span> | <b>仓位：</b>正常5-6成 | <b>入场：</b>现价72.9或回踩70元 | <b>止损：</b>65元(-10%)</p>
+
+  <hr class="divider">
+
+  <h3>🥈 海光信息 — 68分 <span class="verdict pass">✅</span></h3>
+  <div class="insight"><b>⛓️ 产业链位置：</b>国内<b>唯一</b>x86 CPU + 类CUDA GPU双架构。145家机构调研。吸收合并中科曙光→芯片→整机→算力全栈。</div>
+  <div class="attack"><b>🔥 致命攻击：</b>PE 130倍处于历史98%分位。毛利率从63%降至55%趋势下行。PEG~2偏高。</div>
+  <div class="rebuttal"><b>🛡️ 多方反驳：</b>2027E ROE 20%+、净利60亿+→前瞻PE可降至80倍。国产GPU唯一标的应享战略溢价。</div>
+  <p><b>确信度：</b><span class="conviction conv-mid">中</span> | <b>仓位：</b>3-5成 | <b>入场：</b>等270元(-5%)低吸 | <b>止损：</b>250元</p>
+
+  <hr class="divider">
+
+  <h3>🥉 雅克科技 — 68分 <span class="verdict pass">✅</span></h3>
+  <div class="insight"><b>⛓️ 产业链位置：</b>HBM前驱体全球仅3家能做。SK海力士HBM4<b>100%独家供应</b>至2031年。长鑫存储前驱体份额超60%。</div>
+  <div class="attack"><b>🔥 致命攻击：</b>HBF混合键合技术若成熟，可能跳过前驱体工序。前驱体市场天花板约50亿美元，规模有限。</div>
+  <div class="rebuttal"><b>🛡️ 多方反驳：</b>HBF量产至少2030年。LNG在手96亿+光刻胶+硅微粉多线布局。</div>
+  <p><b>确信度：</b><span class="conviction conv-high">高</span> | <b>仓位：</b>6成 | <b>入场：</b>明日<3%高开 | <b>止损：</b>115元</p>
+
+  <hr class="divider">
+
+  <h3>4. 埃科光电 — 60分 <span class="verdict pass">✅</span></h3>
+  <p>Q1营收+96%·净利+169%·PEG<0.5·机器视觉国产替代先锋·打破奥林巴斯垄断·均线多头初启动。<b>确信度：中 | 仓位：3成 | 入场：现价 | 止损：MA20</b></p>
+
+  <h3>5. 厦门钨业 — 56分 <span class="verdict pass">✅</span></h3>
+  <p>Q1+183%·PE25x·PEG<0.3·钨全产业链+光伏钨丝+硬质合金三驱动·国家队持仓。<b>确信度：中 | 仓位：3成 | 入场：回踩5日线 | 止损：-8%</b></p>
+</div>
+
+<!-- ====== 最终推荐 ====== -->
+<div class="card" style="border-color:var(--green)">
+  <h2>🎯 引擎1最终推荐</h2>
+  <table>
+    <tr><th>优先级</th><th>标的</th><th>总分</th><th>确信度</th><th>仓位</th><th>入场</th><th>核心逻辑</th></tr>
+    <tr style="background:rgba(240,136,62,.08)"><td>🥇</td><td><b>中钨高新</b></td><td>70</td><td class="green">高</td><td>5-6成</td><td>现价/回踩70</td><td>PEG<0.1+钨链全球龙头+PCB微钻独家</td></tr>
+    <tr><td>🥈</td><td><b>雅克科技</b></td><td>68</td><td class="green">高</td><td>6成</td><td>&lt;3%高开进</td><td>HBM前驱体垄断·SK海力士独家至2031</td></tr>
+    <tr><td>🥉</td><td><b>海光信息</b></td><td>68</td><td>中</td><td>3-5成</td><td>等270元</td><td>国产GPU唯一·145家机构调研</td></tr>
+    <tr><td>4</td><td><b>埃科光电</b></td><td>60</td><td>中</td><td>3成</td><td>现价</td><td>机器视觉国产替代·PEG<0.5</td></tr>
+    <tr><td>5</td><td><b>厦门钨业</b></td><td>56</td><td>中</td><td>3成</td><td>回踩5日线</td><td>PEG<0.3+国家队·钨+光伏双驱动</td></tr>
+    <tr><td>💎</td><td><b>绿的谐波</b></td><td>48</td><td>中</td><td>等回调</td><td>350元</td><td>谐波减速器全球第二·人形机器人必配</td></tr>
+  </table>
+</div>
+
+</div><!-- /engine1 tab -->
+
+<div id="tab-engine2" class="tab-content">
+
+<div class="card">
+  <h2>🎯 引擎2：聪明钱投机流 — 专业席位分析框架</h2>
+  <p class="dim">不是看"谁在买"，而是看"谁在买 + 为什么买 + 买完会怎样 + 什么时候卖"。四层分析：席位身份→买卖力度→行为规律→跟庄策略。</p>
+</div>
+
+<!-- ====== 分析框架 ====== -->
+<div class="card">
+  <h2>📐 席位分析四层框架</h2>
+  <table>
+    <tr><th>层级</th><th>分析内容</th><th>今日关键发现</th></tr>
+    <tr><td><b>L1 席位身份</b></td><td>买方是谁？机构/游资/北向/量化/散户？</td><td>83只上榜·机构净买14只·12路知名游资·北向22只</td></tr>
+    <tr><td><b>L2 买卖力度</b></td><td>净买入占成交额多少？买方集中度？</td><td>紫阳东路总买4.09亿居游资之首·章盟主1.1亿买雅克</td></tr>
+    <tr><td><b>L3 行为规律</b></td><td>这个席位历史上怎么操作？锁仓/一日游/做T？</td><td>紫阳T+3胜率峰值·作手新一T+1~T+2·章盟主T+3~T+5</td></tr>
+    <tr><td><b>L4 跟庄策略</b></td><td>基于以上三层，制定具体入场/持有/离场计划</td><td>12只候选→8只可操作→3只三方共振(金安/中科三环/双星)</td></tr>
+  </table>
+</div>
+
+<!-- ====== L1+L2: 席位身份与买卖力度 ====== -->
+<div class="card">
+  <h2>🔍 L1+L2：席位身份 & 买卖力度</h2>
+
+  <h3>🏦 机构专用席位 — 净买入14只 · 净卖出21只 · 合计净卖4.45亿</h3>
+  <p class="dim">机构整体偏谨慎。净买入集中在半导体材料(有研粉材1.63亿、金安1.06亿)和逆势抄底(大普微跌-15.7%仍买1.19亿)。净卖出集中在高位兑现(红板科技2.44亿、神剑1.93亿)。</p>
+  <table style="font-size:0.8em">
+    <tr><th>类型</th><th>标的(净买入TOP10)</th><th>净买(亿)</th><th>信号解读</th></tr>
+    <tr style="background:rgba(63,185,80,.06)"><td>🟢真机构建仓</td><td>有研粉材(+1.63)·大普微(+1.19)·金安国纪(+1.06)·悦安新材(+0.73)</td><td>合计4.6亿</td><td>逆势/低位建仓·中期看好</td></tr>
+    <tr style="background:rgba(210,153,29,.06)"><td>🟡真假难辨</td><td>天娱数科(+0.46)·双星新材(+0.28)·中科三环(+0.20)·雄韬(+0.41)</td><td>单笔<5000万</td><td>力度不够·可能是试盘或对倒</td></tr>
+    <tr style="background:rgba(248,81,73,.06)"><td>🔴机构出货</td><td>红板科技(-2.44)·神剑(-1.93)·实益达(-0.95)·中巨芯(-0.94)·康达(-0.58)</td><td>合计-5.8亿</td><td>高位获利了结·跟庄风险大</td></tr>
+  </table>
+  <div class="attack"><b>⚠️ 关键区分：</b>机构单笔<5000万的"净买入"不可跟——经常是披着机构马甲的游资一日游。≥1亿的机构净买入才值得纳入跟庄候选。</div>
+
+  <h3 style="margin-top:16px">🔥 知名游资 — 12路活跃 · 紫阳东路4.09亿居首</h3>
+  <table style="font-size:0.82em">
+    <tr><th>游资</th><th>今日操作</th><th>风格</th><th>T+N</th><th>胜率</th><th>今日标的</th></tr>
+    <tr style="background:rgba(240,136,62,.08)"><td><b>紫阳东路</b></td><td class="green">总买4.09亿·游资之首</td><td>主线主买</td><td>T+1~T+3</td><td>60%</td><td>金安国纪(+9157万)·双星新材(+3948万)·和远气体</td></tr>
+    <tr><td><b>章盟主</b></td><td class="green">雅克+1.11亿</td><td>大票趋势</td><td>T+3~T+5</td><td>56%</td><td>雅克科技</td></tr>
+    <tr><td><b>作手新一</b></td><td class="green">中科三环+4672万</td><td>龙头接力</td><td>T+1~T+2</td><td>55%</td><td>中科三环</td></tr>
+    <tr><td><b>方新侠</b></td><td class="green">双星新材+4846万</td><td>趋势加速</td><td>T+2~T+3</td><td>54%</td><td>双星新材</td></tr>
+    <tr><td><b>杭州帮</b></td><td class="green">中科三环+7186万</td><td>集团作战</td><td>T+1~T+3</td><td>—</td><td>中科三环</td></tr>
+    <tr><td>湛江万豪</td><td class="green">总买2.91亿</td><td>稀土+材料</td><td>—</td><td>—</td><td>中科三环·双星新材</td></tr>
+    <tr><td>西安太华路</td><td>总买2.35亿(7只)</td><td>量化分散</td><td>T+1</td><td>—</td><td>金安/康达/中科三环等7只</td></tr>
+    <tr style="background:rgba(248,81,73,.05)"><td><b>温州帮</b></td><td class="red">雅克-5845万</td><td>获利了结</td><td>—</td><td>—</td><td>卖出信号⚠️</td></tr>
+  </table>
+</div>
+
+<!-- ====== L3: 行为规律 ====== -->
+<div class="card">
+  <h2>🧬 L3：席位行为规律 — 机构vs游资的底层差异</h2>
+  <div class="grid2">
+    <div>
+      <h3>🏦 机构行为规律</h3>
+      <table style="font-size:0.85em">
+        <tr><td>建仓周期</td><td>1个月洗盘 + 2-3个月主升</td></tr>
+        <tr><td>净买入阈值</td><td>≥1亿=真机构·<5000万=假机构/试盘</td></tr>
+        <tr><td>操作特征</td><td>分批建仓·趋势持股·不追板</td></tr>
+        <tr><td class="green">可靠信号</td><td>≥2家机构同时净买+占比>30%+低位</td></tr>
+        <tr><td class="red">危险信号</td><td>高位机构接盘·游资消失·机构反手卖出</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>🔥 游资行为规律</h3>
+      <table style="font-size:0.85em">
+        <tr><td>锁仓型(欢乐海岸系)</td><td>敢锁仓走完主升·游资离场=行情结束</td></tr>
+        <tr><td>一日游型(金田路系)</td><td>今天买明天卖·T+1必须走·不能恋战</td></tr>
+        <tr><td>主买型(紫阳东路)</td><td>主线方向主买·T+3收益峰值·T+5胜率<50%</td></tr>
+        <tr><td class="red">散户接盘信号</td><td>买方全是拉萨系·游资在卖方→行情崩盘</td></tr>
+        <tr><td class="red">金蝉脱壳信号</td><td>前日游资封板·次日游资消失·机构接货</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 融资融券 ====== -->
+<div class="card">
+  <h2>📊 杠杆资金动向（融资融券）</h2>
+  <div class="grid2">
+    <div>
+      <table style="font-size:0.85em">
+        <tr><td>两融余额</td><td><b>28,873亿</b>(+43.8亿/日)</td></tr>
+        <tr><td>余额/流通市值</td><td>2.79%(安全·2015峰值4.7%)</td></tr>
+        <tr><td>交易额占比</td><td>9.56%(4月中旬以来低点)</td></tr>
+        <tr><td>趋势</td><td class="yellow">🟡连续8周上涨后首降·杠杆降温</td></tr>
+      </table>
+    </div>
+    <div>
+      <table style="font-size:0.85em">
+        <tr><td>6/9融资回流</td><td>电子+66亿·机械设备+17亿·通信+11亿</td></tr>
+        <tr><td>6月首周流出</td><td>电力设备-37亿·电子-33亿·医药-22亿</td></tr>
+        <tr><td>5月累计</td><td>电子+1169亿(绝对主力)·通信+267亿</td></tr>
+        <tr><td>转向信号</td><td>融资从科技→防御(煤炭+石油+建材)</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="insight"><b>💡 杠杆信号：</b>融资余额结束8周连涨+交易占比降至低点=杠杆资金在撤退。但2.79%占比远低于2015年峰值4.7%，系统性风险可控。融资回流电子66亿说明有人抄底——分歧而非恐慌。</div>
+</div>
+
+<!-- ====== L4: 跟庄策略 ====== -->
+<div class="card" style="border-color:var(--orange)">
+  <h2>🎯 L4：跟庄策略 — 12只候选·8只可操作</h2>
+
+  <h3>🟢🟢🟢 三方共振（机构+北向+知名游资同时买入·最可靠）</h3>
+  <table style="font-size:0.82em">
+    <tr><th>标的</th><th>机构</th><th>北向</th><th>游资</th><th>连板</th><th>炸板率</th><th>策略</th><th>仓位</th></tr>
+    <tr style="background:rgba(63,185,80,.08)"><td><b>🥇金安国纪</b></td><td>+1.06亿</td><td>+6514万</td><td>紫阳+9157·低位+4170</td><td>3板</td><td>~25%</td><td>紫阳T+3走·平开<3%进·老资金全清筹码干净</td><td class="orange">2成</td></tr>
+    <tr style="background:rgba(63,185,80,.08)"><td><b>🥈中科三环</b></td><td>+1952万</td><td>+1.06亿</td><td>作手新一+4672·杭州帮+7186</td><td>首板</td><td>~20%</td><td>稀土龙头·作手新一T+1~T+2·首板安全</td><td class="yellow">1.5成</td></tr>
+    <tr style="background:rgba(63,185,80,.08)"><td><b>🥉双星新材</b></td><td>+2775万</td><td>买入</td><td>紫阳+3948·方新侠+4846·湛江万豪</td><td>2板</td><td>~25%</td><td>复合铜箔·三板确认加仓·紫阳+方新侠双保险</td><td class="yellow">1.5成</td></tr>
+  </table>
+
+  <h3 style="margin-top:16px">🟢🟢 双信号（主力+游资/北向·可靠）</h3>
+  <table style="font-size:0.82em">
+    <tr><th>标的</th><th>信号1</th><th>信号2</th><th>连板</th><th>策略</th><th>仓位</th></tr>
+    <tr><td><b>4.拓维信息</b></td><td class="green">主力+7.2亿(39%)</td><td>华为大会6/12催化·游资参与</td><td>首板</td><td>连板概率65%·高开<3%进·29止损</td><td class="yellow">1成</td></tr>
+    <tr><td><b>5.天娱数科</b></td><td class="green">机构+4602万</td><td class="green">北向+1.48亿</td><td>4板</td><td>4板分歧低吸(跌2-3%进)·5日线止损·不追板</td><td class="yellow">1成</td></tr>
+    <tr><td><b>6.康强电子</b></td><td class="green">主力+4.0亿</td><td>DDE大单4.19·全市场第一</td><td>首板</td><td>先进封装概念·首板·回踩5日线进</td><td>0.5成</td></tr>
+    <tr><td><b>7.宗申动力</b></td><td class="green">主力+5.9亿</td><td>龙虎榜净买居前</td><td>3板</td><td>低空经济·3进4风险·轻仓博弈</td><td>0.5成</td></tr>
+  </table>
+
+  <h3 style="margin-top:16px">🟢 单信号（观察·等确认）</h3>
+  <table style="font-size:0.82em">
+    <tr><th>标的</th><th>信号</th><th>等待什么</th></tr>
+    <tr><td>8.昊华科技</td><td>主力+3.8亿+涨停·电子特气龙头</td><td>等龙虎榜数据确认席位</td></tr>
+    <tr><td>9.王子新材</td><td>机构+1413万·北向+2484万·南京帮+3035万</td><td>单笔太小·等放量确认</td></tr>
+    <tr><td>10.江丰电子</td><td>主力+6.0亿·靶材龙头</td><td>趋势股·非连板博弈·等回调</td></tr>
+    <tr><td>11.中微公司</td><td>主力+5.0亿·设备龙头</td><td>偏中线·非引擎2短线标的</td></tr>
+    <tr><td>12.雅克科技</td><td>章盟主+1.1亿·北向+9358万</td><td class="green">→ 去引擎1深度辩论·不在此重复</td></tr>
+  </table>
+</div>
+
+<!-- ====== 今日核心结论 ====== -->
+<div class="card" style="border-color:var(--green)">
+  <h2>🧠 引擎2今日核心结论</h2>
+  <div class="insight"><b>1. 紫阳东路在铺PCB/材料/特气方向。</b>今日4.09亿总买入集中在金安国纪(覆铜板)+双星新材(铜箔)+和远气体(特气)。这不是随机撒网——是在押注<b>半导体上游材料</b>这个方向。这个方向的标的明天可能继续发酵。</div>
+  <div class="insight"><b>2. 金安国纪筹码结构最干净。</b>老资金(西安太华-1.38亿·上海松江-1.02亿)全部清仓走人。新资金(紫阳+机构+北向+低位挖掘)三方接力。换手仅5.3%=锁仓极好。这种新老交替的筹码结构是跟庄最理想的。</div>
+  <div class="insight"><b>3. 机构整体偏谨慎。</b>机构净卖出4.45亿>净买入。红板科技-2.44亿、神剑-1.93亿的机构出货信号说明——高位票机构在跑。跟机构买的票要看位置：低位的金安/有研粉材机构在买，高位的红板/神剑机构在卖。</div>
+  <div class="attack"><b>4. 融资杠杆在降温。</b>两融余额结束8周连涨，交易占比降至4月中旬以来低点。不是恐慌——是正常的技术性降杠杆。但如果下周继续降，说明市场情绪在退潮。</div>
+</div>
+
+<!-- ====== 风险警示 ====== -->
+<div class="card" style="border-color:var(--red)">
+  <h2>⚠️ 跟庄铁律（违反任何一条都会亏钱）</h2>
+  <table>
+    <tr><td>1</td><td>机构单笔<5000万不跟</td><td class="red">假机构概率高·一日游风险大</td></tr>
+    <tr><td>2</td><td>散户接盘信号出现→秒走</td><td class="red">买方全是拉萨系+游资在卖方=行情结束</td></tr>
+    <tr><td>3</td><td>不跟量化游资(西安太华路等)</td><td class="red">T+1必砸·跟了就是接盘</td></tr>
+    <tr><td>4</td><td>高位机构接盘不跟</td><td class="red">游资用机构通道出货的烟雾弹</td></tr>
+    <tr><td>5</td><td>大盘暴跌日所有跟庄信号打折</td><td class="yellow">系统性风险下技术面失效</td></tr>
+    <tr><td>6</td><td>止损到了必须执行</td><td class="red">不止损的跟庄=赌博</td></tr>
+  </table>
+</div>
+
+</div><!-- /engine2 tab -->
+
+<div id="tab-engine3" class="tab-content">
+
+<div class="card">
+  <h2>📈 引擎3：主升趋势中继流</h2>
+  <p class="dim">"找到正在涨但还没涨完的票" | 均线多头 → 量价配合 → 估值空间 → 情绪溢价 → 预期差</p>
+</div>
+
+<!-- 趋势筛选说明 -->
+<div class="card">
+  <h2>📐 筛选标准</h2>
+  <table>
+    <tr><th>维度</th><th>主升初期 🔵</th><th>主升中继 🟢</th><th>主升末期 🔴(排除)</th></tr>
+    <tr><td>涨幅</td><td>离起涨点&lt;30%</td><td>涨30-80%</td><td>涨>100%</td></tr>
+    <tr><td>均线</td><td>刚多头排列(&lt;2周)</td><td>多头排列稳固</td><td>乖离过大</td></tr>
+    <tr><td>RSI</td><td>50-70</td><td>60-80</td><td>>90</td></tr>
+    <tr><td>量能</td><td>温和放大</td><td>量价配合</td><td>放量滞涨</td></tr>
+    <tr><td>PE</td><td>PEG&lt;1</td><td>PEG&lt;1.5</td><td>PE>行业3倍</td></tr>
+    <tr><td>情绪</td><td>无人讨论→最佳</td><td>开始关注→合理</td><td>到处在推→警惕</td></tr>
+  </table>
+</div>
+
+<!-- 主升初期 -->
+<div class="card" style="border-color:var(--blue)">
+  <h2>🔵 主升初期 — 刚启动，多数人还没注意到</h2>
+  <table>
+    <tr><th>标的</th><th>行业</th><th>趋势强度</th><th>估值/PEG</th><th>情绪溢价</th><th>预期差</th><th>综合</th><th>入场/止损</th></tr>
+    <tr>
+      <td><b>埃科光电</b><br><span class="small">688610</span></td>
+      <td>机器视觉</td>
+      <td><span class="score score-high">90</span></td>
+      <td class="green">PE55x/PEG&lt;0.5</td>
+      <td class="green">🟢很低 无人讨论</td>
+      <td class="green">大：打破奥林巴斯垄断</td>
+      <td><span class="score score-high">82</span></td>
+      <td>现价/跌破MA20出</td>
+    </tr>
+    <tr>
+      <td><b>盛美上海</b><br><span class="small">688082</span></td>
+      <td>半导体清洗</td>
+      <td><span class="score score-high">85</span></td>
+      <td class="green">PE40x/在手90亿</td>
+      <td class="yellow">🟡合理 业内关注</td>
+      <td>中：清洗设备唯一国产</td>
+      <td><span class="score score-mid">78</span></td>
+      <td>现价~120/止损-10%</td>
+    </tr>
+    <tr>
+      <td><b>厦门钨业</b><br><span class="small">600549</span></td>
+      <td>稀有金属</td>
+      <td><span class="score score-high">80</span></td>
+      <td class="green">PE25x/PEG~0.3</td>
+      <td class="green">🟢很低 资源股冷</td>
+      <td class="green">大：Q1+183%未充分定价</td>
+      <td><span class="score score-mid">76</span></td>
+      <td>回踩5日线/止损-8%</td>
+    </tr>
+    <tr>
+      <td><b>皖维高新</b><br><span class="small">600063</span></td>
+      <td>PVA新材料</td>
+      <td><span class="score score-mid">75</span></td>
+      <td class="green">PE20x/PEG&lt;1</td>
+      <td class="green">🟢很低 传统化工</td>
+      <td>中：光学薄膜国产替代</td>
+      <td><span class="score score-mid">72</span></td>
+      <td>现价/止损-8%</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 主升中继 -->
+<div class="card" style="border-color:var(--green)">
+  <h2>🟢 主升中继 — 已在涨，估值未透支，还有空间</h2>
+  <table>
+    <tr><th>标的</th><th>行业</th><th>已涨</th><th>剩余空间</th><th>估值</th><th>情绪</th><th>综合</th><th>入场/止损</th></tr>
+    <tr>
+      <td><b>中大力德</b><br><span class="small">002896</span></td>
+      <td>机器人减速器</td>
+      <td class="yellow">~40%</td>
+      <td class="green">+30%(目标75)</td>
+      <td class="yellow">PE60x PEG~1</td>
+      <td class="yellow">🟡机器人热</td>
+      <td><span class="score score-mid">74</span></td>
+      <td>回踩20日线/止损-10%</td>
+    </tr>
+    <tr>
+      <td><b>欧科亿</b><br><span class="small">688308</span></td>
+      <td>数控刀具</td>
+      <td class="yellow">~35%</td>
+      <td class="green">+30%(目标50)</td>
+      <td class="green">PE35x PEG&lt;0.3</td>
+      <td class="green">🟢冷门 无人推</td>
+      <td><span class="score score-mid">76</span></td>
+      <td>回踩10日线/止损-8%</td>
+    </tr>
+    <tr>
+      <td><b>鸿合科技</b><br><span class="small">002955</span></td>
+      <td>教育信息化</td>
+      <td class="yellow">~25%</td>
+      <td class="green">+25%(目标45)</td>
+      <td class="green">PE25x PEG&lt;1</td>
+      <td class="green">🟢教育冷门</td>
+      <td><span class="score score-mid">70</span></td>
+      <td>现价/止损-8%</td>
+    </tr>
+    <tr>
+      <td><b>昊华科技</b><br><span class="small">600378</span></td>
+      <td>电子特气</td>
+      <td class="yellow">~30%</td>
+      <td class="yellow">+20%(目标40)</td>
+      <td class="yellow">PE30x 合理</td>
+      <td class="yellow">🟡材料热</td>
+      <td><span class="score score-mid">68</span></td>
+      <td>等回调5日线/止损-8%</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 已排除 -->
+<div class="card">
+  <h2>🔴 已排除（主升末期/过度透支）</h2>
+  <table>
+    <tr><th>标的</th><th>排除原因</th></tr>
+    <tr><td>百合花(603823)</td><td class="red">PE 98x vs 行业17x | Q1净利-6.23% | 8天4板已Price In未来2年 | RSI超买</td></tr>
+    <tr><td>和远气体(002971)</td><td class="red">5天3板短期涨幅过大 | 等待回调至10日线再评估</td></tr>
+    <tr><td>金安国纪(002636)</td><td class="red">PE 107x | 10倍涨幅后估值严重透支 | 公司自己发警告</td></tr>
+    <tr><td>宗申动力(001696)</td><td class="red">3连板+低空经济概念炒作 | 非核心标的 | 涨幅已大</td></tr>
+  </table>
+</div>
+
+<!-- 趋势交易纪律 -->
+<div class="card" style="border-color:var(--red)">
+  <h2>⚠️ 趋势交易铁律</h2>
+  <table>
+    <tr><td>🔴</td><td><b>趋势坏了必须走</b></td><td>跌破20日均线→无条件清仓，不幻想反弹</td></tr>
+    <tr><td>🔴</td><td><b>放量滞涨要警惕</b></td><td>成交量放大但股价不涨→主力在出货</td></tr>
+    <tr><td>🔴</td><td><b>不追高</b></td><td>远离5日线>8%不追，等回调到均线附近再进</td></tr>
+    <tr><td>🟡</td><td><b>分批建仓</b></td><td>首次3成→确认趋势加3成→突破加2成</td></tr>
+    <tr><td>🟡</td><td><b>移动止盈</b></td><td>盈利>10%后，止损上移至成本价，确保不亏</td></tr>
+  </table>
+</div>
+
+<!-- 引擎3综合 -->
+<div class="card" style="border-color:var(--orange)">
+  <h2>🎯 引擎3综合排名</h2>
+  <table>
+    <tr><th>优先级</th><th>标的</th><th>阶段</th><th>趋势</th><th>估值</th><th>情绪</th><th>预期差</th><th>综合</th><th>操作</th></tr>
+    <tr><td>🥇</td><td><b>埃科光电</b></td><td>🔵初期</td><td>90</td><td>78</td><td>75</td><td>85</td><td class="green"><b>82</b></td><td>现价建3成</td></tr>
+    <tr><td>🥈</td><td><b>盛美上海</b></td><td>🔵初期</td><td>85</td><td>80</td><td>70</td><td>75</td><td class="green"><b>78</b></td><td>现价建3成</td></tr>
+    <tr><td>🥉</td><td><b>厦门钨业</b></td><td>🔵初期</td><td>80</td><td>85</td><td>65</td><td>70</td><td class="green"><b>76</b></td><td>回踩5日线进</td></tr>
+    <tr><td>4</td><td><b>欧科亿</b></td><td>🟢中继</td><td>75</td><td>82</td><td>70</td><td>75</td><td class="green"><b>76</b></td><td>回踩10日线进</td></tr>
+    <tr><td>5</td><td><b>中大力德</b></td><td>🟢中继</td><td>78</td><td>65</td><td>70</td><td>80</td><td class="yellow"><b>74</b></td><td>回踩20日线进</td></tr>
+    <tr><td>6</td><td><b>皖维高新</b></td><td>🔵初期</td><td>75</td><td>75</td><td>65</td><td>70</td><td class="yellow"><b>72</b></td><td>现价建2成</td></tr>
+  </table>
+</div>
+
+</div><!-- /engine3 tab -->
+
+<!-- ================================================================ -->
+<!-- ENGINE 4 TAB (old engine 3 - macro) -->
+<!-- ================================================================ -->
+<div id="tab-engine5" class="tab-content">
+
+<div class="card">
+  <h2>🌍 引擎5：宏观事件驱动流</h2>
+  <p class="dim">"在大多数人还没反应过来之前找到机会" | 时事新闻 → 国家政策 → 国际大事 → 科技突破 → 产业拐点</p>
+</div>
+
+<!-- Event Calendar -->
+<div class="card">
+  <h2>📰 本周重磅事件日历</h2>
+  <table>
+    <tr><th>日期</th><th>事件</th><th>影响级别</th><th>A股影响</th></tr>
+    <tr>
+      <td><b>6/11</b></td>
+      <td>工信部"AI+通信"实施意见印发</td>
+      <td><span class="badge badge-orange">🔥🔥🔥🔥🔥</span></td>
+      <td class="green"><b>利好CPO/光芯片/800G光模块</b></td>
+    </tr>
+    <tr>
+      <td><b>6/11</b></td>
+      <td>欧央行利率决议（预计加息25bp）</td>
+      <td><span class="badge badge-red">🔴🔴🔴</span></td>
+      <td class="red">利空高估值成长股</td>
+    </tr>
+    <tr>
+      <td><b>6/15-16</b></td>
+      <td>日央行利率决议（预计加息至1.0%）</td>
+      <td><span class="badge badge-red">🔴🔴🔴</span></td>
+      <td class="red">套息交易逆转风险</td>
+    </tr>
+    <tr>
+      <td><b>6/16-17</b></td>
+      <td>美联储会议（新主席沃什首秀）</td>
+      <td><span class="badge badge-red">🔴🔴🔴🔴🔴</span></td>
+      <td class="red"><b>年内是否加息定调，全球风险资产关键节点</b></td>
+    </tr>
+    <tr>
+      <td>6月中旬</td>
+      <td>SpaceX巨型IPO</td>
+      <td><span class="badge badge-red">🔴🔴🔴</span></td>
+      <td class="red">A股科技板块资金分流</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Policy Drivers -->
+<div class="card">
+  <h2>📜 政策驱动引擎</h2>
+
+  <h3>🔥🔥🔥🔥🔥 "AI+通信"实施意见（6/11工信部刚发）</h3>
+  <div class="insight">
+    <b>核心内容：</b>高端光电芯片/CPO/OCS列为AI算力底座核心。加快400G/800G骨干网建设。光电混合组网技术试验。<br>
+    <b>受益方向：</b><span class="tag">光迅科技</span><span class="tag">中际旭创</span><span class="tag">天孚通信</span><span class="tag">亨通光电</span><br>
+    <b>时机判断：</b>政策今天刚发文，CPO板块今天大跌——市场还没反映。正是<b>提前埋伏窗口</b>。
+  </div>
+
+  <hr class="divider">
+
+  <h3>🔥🔥🔥🔥 6G部省协同试点（6/4启动）</h3>
+  <div class="insight">
+    <b>核心：</b>2029年形成商用能力，2030年万亿市场。新型终端+芯片器件+商业航天+卫星互联网。<br>
+    <b>受益：</b><span class="tag">中兴通讯</span><span class="tag">盛路通信</span><span class="tag">信维通信</span><br>
+    <b>时机：</b>长线布局3年+，目前处于概念阶段。
+  </div>
+
+  <hr class="divider">
+
+  <h3>🔥🔥🔥🔥🔥 "十五五"六大新兴支柱产业</h3>
+  <table>
+    <tr><th>产业</th><th>2025产值</th><th>2030目标</th><th>A股代表</th></tr>
+    <tr><td><b>集成电路</b></td><td rowspan="6">合计近6万亿</td><td rowspan="6">10万亿+</td><td>海光信息/中芯国际/北方华创</td></tr>
+    <tr><td>航空航天</td><td>中航沈飞/航天电器</td></tr>
+    <tr><td>生物医药</td><td>百济神州/药明康德</td></tr>
+    <tr><td><b>低空经济</b></td><td>宗申动力/万丰奥威</td></tr>
+    <tr><td><b>新型储能</b></td><td>宁德时代/阳光电源</td></tr>
+    <tr><td><b>智能机器人</b></td><td>汇川技术/绿的谐波</td></tr>
+  </table>
+  <p class="small">六大未来产业：量子科技 | 生物制造 | 氢能核聚变 | 脑机接口 | 具身智能 | 6G</p>
+</div>
+
+<!-- Global Events -->
+<div class="card">
+  <h2>🌐 国际大事冲击波</h2>
+  <table>
+    <tr><th>事件</th><th>A股利好板块</th><th>A股利空板块</th></tr>
+    <tr><td>全球加息潮(欧/日/印尼)</td><td class="green">银行/保险/红利股</td><td class="red">高估值科技成长股</td></tr>
+    <tr><td>美CPI 3.8%超预期</td><td class="green">能源/化工/资源</td><td class="red">利率敏感型资产</td></tr>
+    <tr><td>中东冲突→油价$106</td><td class="green">石油/化工/军工</td><td class="red">航空/制造业成本</td></tr>
+    <tr><td>SpaceX IPO(6月中)</td><td>—</td><td class="red">A股科技资金被虹吸</td></tr>
+    <tr><td>美元重回100+</td><td class="green">出口型制造业</td><td class="red">进口成本/人民币资产</td></tr>
+  </table>
+</div>
+
+<!-- Tech Breakthroughs -->
+<div class="card">
+  <h2>🔬 科技突破与产业拐点</h2>
+  <table>
+    <tr><th>技术/产业</th><th>当前阶段</th><th>催化剂</th><th>成熟期</th><th>提前埋伏标的</th></tr>
+    <tr>
+      <td><b>HBM/先进封装</b></td>
+      <td><span class="badge badge-green">🟢加速期</span></td>
+      <td>HBM缺口60%至2027H2</td>
+      <td>现在</td>
+      <td class="green">雅克科技/通富微电</td>
+    </tr>
+    <tr>
+      <td><b>CPO光电共封装</b></td>
+      <td><span class="badge badge-orange">🟢爆发前夜</span></td>
+      <td>工信部刚发文+博通Intel商用</td>
+      <td>2027</td>
+      <td class="orange">光迅科技/中际旭创</td>
+    </tr>
+    <tr>
+      <td><b>前驱体/电子特气</b></td>
+      <td><span class="badge badge-green">🟢加速期</span></td>
+      <td>国产替代+AI产业链拉动</td>
+      <td>现在</td>
+      <td class="green">雅克科技/昊华科技</td>
+    </tr>
+    <tr>
+      <td><b>DRAM存储</b></td>
+      <td><span class="badge badge-yellow">🟡加速期</span></td>
+      <td>缺口8%但泡沫化担忧</td>
+      <td>现在</td>
+      <td>兆易创新</td>
+    </tr>
+    <tr>
+      <td><b>6G通信</b></td>
+      <td><span class="badge badge-blue">🔵趋势启动</span></td>
+      <td>部省协同试点</td>
+      <td>2029商用</td>
+      <td>中兴通讯</td>
+    </tr>
+    <tr>
+      <td><b>电网设备</b></td>
+      <td><span class="badge badge-green">🟢加速期</span></td>
+      <td>国网招标放量</td>
+      <td>现在</td>
+      <td>北京科锐/和顺电气</td>
+    </tr>
+    <tr>
+      <td><b>具身智能</b></td>
+      <td><span class="badge badge-blue">🔵趋势启动</span></td>
+      <td>人形机器人量产前夕</td>
+      <td>2027-28</td>
+      <td>绿的谐波/汇川技术</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Company News -->
+<div class="card">
+  <h2>🏢 上市公司重磅公告（6月）</h2>
+  <table>
+    <tr><th>公司</th><th>公告类型</th><th>金额</th><th>影响</th></tr>
+    <tr><td><b>东阳光</b></td><td>算力服务大单×2</td><td class="green"><b>260-310亿</b></td><td>🔥 巨额算力订单，AI算力需求爆发表征</td></tr>
+    <tr><td><b>中天科技</b></td><td>数据中心光纤大单</td><td class="green">15.18亿</td><td>光纤互联受益AI数据中心建设</td></tr>
+    <tr><td><b>北京科锐</b></td><td>国网中标</td><td class="green">7.18亿</td><td>占营收33%，电网投资持续加码</td></tr>
+    <tr><td><b>球冠电缆</b></td><td>国网中标</td><td class="green">9.35亿</td><td>电力电缆龙头受益</td></tr>
+    <tr><td><b>和顺电气</b></td><td>国网中标</td><td class="green">2.37亿</td><td>占营收65%，业绩弹性大</td></tr>
+  </table>
+</div>
+
+<!-- China Macro -->
+<div class="card">
+  <h2>🇨🇳 中国经济速览</h2>
+  <div class="grid2">
+    <div>
+      <table>
+        <tr><th>指标</th><th>数据</th><th>趋势</th></tr>
+        <tr><td>GDP目标</td><td>4.5%+</td><td class="green">可达成</td></tr>
+        <tr><td>制造业PMI</td><td>荣枯线上</td><td class="green">扩张</td></tr>
+        <tr><td>出口5月</td><td>+19.4%</td><td class="green">大超预期</td></tr>
+        <tr><td>CPI</td><td>1.3%</td><td class="yellow">温和回升</td></tr>
+      </table>
+    </div>
+    <div>
+      <table>
+        <tr><th>指标</th><th>数据</th><th>趋势</th></tr>
+        <tr><td>社融5月</td><td>预计2.4万亿</td><td class="green">大幅回升</td></tr>
+        <tr><td>房地产投资</td><td>-14.3%</td><td class="red">仍在恶化</td></tr>
+        <tr><td>人民币</td><td>6.82</td><td class="green">稳定</td></tr>
+        <tr><td>外汇储备</td><td>3.44万亿美元</td><td class="green">+317亿</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Engine 3 Pre-positioning -->
+<div class="card" style="border-color:var(--blue)">
+  <h2>💎 引擎3提前埋伏组合</h2>
+  <table>
+    <tr><th>标的</th><th>驱动逻辑</th><th>等多久</th><th>仓位</th><th>止损</th></tr>
+    <tr><td><b>光迅科技</b></td><td>CPO政策刚出+光芯片龙头，市场未反应</td><td>1-4周</td><td>1成</td><td>-8%</td></tr>
+    <tr><td><b>中际旭创</b></td><td>800G+CPO双受益，今日跌2.8%是低吸机会</td><td>1-4周</td><td>1成</td><td>-10%</td></tr>
+    <tr><td><b>北京科锐</b></td><td>国网中标7.18亿(占营收33%)+电力基建周期</td><td>1-4周</td><td>0.5成</td><td>-8%</td></tr>
+    <tr><td><b>中兴通讯</b></td><td>6G政策催化剂+低估值+通信设备龙头</td><td>3-6月</td><td>0.5成</td><td>-10%</td></tr>
+  </table>
+  <div class="contrarian" style="margin-top:12px">
+    <b>🔄 反向思维：</b>CPO今天板块大跌（天孚通信-7.4%, 中际旭创-2.8%, 光库科技-7%），政策刚出市场却在卖——恰恰是提前埋伏的窗口。等市场反应过来的时候这些标的已经涨了20-30%。
+  </div>
+</div>
+
+</div><!-- /engine5 tab -->
+
+<!-- ================================================================ -->
+<!-- ENGINE 5 TAB -->
+<!-- ================================================================ -->
+<div id="tab-engine4" class="tab-content">
+
+<div class="card">
+  <h2>🔄 引擎4：回调重启流</h2>
+  <p class="dim">"上升趋势中的回调是机会" | 前期强势→缩量回调→放量反弹→企稳判定</p>
+</div>
+
+<div class="card">
+  <h2>📐 判定标准</h2>
+  <table>
+    <tr><th></th><th>🟡反弹待确认</th><th>🟢企稳已确认</th><th>🔴还在回调</th></tr>
+    <tr><td>距高点</td><td>回撤10-35%</td><td>回撤10-35%</td><td>继续新低</td></tr>
+    <tr><td>成交量</td><td>缩量止跌</td><td>放量反弹>1.3</td><td>放量下跌</td></tr>
+    <tr><td>K线</td><td>小阳/十字星</td><td>中长阳突破</td><td>阴线新低</td></tr>
+    <tr><td>均线</td><td>仍在MA5下</td><td>站回MA5上</td><td>远离均线</td></tr>
+    <tr><td>操作</td><td>轻仓试探</td><td>正常建仓</td><td>观望</td></tr>
+  </table>
+</div>
+
+<div class="card" style="border-color:var(--yellow)">
+  <h2>🟡 反弹待确认（21只）</h2>
+  <table style="font-size:0.8em">
+    <tr><th>标的</th><th>代码</th><th>方向</th><th>反弹信号</th><th>评分</th><th>操作</th></tr>
+    <tr><td><b>双星新材</b></td><td>002585</td><td>复合铜箔</td><td>2连板涨停</td><td><span class="score score-mid">78</span></td><td>三板封住加仓</td></tr>
+    <tr><td><b>圣泉集团</b></td><td>605589</td><td>合成树脂</td><td>涨停封单3.6亿</td><td><span class="score score-mid">74</span></td><td>回踩5日线进</td></tr>
+    <tr><td><b>生益科技</b></td><td>600183</td><td>PCB</td><td>高位洗盘</td><td><span class="score score-mid">72</span></td><td>144支撑低吸</td></tr>
+    <tr><td><b>博迁新材</b></td><td>605376</td><td>MLCC上游</td><td>平台支撑</td><td><span class="score score-mid">70</span></td><td>等放量阳线</td></tr>
+    <tr><td><b>中船特气</b></td><td>688146</td><td>电子特气</td><td>均线上方止跌</td><td>68</td><td>等放量突破</td></tr>
+    <tr><td><b>京东方A</b></td><td>000725</td><td>面板</td><td>回踩5日线</td><td>65</td><td>6元不破低吸</td></tr>
+    <tr><td><b>德福科技</b></td><td>301511</td><td>铜箔</td><td>支撑位企稳</td><td>66</td><td>等量比>1.3</td></tr>
+    <tr><td><b>东威科技</b></td><td>688700</td><td>铜箔设备</td><td>缩量止跌</td><td>65</td><td>等放量</td></tr>
+    <tr><td colspan="6" class="small">...等共21只（完整列表见WebSearch多轮结果）</td></tr>
+  </table>
+</div>
+
+<div class="card" style="border-color:var(--green)">
+  <h2>🟢 企稳已确认（13只）</h2>
+  <table style="font-size:0.8em">
+    <tr><th>标的</th><th>代码</th><th>方向</th><th>企稳确认</th><th>空间</th><th>评分</th><th>操作</th></tr>
+    <tr><td><b>中信海直</b></td><td>000099</td><td>低空经济</td><td>巨量长阳突破大箱体</td><td class="green">+15%</td><td><span class="score score-high">80</span></td><td>回踩箱体上沿加</td></tr>
+    <tr><td><b>沃格光电</b></td><td>—</td><td>玻璃基板</td><td>2月涨3倍+新高</td><td class="green">+20%</td><td><span class="score score-mid">75</span></td><td>5日线低吸</td></tr>
+    <tr><td><b>风华高科</b></td><td>—</td><td>MLCC</td><td>涨停反包</td><td class="green">+15%</td><td><span class="score score-mid">75</span></td><td>回踩5日线</td></tr>
+    <tr><td><b>立昂微</b></td><td>605358</td><td>半导体硅片</td><td>涨停反弹</td><td class="green">+12%</td><td><span class="score score-mid">74</span></td><td>回踩10日线</td></tr>
+    <tr><td><b>帝尔激光</b></td><td>—</td><td>TGV激光</td><td>2月涨130%+新高</td><td class="green">+18%</td><td><span class="score score-mid">73</span></td><td>等回调10日线</td></tr>
+    <tr><td><b>隆基绿能</b></td><td>—</td><td>光伏</td><td>三日跌10%后放量收复</td><td class="green">+10%</td><td><span class="score score-mid">72</span></td><td>回踩14元</td></tr>
+    <tr><td><b>中国中免</b></td><td>601888</td><td>免税</td><td>双底+突破颈线</td><td class="yellow">+10%</td><td><span class="score score-mid">71</span></td><td>回踩颈线</td></tr>
+    <tr><td colspan="7" class="small">...等共13只（完整列表见WebSearch多轮结果）</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>🔴 还在回调 — 等待</h2>
+  <table>
+    <tr><td>中际旭创</td><td class="red">跌破1280支撑</td></tr>
+    <tr><td>天孚通信</td><td class="red">跌7%+支撑已破</td></tr>
+    <tr><td>沪电股份</td><td class="red">主力净卖19亿</td></tr>
+  </table>
+</div>
+
+<div class="card" style="border-color:var(--red)">
+  <h2>⚠️ 回调交易铁律</h2>
+  <p>🔴缩量止跌才安全，放量下跌不抄底 | 🔴止损-5%到-8%必须走 | 🟡反弹第一波最确定 | 🟡优先前期龙头 | 🟢企稳确认后再重仓</p>
+</div>
+
+</div><!-- /engine4 tab -->
+
+<!-- ====== FOOTER ====== -->
+<div style="text-align:center; padding:30px; color:var(--dim); border-top:1px solid var(--border); margin-top:30px">
+  <p>📌 数据来源：东方财富、证券时报·数据宝、同花顺iNews、财联社、各机构研报（2026/6/11）</p>
+  <p>⚠️ AI分析仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+  <p style="margin-top:12px"><span class="badge badge-green">引擎1:深度辩论</span> <span class="badge badge-orange">引擎2:聪明钱投机</span> <span class="badge badge-blue">引擎3:趋势中继</span> <span class="badge badge-purple">引擎4:回调重启</span> <span class="badge badge-orange">引擎5:宏观驱动</span></p>
+  <p class="small" style="margin-top:8px">五引擎互补：引擎1告诉你产业链什么值得买 | 引擎2告诉你聪明钱在炒什么 | 引擎3告诉你什么在涨还能涨 | 引擎4告诉你什么回调后有机会 | 引擎5告诉你未来什么会涨</p>
+</div>
+
+</div><!-- /container -->
+
+<script>
+const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六'];
+const today = new Date();
+const tomorrow = new Date(today);
+tomorrow.setDate(today.getDate() + 1);
+const fmt = d => `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+document.getElementById('header-date').textContent =
+  `📅 ${fmt(today)}（周${WEEKDAYS[today.getDay()]}）盘后 → 明日${fmt(tomorrow)}建仓`;
+
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t => {
+    const tabNames = { summary: '汇总', engine1: '引擎1', engine2: '引擎2', engine3: '引擎3', engine4: '引擎4', engine5: '引擎5' };
+    if (t.textContent.includes(tabNames[name])) t.classList.add('active');
+  });
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.tab').forEach((t,i) => {
+  t.onclick = () => switchTab(['summary','engine1','engine2','engine3','engine4','engine5'][i]);
+});
+</script>
+
+</body>
+</html>

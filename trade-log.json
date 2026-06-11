@@ -1,0 +1,118 @@
+{
+  "_description": "三引擎选股系统 完整交易记录。每天更新盈亏，自动回测发现模式。",
+  "_version": "2.0",
+  "lastUpdated": "2026-06-10",
+  "autoRules": {
+    "lastGenerated": null,
+    "rules": []
+  },
+  "trades": [
+    {
+      "id": "20260610-001", "date": "2026-06-10",
+      "engine": ["engine1", "engine3"], "symbol": "002409", "name": "雅克科技",
+      "type": "趋势建仓",
+      "chain": "集成电路·HBM", "chainNode": "前驱体",
+      "entryPrice": null, "entryCondition": "6/11高开<3%", "actualEntry": null,
+      "stopLoss": 115.0, "targetReturn": "+15%", "position": "6成",
+      "marketSentiment": "回暖",
+      "pe": 60, "peg": 1.2, "revenueGrowth": 30, "grossMargin": "50%+",
+      "status": "pending",
+      "d1Return": null, "d3Return": null, "d5Return": null,
+      "exitPrice": null, "exitDate": null, "exitReason": null,
+      "pnl": null, "notes": "HBM前驱体垄断·SK海力士独家至2031·引擎1=85分"
+    },
+    {
+      "id": "20260610-002", "date": "2026-06-10",
+      "engine": ["engine1", "engine3"], "symbol": "688041", "name": "海光信息",
+      "type": "等回调",
+      "chain": "集成电路·AI算力", "chainNode": "GPU",
+      "entryPrice": null, "entryCondition": "等回调至270元", "actualEntry": null,
+      "stopLoss": 250.0, "targetReturn": "+15%", "position": "3成",
+      "marketSentiment": "回暖",
+      "pe": 130, "peg": 2.0, "revenueGrowth": 57, "grossMargin": "55%(趋势↓)",
+      "status": "pending",
+      "d1Return": null, "d3Return": null, "d5Return": null,
+      "exitPrice": null, "exitDate": null, "exitReason": null,
+      "pnl": null, "notes": "国产CPU+GPU唯一·合并中科曙光·等低吸"
+    },
+    {
+      "id": "20260610-003", "date": "2026-06-10",
+      "engine": ["engine2"], "symbol": "002636", "name": "金安国纪",
+      "type": "跟庄博弈",
+      "chain": "集成电路·材料", "chainNode": "覆铜板",
+      "entryPrice": null, "entryCondition": "6/11平开<3%", "actualEntry": null,
+      "stopLoss": 70.38, "targetReturn": "+10%", "position": "2成",
+      "marketSentiment": "回暖",
+      "pe": 107, "peg": null, "revenueGrowth": 31, "grossMargin": "26%",
+      "seatStyle": "紫阳东路·主线主买",
+      "status": "pending",
+      "d1Return": null, "d3Return": null, "d5Return": null,
+      "exitPrice": null, "exitDate": null, "exitReason": null,
+      "pnl": null, "notes": "紫阳东路T+1~T+3·老资金清仓新资金接力"
+    },
+    {
+      "id": "20260610-004", "date": "2026-06-10",
+      "engine": ["engine2"], "symbol": "002261", "name": "拓维信息",
+      "type": "超短博弈",
+      "chain": "集成电路·AI算力", "chainNode": "算力租赁",
+      "entryPrice": null, "entryCondition": "6/11高开<3%", "actualEntry": null,
+      "stopLoss": 29.0, "targetReturn": "+8%", "position": "1成",
+      "marketSentiment": "回暖",
+      "pe": 158, "peg": null, "revenueGrowth": -4.7, "grossMargin": "17%",
+      "status": "pending",
+      "d1Return": null, "d3Return": null, "d5Return": null,
+      "exitPrice": null, "exitDate": null, "exitReason": null,
+      "pnl": null, "notes": "主力+7.19亿·华为大会催化·连板概率65%"
+    },
+    {
+      "id": "20260610-005", "date": "2026-06-10",
+      "engine": ["engine2"], "symbol": "002354", "name": "天娱数科",
+      "type": "分歧低吸",
+      "chain": "AI应用", "chainNode": "AI营销",
+      "entryPrice": null, "entryCondition": "6/11跌2-3%低吸", "actualEntry": null,
+      "stopLoss": "5日线", "targetReturn": "+5%", "position": "1成",
+      "marketSentiment": "回暖",
+      "pe": 121, "peg": null, "revenueGrowth": 12.8, "grossMargin": "30%",
+      "status": "pending",
+      "d1Return": null, "d3Return": null, "d5Return": null,
+      "exitPrice": null, "exitDate": null, "exitReason": null,
+      "pnl": null, "notes": "4连板AI龙头·北向+机构双买"
+    },
+    {
+      "id": "20260610-006", "date": "2026-06-10",
+      "engine": ["engine3"], "symbol": "688610", "name": "埃科光电",
+      "type": "趋势中继·初期",
+      "chain": "集成电路·设备", "chainNode": "机器视觉",
+      "entryPrice": null, "entryCondition": "现价建3成", "actualEntry": null,
+      "stopLoss": "MA20", "targetReturn": "+20%", "position": "3成",
+      "marketSentiment": "回暖",
+      "pe": 55, "peg": 0.5, "revenueGrowth": 96, "grossMargin": "60%+",
+      "status": "pending",
+      "d1Return": null, "d3Return": null, "d5Return": null,
+      "exitPrice": null, "exitDate": null, "exitReason": null,
+      "pnl": null, "notes": "机器视觉国产替代·Q1+96%·打破奥林巴斯垄断"
+    },
+    {
+      "id": "20260610-007", "date": "2026-06-10",
+      "engine": ["engine4"], "symbol": "002281", "name": "光迅科技",
+      "type": "提前埋伏",
+      "chain": "集成电路·CPO", "chainNode": "光芯片",
+      "entryPrice": null, "entryCondition": "现价附近", "actualEntry": null,
+      "stopLoss": "-8%", "targetReturn": "+25%", "position": "1成",
+      "marketSentiment": "回暖",
+      "pe": null, "peg": null, "revenueGrowth": null, "grossMargin": null,
+      "status": "pending",
+      "d1Return": null, "d3Return": null, "d5Return": null,
+      "exitPrice": null, "exitDate": null, "exitReason": null,
+      "pnl": null, "notes": "CPO政策刚出+光芯片龙头·等1-4周"
+    }
+  ],
+  "stats": {
+    "totalTrades": 7, "pending": 7, "completed": 0,
+    "winRate": null, "avgReturn": null, "maxDrawdown": null,
+    "byEngine": {},
+    "byChain": {},
+    "bySentiment": {},
+    "byType": {}
+  }
+}

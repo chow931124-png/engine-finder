@@ -1,0 +1,68 @@
+{
+  "screening": {
+    "_comment": "不再按涨跌幅筛选，改为按市场活跃度筛选，捕获上升趋势中暂时震荡的标的",
+    "min_turnover_rate": 2.0,
+    "min_volume_ratio": 1.0,
+    "min_amount": 1.0,
+    "max_initial_candidates": 200,
+    "max_after_money_flow": 30,
+    "max_per_category": 5,
+    "money_flow": {
+      "min_main_net_inflow": 0,
+      "min_super_large_ratio": 0.15,
+      "prefer_large_order_inflow": true
+    }
+  },
+  "classification": {
+    "sentiment_leader": {
+      "label": "🔥 情绪龙头",
+      "criteria": "高换手(>5%) + 龙虎榜活跃或连板基因 + 题材热度高 + 游资/短线资金主导 + 技术面强势突破",
+      "typical_holding": "超短线(1-3天)"
+    },
+    "fundamental_hard": {
+      "label": "🏔️ 基本面硬核",
+      "criteria": "ROE>15% + PE合理或低估值 + 经营现金流/净利润>1 + 机构持仓比例高 + 业绩增长确定 + 行业地位稳固",
+      "typical_holding": "长期(1月+)或波段(1-4周)"
+    },
+    "hybrid": {
+      "label": "🔀 混合型",
+      "criteria": "有一定基本面支撑 + 同时有资金异动或题材催化 + 技术面配合",
+      "typical_holding": "波段(1-4周)"
+    }
+  },
+  "holding_period": {
+    "ultra_short": {
+      "label": "⚡ 超短线(1-3天)",
+      "criteria": "情绪龙头/事件驱动/技术突破/高弹性 + 必须有明确止损位"
+    },
+    "swing": {
+      "label": "📅 波段(1-4周)",
+      "criteria": "趋势明确/有催化剂时间表/技术面配合/基本面无重大问题"
+    },
+    "long_term": {
+      "label": "🏛️ 长期(1月+)",
+      "criteria": "ROE>15%/PEG<1.5/护城河明确/估值合理/成长确定"
+    }
+  },
+  "debate": {
+    "_comment": "Serenity级别深度辩论配置",
+    "pass_threshold": 70,
+    "dimensions": [
+      { "key": "tech_barrier", "label": "🔬 技术壁垒与产业链卡脖子位置" },
+      { "key": "finance_quality", "label": "📊 财务质量与盈利真实性" },
+      { "key": "valuation_margin", "label": "💰 估值安全边际" },
+      { "key": "catalyst_timing", "label": "⚡ 催化剂时机与市场共识" }
+    ],
+    "conviction_mapping": {
+      "高": { "position": "正常仓位(6-8成)", "condition": "4维全pass，综合分≥80" },
+      "中": { "position": "半仓(3-5成)", "condition": "≥3维pass，综合分≥65" },
+      "低": { "position": "观察仓(1-2成)", "condition": "≥2维pass，但有瑕疵" },
+      "不买": { "position": "不建仓", "condition": "存在致命fail或综合分<50" }
+    },
+    "verdict_rules": {
+      "pass": "✅ 通过 — 可建仓：4维中≥3个pass，无一fail，加权分≥70，确信度中或高",
+      "conditional_pass": "⚠️ 有条件通过 — 等待更好时机：≥2个pass，无致命fail，但时机/估值有瑕疵",
+      "fail": "❌ 不通过 — 逻辑有硬伤：≥2个fail，或存在无法反驳的致命攻击"
+    }
+  }
+}
