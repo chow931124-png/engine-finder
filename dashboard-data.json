@@ -1,0 +1,215 @@
+{
+  "lastUpdated": "2026-06-11",
+  "market": {
+    "shanghai": { "value": 3976, "change": -0.85 },
+    "shenzhen": { "value": 14820, "change": -1.20 },
+    "cyb": { "value": 3820, "change": -1.50 },
+    "summary": "成交 2.58万亿 | 涨停76 跌停74 | 隔夜美股暴跌(Dow-950)+CPI 4.2%三年新高→A股低开震荡。高位科技继续退潮，半导体材料逆势走强，银行保险护盘。6/11变盘窗口。",
+    "temperature": {
+      "limitUp": 65, "limitDown": 55, "maxBoard": 4, "promotionRate": 20,
+      "upRatio": 28, "blowRate": 23,
+      "verdict": "回暖期", "detail": "分化行情·正常交易",
+      "icon": "🌤️"
+    }
+  },
+  "avoid": [
+    {"name":"新亚强","red":3,"green":1,"net":"+2","netClass":"red","reason":"今日炸板·主力-1614万·拉高出货·排13/14"},
+    {"name":"天娱数科","red":4,"green":2,"net":"+2","netClass":"red","reason":"4连板+换手21%+假机构+公司澄清=跌停"},
+    {"name":"金安国纪","red":4,"green":2,"net":"+2","netClass":"red","reason":"RSI91+开板8次+PE107+公司警告"},
+    {"name":"天洋新材","red":2,"green":0,"net":"+2","netClass":"yellow","reason":"主力连续5日净流出1.89亿"},
+    {"name":"华电辽能","red":2,"green":0,"net":"+2","netClass":"yellow","reason":"跌停破位·MACD死叉"}
+  ],
+  "operations": [
+    {"priority":"🥇","name":"雅克科技","engine":"引擎1✅85+引擎3趋势","position":"6成","entry":"<3%高开","stopLoss":"115元"},
+    {"priority":"🥈","name":"海光信息","engine":"引擎1✅78+引擎3趋势","position":"3成","entry":"270元低吸","stopLoss":"250元"},
+    {"priority":"🥉","name":"金安国纪","engine":"引擎2紫阳跟庄","position":"2成","entry":"平开<3%","stopLoss":"70.38元"},
+    {"priority":"4","name":"拓维信息","engine":"引擎2连板65%+引擎1","position":"1成","entry":"<3%高开","stopLoss":"29元"},
+    {"priority":"💎","name":"光迅科技","engine":"引擎1CPO链+引擎5政策","position":"1成","entry":"现价埋伏","stopLoss":"-8%"}
+  ],
+  "tracking": [
+    {"name":"雅克科技","entry":"待入场","status":"⏳","pnl":"—"},
+    {"name":"海光信息","entry":"等270元","status":"⏳","pnl":"—"},
+    {"name":"金安国纪","entry":"待入场","status":"⏳","pnl":"—"}
+  ],
+  "dataPool": {
+    "strongSignal": [
+      {"name":"雅克科技","rounds":4,"source":"主力③+龙虎榜+北向+涨停"},
+      {"name":"金安国纪","rounds":5,"source":"主力+龙虎榜+北向+涨停+缩量洗盘"},
+      {"name":"双星新材","rounds":4,"source":"主力+龙虎榜+涨停+放量突破"},
+      {"name":"天娱数科","rounds":4,"source":"龙虎榜+北向+涨停+金叉"},
+      {"name":"中科三环","rounds":4,"source":"主力+龙虎榜①+北向+涨停"},
+      {"name":"昊华科技","rounds":3,"source":"主力+涨停+行业流入"},
+      {"name":"中钨高新","rounds":3,"source":"主力⑤+5亿·钨链全球龙头·Q1+264%·PE23倍"},
+      {"name":"拓维信息","rounds":4,"source":"主力④+涨停+放量突破+金叉"}
+    ],
+    "twoHit": [
+      {"name":"海光信息","signal":"主力①+北向+调研"},{"name":"康强电子","signal":"主力+涨停+突破"},{"name":"宗申动力","signal":"主力+连板"},
+      {"name":"江丰电子","signal":"主力+上涨"},{"name":"中微公司","signal":"主力+北向"},{"name":"圣泉集团","signal":"涨停+缩量+突破"},
+      {"name":"和远气体","signal":"涨停+缩量+连板"},{"name":"百合花","signal":"涨停+缩量+连板"},{"name":"中船特气","signal":"涨停+缩量+新高"},
+      {"name":"三孚股份","signal":"主力+涨停+连板"},{"name":"索辰科技","signal":"缩量+上涨"},{"name":"博迁新材","signal":"缩量+MLCC"},
+      {"name":"东威科技","signal":"缩量+上涨"},{"name":"长盈通","signal":"缩量+光纤"},{"name":"三孚新科","signal":"缩量+PCB"},
+      {"name":"德福科技","signal":"缩量+铜箔"},{"name":"铜冠铜箔","signal":"缩量+铜箔"}
+    ],
+    "topInflow": "海光12.9亿·宏景9.3·雅克7.8·拓维7.2·有研新材6.3·中信证6.0·江丰6.0·宗申5.9·中钨高新5.0·中微4.9·中科三环4.7·华丰4.5·盛新锂能4.3·粤传媒4.1·康强4.0·长川3.8·昊华3.8·平安3.8·天华3.7·华泰3.7·三孚3.6·招行3.6·金螳3.4·拓邦3.4·飞凯3.1·巨化3.1·菲利华3.1·华特2.9·茅台2.7·双星2.7·华虹2.6·北方华创2.6·美利云2.6·融捷2.5·铜陵2.3·恒瑞2.3·兴业2.3·睿创2.2·泰嘉2.2·有研粉材2.2·东芯2.1·三祥2.1·中国电2.1·山东玻纤2.0·湘潭2.0·太保2.0·中科金财2.0·品高2.0·盛科1.9·华安1.9",
+    "limitUp": "有研粉材+20%·富信+20%·怡达+20%·美邦+20%·中船特气+16%·常友+15%·苏大维格+12%·聚石+11%·悦安+11%·中巨芯+11%·山东玻纤+10%·百合花+10%·康强+10%·昊华+10%·金安国纪+10%·和远气体+10%·华亚+10%·法狮龙+10%·圣泉+10%·三孚+10%·惠泉+10%·金螳螂+10%·美利云+10%·中科三环+10%·湘潭+10%·中科金财+10%·拓维+10%·雅克+10%·天娱+10%·双星+10%·爱旭+10%·京基+10%·宏昌+10%·天地源+10%·劲拓+10%·华正+9%·温州宏丰+9%·江丰+8%·亚翔+8%·凡拓+8%·逸豪+7%·三祥+7%·远东+7%·燕京+6%·珠江+6%·天创+6%·红星+6%·洪田+5%·有研硅+5%·亨通+5%·东材+5%·百润+5%·旭光+4%·中兰+4%·重庆啤酒+4%·万朗+4%·福莱+4%·索辰+3%·东威+3%·沃格+3%·京源+3%·友邦+3%·汇成+2%·青岛啤酒+2%·得邦+2%·光智+2%·安联+2%",
+    "dragonTiger": "中科三环+3.14亿·雅克+2.08亿·大普微+1.59亿·天娱+1.45亿·王子新材+1.07亿·怡达+0.98亿·太极实业+0.78亿·双星+0.68亿·九州一轨+0.62亿·鑫科+0.50亿·山东玻纤+0.25亿·苏豪汇鸿+0.44亿·佳创+0.36亿·京基+0.72亿·康达-0.83亿",
+    "volumeBreakout": "常友科技·中力股份·西域旅游·华体科技·西藏旅游·一诺威·厦门银行·返利科技·邮储银行·云南旅游·天地源·双星新材·金安国纪·中化国际·拓维信息·中晶科技·康强电子·三孚股份·宏昌电子·圣泉集团·康达新材·苏大维格·森鹰窗业·中贝通信·天娱数科·民德电子·三花智控·思进智能·莲花控股·贝斯特·长盛轴承·江苏雷利·雷赛智能·汉威科技·北方华创·通富微电·沪硅产业·亨通光电·有研粉材·三孚新科",
+    "pullback": "中船特气·索辰科技·博迁新材·长盈通·三孚新科·德福科技·铜冠铜箔·东威科技·海川智能·金安国纪·利和兴·圣泉集团·博硕科技·江化微·和远气体·金海高科·晶华新材·百合花·奥康国际·凯瑞德·浙江众成",
+    "northbound": "宏昌电子+4.12亿·春秋电子+1.46亿·天娱+1.48亿·中科三环+1.06亿·雅克+9358万·爱旭+6492万·京基+3621万·金安国纪+6514万·太极实业+9217万·双星新材·雄韬股份·王子新材",
+    "institutionResearch": "怡合达292家·乐鑫253·汇川技术148·中科曙光146·海光信息145·稳健医疗144·百利天恒136·中科创达130·孩子王123·天孚通信112",
+    "hiddenChampion": "长盛轴承(自润滑轴承全球第三)·兴业银行(PB0.45/PE5.1/股息6%)·春光集团(软磁铁氧体单项冠军)·瑞丰新材(润滑油添加剂龙头/PE21)·日联科技(X射线检测)·美德乐(智能输送+18亿订单)·腾景科技(精密光学/量子)",
+    "earningsForecast": "AI算力硬件(PCB/液冷订单+80%)·存储芯片(HBM+200%/DDR5+120%)·先进封装(排至2027Q1)·光通信CPO(800G+50%·净利+60-90%)",
+    "oversold": "消费电子·元器件·机器人·液冷跌幅居前·超跌修复非反转·等放量确认",
+    "specialNew": "春光集团·恒运昌(射频电源)·日联科技(X射线)·美德乐(18亿订单)·长盛轴承(机器人轴承PE20)·腾景科技(光学)·皓元医药(ADC/CDMO)",
+    "highDividend": "汇洁11%·荣晟8.7%·立霸8.3%·君正7.9%·神华7.3%·陕煤6.9%·工行5.4%·长电5.7%·石化5.4%·大秦5.8%·茅台4%·建行5.5%",
+    "superLargeOrder": "双星新材(超大单+3亿·5日+6亿)·怡达股份(超大单+1.6亿)·同宇新材(换手42%)·中泰证券(超大单+8741万)"
+  },
+  "engine1": {
+    "top18": [
+      {"rank":1,"name":"中钨高新","chain":"稀有金属·钨全链","growth":"+264%","peg":"<0.1","money":"+5.0亿","chainPos":"🟡","score":70,"judgment":"极度低估·PEG<0.1","style":"orange"},
+      {"rank":2,"name":"海光信息","chain":"AI算力·GPU","growth":"+57%","peg":"2.0","money":"+12.9亿","chainPos":"🔑","score":68,"judgment":"国产GPU唯一","style":"green"},
+      {"rank":3,"name":"雅克科技","chain":"HBM·前驱体","growth":"+30%","peg":"1.2","money":"+7.8亿","chainPos":"🔑全球仅3家","score":68,"judgment":"HBM必经之路","style":"green"},
+      {"rank":4,"name":"埃科光电","chain":"设备·机器视觉","growth":"+169%","peg":"<0.5","money":"+","chainPos":"🟡","score":60,"judgment":"国产替代先锋","style":""},
+      {"rank":5,"name":"金安国纪","chain":"材料·覆铜板","growth":"+764%","peg":"—","money":"多方共振","chainPos":"🟡","score":60,"judgment":"跟庄标的","style":""},
+      {"rank":6,"name":"厦门钨业","chain":"稀有金属·钨","growth":"+183%","peg":"<0.3","money":"+","chainPos":"🟡","score":56,"judgment":"低估资源","style":""},
+      {"rank":7,"name":"中科三环","chain":"稀土·永磁","growth":"+","peg":"—","money":"龙虎①","chainPos":"🟡","score":56,"judgment":"稀土龙头","style":""},
+      {"rank":8,"name":"盛美上海","chain":"设备·清洗","growth":"+40%","peg":"~1.5","money":"+","chainPos":"🔑","score":52,"judgment":"清洗唯一","style":""},
+      {"rank":9,"name":"昊华科技","chain":"材料·电子特气","growth":"+30%","peg":"—","money":"+3.8亿","chainPos":"🟡","score":51,"judgment":"🟢","style":""},
+      {"rank":10,"name":"双星新材","chain":"材料·复合铜箔","growth":"扭亏","peg":"—","money":"2连板","chainPos":"🟡","score":51,"judgment":"🟢","style":""},
+      {"rank":11,"name":"绿的谐波","chain":"机器人·谐波减速器","growth":"+61%","peg":"—","money":"+","chainPos":"🔑全球第二","score":48,"judgment":"等回调","style":"purple"},
+      {"rank":12,"name":"北方华创","chain":"设备·刻蚀/薄膜","growth":"+","peg":"~2","money":"+","chainPos":"🔑","score":46,"judgment":"🟢","style":""},
+      {"rank":13,"name":"天娱数科","chain":"AI应用","growth":"扭亏","peg":"—","money":"北向1.5亿","chainPos":"—","score":45,"judgment":"⚠️","style":""},
+      {"rank":14,"name":"康强电子","chain":"封装·引线框架","growth":"+","peg":"—","money":"+4.0亿","chainPos":"🟡","score":38,"judgment":"🟢","style":""},
+      {"rank":15,"name":"拓维信息","chain":"算力租赁","growth":"-4.7%","peg":"—","money":"+7.2亿","chainPos":"—","score":37,"judgment":"壁垒弱","style":""},
+      {"rank":16,"name":"隆基绿能","chain":"光伏·组件","growth":"底","peg":"—","money":"刚反弹","chainPos":"🟡","score":33,"judgment":"等确认","style":""},
+      {"rank":17,"name":"亿华通","chain":"氢能·燃料电池","growth":"亏损收窄","peg":"—","money":"底部","chainPos":"🟡","score":28,"judgment":"极小仓位","style":""},
+      {"rank":18,"name":"航发动力","chain":"军工·发动机","growth":"+14.8%","peg":"—","money":"底部·12机构买","chainPos":"🔑唯一","score":28,"judgment":"等止跌","style":""}
+    ],
+    "chains": [
+      {"chain":"集成电路·HBM","items":[{"name":"雅克科技","score":68,"level":"green"},{"name":"通富微电","score":null,"level":"white"},{"name":"昊华科技","score":51,"level":"green"}]},
+      {"chain":"集成电路·AI算力","items":[{"name":"海光信息","score":68,"level":"green"},{"name":"寒武纪","score":null,"level":"white"},{"name":"中芯国际","score":null,"level":"white"}]},
+      {"chain":"集成电路·CPO","items":[{"name":"光迅科技","score":null,"level":"yellow"},{"name":"中际旭创","score":null,"level":"white"},{"name":"天孚通信","score":null,"level":"white"}]},
+      {"chain":"集成电路·设备","items":[{"name":"盛美上海","score":52,"level":"green"},{"name":"北方华创","score":46,"level":"yellow"},{"name":"中微公司","score":null,"level":"white"}]},
+      {"chain":"稀有金属·钨","items":[{"name":"中钨高新","score":70,"level":"green"},{"name":"厦门钨业","score":56,"level":"green"}]},
+      {"chain":"稀土永磁","items":[{"name":"中科三环","score":56,"level":"green"},{"name":"北方稀土","score":null,"level":"white"}]},
+      {"chain":"智能机器人","items":[{"name":"绿的谐波","score":48,"level":"yellow"},{"name":"中大力德","score":null,"level":"yellow"},{"name":"拓斯达","score":null,"level":"white"}]},
+      {"chain":"光伏/新能源","items":[{"name":"隆基绿能","score":33,"level":"yellow"},{"name":"阳光电源","score":null,"level":"white"},{"name":"晶澳科技","score":null,"level":"white"}]},
+      {"chain":"氢能","items":[{"name":"亿华通","score":28,"level":"yellow"}]},
+      {"chain":"军工航空","items":[{"name":"航发动力","score":28,"level":"yellow"}]}
+    ],
+    "debateTop5": [
+      {"rank":"🥇","name":"中钨高新","score":70,"verdict":"pass","chain":"钨全产业链一体化(矿山→冶炼→深加工→工具)。硬质合金产量<b>全球第一</b>。PCB微钻50倍长径比<b>全球唯一量产</b>。五矿集团持股53%·中国钨储量占全球50%。","attack":"钨价年内最大涨幅131%也出现了41%的回撤。利润高度依赖钨价——如果钨价回调30%，利润可能腰斩。Q1+264%的增速不可持续。","rebuttal":"PE仅23倍、PEG<0.1——即使增速从264%降到50%，仍然极度低估。柿竹园+远景钨业注入后自给率持续提升，量增可以部分对冲价跌。PCB微钻受益AI服务器需求是结构性增长，不依赖钨价。","insight":"市场把它当周期股给23倍PE——但它有全球独家的PCB微钻(25%净利率)+数控刀具(成长业务)，这些是成长股逻辑。一旦市场重估为\"资源+成长\"，估值可能翻倍至50倍。","conviction":"高","position":"5-6成","entry":"现价72.9或回踩70元","stopLoss":"65元(-10%)"},
+      {"rank":"🥈","name":"海光信息","score":68,"verdict":"pass","chain":"国内<b>唯一</b>x86 CPU + 类CUDA GPU双架构。145家机构调研。吸收合并中科曙光→芯片→整机→算力全栈。","attack":"PE 130倍处于历史98%分位。毛利率从63%降至55%趋势下行。PEG~2偏高。","rebuttal":"2027E ROE 20%+、净利60亿+→前瞻PE可降至80倍。国产GPU唯一标的应享战略溢价。","insight":"","conviction":"中","position":"3-5成","entry":"等270元(-5%)低吸","stopLoss":"250元"},
+      {"rank":"🥉","name":"雅克科技","score":68,"verdict":"pass","chain":"HBM前驱体全球仅3家能做。SK海力士HBM4<b>100%独家供应</b>至2031年。长鑫存储前驱体份额超60%。","attack":"HBF混合键合技术若成熟，可能跳过前驱体工序。前驱体市场天花板约50亿美元，规模有限。","rebuttal":"HBF量产至少2030年。LNG在手96亿+光刻胶+硅微粉多线布局。","insight":"","conviction":"高","position":"6成","entry":"明日<3%高开","stopLoss":"115元"},
+      {"rank":"4","name":"埃科光电","score":60,"verdict":"pass","chain":"机器视觉国产替代先锋·打破奥林巴斯垄断","attack":"","rebuttal":"","insight":"Q1营收+96%·净利+169%·PEG<0.5·均线多头初启动","conviction":"中","position":"3成","entry":"现价","stopLoss":"MA20"},
+      {"rank":"5","name":"厦门钨业","score":56,"verdict":"pass","chain":"钨全产业链+光伏钨丝+硬质合金三驱动","attack":"","rebuttal":"","insight":"Q1+183%·PE25x·PEG<0.3·国家队持仓","conviction":"中","position":"3成","entry":"回踩5日线","stopLoss":"-8%"}
+    ],
+    "recommendations": [
+      {"priority":"🥇","name":"中钨高新","score":70,"conviction":"高","position":"5-6成","entry":"现价/回踩70","logic":"PEG<0.1+钨链全球龙头+PCB微钻独家"},
+      {"priority":"🥈","name":"雅克科技","score":68,"conviction":"高","position":"6成","entry":"<3%高开进","logic":"HBM前驱体垄断·SK海力士独家至2031"},
+      {"priority":"🥉","name":"海光信息","score":68,"conviction":"中","position":"3-5成","entry":"等270元","logic":"国产GPU唯一·145家机构调研"},
+      {"priority":"4","name":"埃科光电","score":60,"conviction":"中","position":"3成","entry":"现价","logic":"机器视觉国产替代·PEG<0.5"},
+      {"priority":"5","name":"厦门钨业","score":56,"conviction":"中","position":"3成","entry":"回踩5日线","logic":"PEG<0.3+国家队·钨+光伏双驱动"},
+      {"priority":"💎","name":"绿的谐波","score":48,"conviction":"中","position":"等回调","entry":"350元","logic":"谐波减速器全球第二·人形机器人必配"}
+    ]
+  },
+  "engine2": {
+    "tripleConfirm": [
+      {"name":"金安国纪","inst":"+1.06亿","north":"+6514万","youzi":"紫阳+9157·低位+4170","board":3,"blowRate":"~25%","strategy":"紫阳T+3走·平开<3%进·老资金全清筹码干净","position":"2成"},
+      {"name":"中科三环","inst":"+1952万","north":"+1.06亿","youzi":"作手新一+4672·杭州帮+7186","board":1,"blowRate":"~20%","strategy":"稀土龙头·作手新一T+1~T+2·首板安全","position":"1.5成"},
+      {"name":"双星新材","inst":"+2775万","north":"买入","youzi":"紫阳+3948·方新侠+4846·湛江万豪","board":2,"blowRate":"~25%","strategy":"复合铜箔·三板确认加仓·紫阳+方新侠双保险","position":"1.5成"}
+    ],
+    "doubleSignal": [
+      {"rank":4,"name":"拓维信息","signal1":"主力+7.2亿(39%)","signal2":"华为大会6/12催化·游资参与","board":1,"strategy":"连板概率65%·高开<3%进·29止损","position":"1成"},
+      {"rank":5,"name":"天娱数科","signal1":"机构+4602万","signal2":"北向+1.48亿","board":4,"strategy":"4板分歧低吸(跌2-3%进)·5日线止损·不追板","position":"1成"},
+      {"rank":6,"name":"康强电子","signal1":"主力+4.0亿","signal2":"DDE大单4.19·全市场第一","board":1,"strategy":"先进封装概念·首板·回踩5日线进","position":"0.5成"},
+      {"rank":7,"name":"宗申动力","signal1":"主力+5.9亿","signal2":"龙虎榜净买居前","board":3,"strategy":"低空经济·3进4风险·轻仓博弈","position":"0.5成"}
+    ],
+    "singleSignal": [
+      {"rank":8,"name":"昊华科技","signal":"主力+3.8亿+涨停·电子特气龙头","wait":"等龙虎榜数据确认席位"},
+      {"rank":9,"name":"王子新材","signal":"机构+1413万·北向+2484万·南京帮+3035万","wait":"单笔太小·等放量确认"},
+      {"rank":10,"name":"江丰电子","signal":"主力+6.0亿·靶材龙头","wait":"趋势股·非连板博弈·等回调"},
+      {"rank":11,"name":"中微公司","signal":"主力+5.0亿·设备龙头","wait":"偏中线·非引擎2短线标的"},
+      {"rank":12,"name":"雅克科技","signal":"章盟主+1.1亿·北向+9358万","wait":"→ 去引擎1深度辩论·不在此重复"}
+    ]
+  },
+  "engine3": {
+    "earlyStage": [
+      {"name":"埃科光电","code":"688610","industry":"机器视觉","trend":90,"valuation":"PE55x/PEG<0.5","sentiment":"🟢很低 无人讨论","diff":"大：打破奥林巴斯垄断","score":82,"action":"现价/跌破MA20出"},
+      {"name":"盛美上海","code":"688082","industry":"半导体清洗","trend":85,"valuation":"PE40x/在手90亿","sentiment":"🟡合理 业内关注","diff":"中：清洗设备唯一国产","score":78,"action":"现价~120/止损-10%"},
+      {"name":"厦门钨业","code":"600549","industry":"稀有金属","trend":80,"valuation":"PE25x/PEG~0.3","sentiment":"🟢很低 资源股冷","diff":"大：Q1+183%未充分定价","score":76,"action":"回踩5日线/止损-8%"},
+      {"name":"皖维高新","code":"600063","industry":"PVA新材料","trend":75,"valuation":"PE20x/PEG<1","sentiment":"🟢很低 传统化工","diff":"中：光学薄膜国产替代","score":72,"action":"现价/止损-8%"}
+    ],
+    "midStage": [
+      {"name":"中大力德","code":"002896","industry":"机器人减速器","gained":"~40%","remaining":"+30%(目标75)","valuation":"PE60x PEG~1","sentiment":"🟡机器人热","score":74,"action":"回踩20日线/止损-10%"},
+      {"name":"欧科亿","code":"688308","industry":"数控刀具","gained":"~35%","remaining":"+30%(目标50)","valuation":"PE35x PEG<0.3","sentiment":"🟢冷门 无人推","score":76,"action":"回踩10日线/止损-8%"},
+      {"name":"鸿合科技","code":"002955","industry":"教育信息化","gained":"~25%","remaining":"+25%(目标45)","valuation":"PE25x PEG<1","sentiment":"🟢教育冷门","score":70,"action":"现价/止损-8%"},
+      {"name":"昊华科技","code":"600378","industry":"电子特气","gained":"~30%","remaining":"+20%(目标40)","valuation":"PE30x 合理","sentiment":"🟡材料热","score":68,"action":"等回调5日线/止损-8%"}
+    ],
+    "excluded": [
+      {"name":"百合花","code":"603823","reason":"PE 98x vs 行业17x | Q1净利-6.23% | 8天4板已Price In未来2年 | RSI超买"},
+      {"name":"和远气体","code":"002971","reason":"5天3板短期涨幅过大 | 等待回调至10日线再评估"},
+      {"name":"金安国纪","code":"002636","reason":"PE 107x | 10倍涨幅后估值严重透支 | 公司自己发警告"},
+      {"name":"宗申动力","code":"001696","reason":"3连板+低空经济概念炒作 | 非核心标的 | 涨幅已大"}
+    ]
+  },
+  "engine4": {
+    "pendingConfirm": [
+      {"name":"双星新材","code":"002585","direction":"复合铜箔","signal":"2连板涨停","score":78,"action":"三板封住加仓"},
+      {"name":"圣泉集团","code":"605589","direction":"合成树脂","signal":"涨停封单3.6亿","score":74,"action":"回踩5日线进"},
+      {"name":"生益科技","code":"600183","direction":"PCB","signal":"高位洗盘","score":72,"action":"144支撑低吸"},
+      {"name":"博迁新材","code":"605376","direction":"MLCC上游","signal":"平台支撑","score":70,"action":"等放量阳线"},
+      {"name":"中船特气","code":"688146","direction":"电子特气","signal":"均线上方止跌","score":68,"action":"等放量突破"},
+      {"name":"京东方A","code":"000725","direction":"面板","signal":"回踩5日线","score":65,"action":"6元不破低吸"},
+      {"name":"德福科技","code":"301511","direction":"铜箔","signal":"支撑位企稳","score":66,"action":"等量比>1.3"},
+      {"name":"东威科技","code":"688700","direction":"铜箔设备","signal":"缩量止跌","score":65,"action":"等放量"}
+    ],
+    "confirmed": [
+      {"name":"中信海直","code":"000099","direction":"低空经济","signal":"巨量长阳突破大箱体","upside":"+15%","score":80,"action":"回踩箱体上沿加"},
+      {"name":"沃格光电","code":"—","direction":"玻璃基板","signal":"2月涨3倍+新高","upside":"+20%","score":75,"action":"5日线低吸"},
+      {"name":"风华高科","code":"—","direction":"MLCC","signal":"涨停反包","upside":"+15%","score":75,"action":"回踩5日线"},
+      {"name":"立昂微","code":"605358","direction":"半导体硅片","signal":"涨停反弹","upside":"+12%","score":74,"action":"回踩10日线"},
+      {"name":"帝尔激光","code":"—","direction":"TGV激光","signal":"2月涨130%+新高","upside":"+18%","score":73,"action":"等回调10日线"},
+      {"name":"隆基绿能","code":"—","direction":"光伏","signal":"三日跌10%后放量收复","upside":"+10%","score":72,"action":"回踩14元"},
+      {"name":"中国中免","code":"601888","direction":"免税","signal":"双底+突破颈线","upside":"+10%","score":71,"action":"回踩颈线"}
+    ],
+    "waiting": [
+      {"name":"中际旭创","status":"跌破1280支撑"},
+      {"name":"天孚通信","status":"跌7%+支撑已破"},
+      {"name":"沪电股份","status":"主力净卖19亿"}
+    ]
+  },
+  "engine5": {
+    "prePosition": [
+      {"name":"光迅科技","logic":"CPO政策刚出+光芯片龙头，市场未反应","timeframe":"1-4周","position":"1成","stopLoss":"-8%"},
+      {"name":"中际旭创","logic":"800G+CPO双受益，今日跌2.8%是低吸机会","timeframe":"1-4周","position":"1成","stopLoss":"-10%"},
+      {"name":"北京科锐","logic":"国网中标7.18亿(占营收33%)+电力基建周期","timeframe":"1-4周","position":"0.5成","stopLoss":"-8%"},
+      {"name":"中兴通讯","logic":"6G政策催化剂+低估值+通信设备龙头","timeframe":"3-6月","position":"0.5成","stopLoss":"-10%"}
+    ]
+  },
+  "sectorFlow": {
+    "inflow": [
+      {"sector":"基础化工","amount":"+9.55","signal":"🟢唯一申万一级净流入","detail":"昊华/三孚/双星/圣泉涨停"},
+      {"sector":"证券","amount":"+12.67","signal":"🟢护盘主力","detail":""},
+      {"sector":"保险","amount":"+9.65","signal":"🟢涨3.19%","detail":""},
+      {"sector":"银行","amount":"+8.84","signal":"🟢建行新高","detail":""},
+      {"sector":"能源金属","amount":"+7.82","signal":"🟢","detail":""},
+      {"sector":"白酒","amount":"+6.02","signal":"🟡防御回流","detail":""}
+    ],
+    "outflow": [
+      {"sector":"电子","amount":"-266.71","signal":"🔴半导体内部轮动·材料强设计弱"},
+      {"sector":"电力设备","amount":"-101.52","signal":"🔴光伏试探回流中"},
+      {"sector":"通信","amount":"-83.46","signal":"🔴CPO/光模块获利了结"},
+      {"sector":"机械设备","amount":"-66.12","signal":"🔴机器人回调"},
+      {"sector":"计算机","amount":"-21.82","signal":"🟡AI应用分化"}
+    ],
+    "rotation": [
+      {"stage":"🔥 当前主线","direction":"半导体材料/设备","logic":"电子板块资金-266亿但材料逆势流入·资金从设计/存储切向上游材料·国产替代+AI拉动双重逻辑","targets":"雅克科技·昊华科技·盛美上海·北方华创"},
+      {"stage":"🟢 持续看好","direction":"银行/保险/红利","logic":"防御底仓·建行新高·全球加息潮利好金融·哑铃型配置防守端","targets":"建设银行·邮储银行·中国平安"},
+      {"stage":"🟡 轮动中","direction":"机器人→回调蓄力","logic":"6/5资金涌入→6/9-10再度承压·人形机器人逻辑没变·等调整充分后二次启动","targets":"绿的谐波·中大力德·拓斯达"},
+      {"stage":"🟡 试探回流","direction":"光伏","logic":"6/11尾盘异动·爱旭/晶澳涨停·资金从科技切出后在试探新能源·需次日放量确认","targets":"隆基绿能·晶澳科技·阳光电源"},
+      {"stage":"🔴 短期回避","direction":"CPO/光模块/液冷","logic":"前期涨幅过大·通信-83亿·天孚-7%/中际-3%/沪电-7%·等充分回调","targets":"中际旭创·天孚通信·沪电股份"},
+      {"stage":"🔴 高位兑现","direction":"半导体设计/存储","logic":"博通指引不及预期+美日韩暴跌传导·兆易-4%/佰维存储大跌·等待调整到位","targets":"兆易创新·寒武纪"}
+    ]
+  }
+}
