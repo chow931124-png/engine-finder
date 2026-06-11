@@ -137,6 +137,8 @@ const macroResult = await agent(
 - "NVDA stock price today" 或 "英伟达 股价 最新"
 - "VIX fear index today"
 - "费城半导体指数 SOX 最新"
+- "SPCX SpaceX stock price" 或 "SpaceX 股价 最新"（商业航天估值锚）
+- "COMEX copper gold price" 或 "铜价 金价 最新"（有色金属全球定价锚）
 - 如上述触发异动，在key_events中必须包含该传导分析
 
 ## 分析框架
@@ -151,7 +153,8 @@ const macroResult = await agent(
 - 科技封锁/突破(芯片制裁/国产替代/新技术路线)
 - 地缘冲突(供应链安全/资源国政策)
 - 全球资金流向(美元强弱/新兴市场资金流动)
-- **美股技术面异动**（NVDA/SOX/VIX/TSLA/AAPL）的A股传导
+- **美股技术面异动**（NVDA/SOX/VIX/TSLA/AAPL/SPCX）的A股传导
+- **全球大宗商品异动**（铜/金/铝价）→ A股有色金属映射
 
 ## 输出
 列出5-8个最重要的宏观事件及影响分析。如果有美股技术面异动触发，必须将其作为key_events之一输出。`,

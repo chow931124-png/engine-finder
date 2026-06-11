@@ -190,9 +190,15 @@ ${JSON.stringify(allTrend.slice(0, 12).map(c => ({ symbol: c.symbol, name: c.nam
 | 中际旭创/天孚通信/工业富联/沪电股份 | NVDA | 🔗强/中 |
 | 拓普集团/三花智控 | TSLA | 🔗中 |
 | 立讯精密/歌尔股份 | AAPL | 🔗中 |
+| 紫金矿业/洛阳钼业/江西铜业 | FCX/GDX(铜/金) | 🔗中 |
+| 山东黄金 | GDX(金矿指数) | 🔗中 |
+| 中国铝业 | AA(美国铝业) | 🔗中 |
+| 中矿资源 | ALB(雅保) | 🔗中 |
+| 信维通信/西部超导/蓝思科技 | SPCX(SpaceX) | 🔗中 |
+| 中国卫通/中国卫星/新雷能/火炬电子/航天电子 | SPCX(SpaceX) | 🔗弱 |
 
 ### 修正规则
-WebSearch "NVDA SOX TSLA AAPL 股价 均线 趋势 2026年6月" 获取美股趋势后执行：
+WebSearch "NVDA SOX TSLA AAPL SPCX GDX FCX AA 股价 均线 趋势 2026年6月" 获取美股趋势后执行：
 
 | 映射强度 | 美股🟢上升 | 美股🟡震荡 | 美股🔴下降 |
 |---------|:---------:|:---------:|:---------:|

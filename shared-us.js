@@ -44,9 +44,27 @@ const US_ANCHOR_MAP = {
   '三花智控':   { us: 'TSLA',  level: '🔗中', sector: '热管理',      logic: '特斯拉热管理系统供应商' },
   '旭升集团':   { us: 'TSLA',  level: '🔗中', sector: '铝合金压铸',  logic: '特斯拉铝合金压铸供应商' },
 
+  // ── 有色金属/资源（全球统一定价，受美股资源股+大宗商品影响） ──
+  '紫金矿业':   { us: 'GDX',   level: '🔗中', sector: '铜金矿',      logic: '全球铜金龙头，铜价/金价全球统一定价，美联储利率直接影响' },
+  '山东黄金':   { us: 'GDX',   level: '🔗中', sector: '黄金',        logic: '金价全球统一定价，美联储降息预期=金价上涨直接利好' },
+  '洛阳钼业':   { us: 'FCX',   level: '🔗中', sector: '铜钴',        logic: 'TFM铜钴矿全球定价，受全球PMI和铜价周期影响' },
+  '中国铝业':   { us: 'AA',    level: '🔗中', sector: '电解铝',      logic: '铝价全球统一定价，受全球供需和能源价格影响' },
+  '中矿资源':   { us: 'ALB',   level: '🔗中', sector: '锂矿',        logic: '锂价全球定价，受全球新能源需求和ALB/SQM指引影响' },
+  '江西铜业':   { us: 'FCX',   level: '🔗中', sector: '铜',          logic: '铜价全球统一定价，全球制造业PMI先行指标' },
+
   // ── AI软件/应用 ──
   '金山办公':   { us: 'MSFT',  level: '🔗中', sector: 'AI办公',      logic: '对标Microsoft 365 Copilot，AI办公逻辑跟随微软' },
   '科大讯飞':   { us: 'MSFT',  level: '🔗弱', sector: 'AI语音',      logic: '国内AI语音龙头，微软Copilot间接映射' },
+
+  // ── 商业航天/SpaceX链（估值锚+供应链双重传导） ──
+  '信维通信':   { us: 'SPCX',  level: '🔗中', sector: '卫星终端',    logic: '星链地面终端核心器件/相控阵天线，SpaceX供应链直接受益' },
+  '西部超导':   { us: 'SPCX',  level: '🔗中', sector: '火箭材料',    logic: '火箭特种金属材料供应商，SpaceX放量带动上游需求' },
+  '蓝思科技':   { us: 'SPCX',  level: '🔗中', sector: '航天结构件',  logic: '商业航天列为新增长引擎，SpaceX产业链外溢受益' },
+  '中国卫通':   { us: 'SPCX',  level: '🔗弱', sector: '卫星运营',    logic: 'A股唯一卫星运营商，SpaceX万亿估值锚重塑板块估值' },
+  '中国卫星':   { us: 'SPCX',  level: '🔗弱', sector: '卫星制造',    logic: '卫星制造龙头，SpaceX IPO情绪传导，估值锚重估' },
+  '新雷能':     { us: 'SPCX',  level: '🔗弱', sector: '航天电源',    logic: '卫星电源系统，行业β跟随SpaceX产业链景气度' },
+  '火炬电子':   { us: 'SPCX',  level: '🔗弱', sector: '航天电子',    logic: 'MLCC/陶瓷材料，商业航天放量受益' },
+  '航天电子':   { us: 'SPCX',  level: '🔗弱', sector: '测控通信',    logic: '卫星关键零件，行业β跟随' },
 
   // ── 内需/独立逻辑（不做美股映射） ──
   '中钨高新':   { us: null,    level: '⚪弱', sector: '钨全链',      logic: '钨资源定价，内需驱动' },
@@ -71,7 +89,7 @@ const US_ANCHOR_MAP = {
 const US_TREND_RULES = `
 ## 美股趋势状态判定规则
 
-判断对应美股龙头（NVDA/SOX/TSLA/AAPL/MSFT/AMD/MU）的当前趋势状态：
+判断对应美股龙头（NVDA/SOX/TSLA/AAPL/MSFT/AMD/MU/SPCX）的当前趋势状态：
 
 | 状态 | 判定条件 |
 |------|---------|
@@ -164,6 +182,22 @@ const US_EVENT_TRIGGER_MATRIX = [
     note: '产业链级的重新估值，影响持续数周',
   },
   {
+    trigger: 'COMEX铜/黄金单日 > ±3% 或 GDX金矿指数 > ±4%',
+    level: '🔥🔥🔥',
+    window: 'T+0~T+2',
+    impacted: ['紫金矿业', '山东黄金', '洛阳钼业', '江西铜业', '中矿资源'],
+    expectedImpact: '±1.5%~±3%（同向）',
+    note: '有色是全球统一定价，美联储利率预期/全球PMI直接传导',
+  },
+  {
+    trigger: 'SpaceX IPO/星舰发射重大事件',
+    level: '🔥🔥🔥',
+    window: 'T+0~T+2',
+    impacted: ['信维通信', '西部超导', '中国卫通', '中国卫星', '商业航天ETF'],
+    expectedImpact: '±2%~±5%（同向，事件驱动）',
+    note: 'SpaceX是全球商业航天估值锚，IPO/星舰成败直接传导A股映射标的',
+  },
+  {
     trigger: '美联储利率决议（鹰派超预期）',
     level: '🔥🔥🔥🔥🔥',
     window: 'T+0~T+20',
@@ -213,10 +247,11 @@ const US_TRAFFIC_LIGHT_RULES = `
 🔴 隔夜美股 SOX（费城半导体指数）单日跌幅 > 3%
 🔴 隔夜 NVDA 单日跌幅 > 5%
 🔴 隔夜 TSLA 单日跌幅 > 5%
+🔴 隔夜 SPCX（SpaceX）单日跌幅 > 5%
 🔴 VIX 收盘价 > 30
 
 ### 作用范围
-- 红灯只作用于【强映射】和【中映射】标的（半导体/AI/光模块/HBM/消费电子/新能源车链）
+- 红灯只作用于【强映射】和【中映射】标的（半导体/AI/光模块/HBM/消费电子/新能源车链/商业航天）
 - 内需/弱映射标的（军工/电力/消费/公用事业）不受影响
 
 ### 红灯生效规则
