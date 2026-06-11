@@ -1040,7 +1040,11 @@ renderFns.dataPool = function() {
   h+=`<p class="small" style="margin-top:12px">📐 数据来源：证券之星/东方财富/同花顺/证券时报/财联社 2026-06-11 收盘 | 13轮搜索合并去重约700只</p>`;
   return h;
 };
-function renderText(t) { return `<p class="small">${(t||'').split('·').join('<span style="color:var(--dim)">·</span>')}</p>`; }
+function renderText(t) {
+  if (!t) return '<p class="dim">暂无数据</p>';
+  const items = t.split('·').filter(Boolean);
+  return `<div style="display:flex;flex-wrap:wrap;gap:4px;line-height:1.8">${items.map(i => `<span class="tag">${i}</span>`).join('')}</div>`;
+}
 
 renderFns.engine1Top18 = function() {
   return rTable(D.engine1.top18, ['#','标的','产业链位置','成长','PEG','资金','链位','总分','判断'],
