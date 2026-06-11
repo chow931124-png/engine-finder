@@ -84,7 +84,8 @@
   /* Section divider */
   .divider { border:0; border-top:1px solid var(--border); margin:24px 0; }
 
-  /* tab 切换由 JS 控制 */
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
 
   .small { font-size:0.85em; color:var(--dim); }
   .badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.8em; margin:0 2px; }
@@ -184,7 +185,7 @@
 <!-- ================================================================ -->
 <!-- SUMMARY TAB -->
 <!-- ================================================================ -->
-<div id="tab-summary" class="tab-content active" style="display:block">
+<div id="tab-summary" class="tab-content active">
 
 <!-- Market Overview -->
 <div class="card">
@@ -376,7 +377,7 @@
 
 </div><!-- /summary tab -->
 
-<div id="tab-engine1" class="tab-content" style="display:none">
+<div id="tab-engine1" class="tab-content">
 
 <div class="card">
   <h2>🔬 引擎1：产业链卡脖子位置 × 基本面质量 × 估值安全边际</h2>
@@ -412,7 +413,7 @@
 
 </div><!-- /engine1 tab -->
 
-<div id="tab-engine2" class="tab-content" style="border:3px solid red;display:none">
+<div id="tab-engine2" class="tab-content">
 
 <div class="card">
   <h2>🎯 引擎2：聪明钱投机流 — 专业席位分析框架</h2>
@@ -515,7 +516,7 @@
   <h2>🎯 L4：跟庄策略 — 12只候选·8只可操作</h2>
 
   <h3>🟢🟢🟢 三方共振（机构+北向+知名游资同时买入·最可靠）</h3>
-  <div style="background:yellow;padding:20px;font-size:16px;color:black">✅ 引擎2内容可见</div><div data-render="engine2Triple"></div>
+  <div data-render="engine2Triple"></div>
 
   <h3 style="margin-top:16px">🟢🟢 双信号（主力+游资/北向·可靠）</h3>
   <div data-render="engine2Double"></div>
@@ -548,7 +549,7 @@
 
 </div><!-- /engine2 tab -->
 
-<div id="tab-engine3" class="tab-content" style="display:none">
+<div id="tab-engine3" class="tab-content">
 
 <div class="card">
   <h2>📈 引擎3：主升趋势中继流</h2>
@@ -618,7 +619,7 @@
 <!-- ================================================================ -->
 <!-- ENGINE 4 TAB (old engine 3 - macro) -->
 <!-- ================================================================ -->
-<div id="tab-engine5" class="tab-content" style="display:none">
+<div id="tab-engine5" class="tab-content">
 
 <div class="card">
   <h2>🌍 引擎5：宏观事件驱动流</h2>
@@ -820,7 +821,7 @@
 <!-- ================================================================ -->
 <!-- ENGINE 5 TAB -->
 <!-- ================================================================ -->
-<div id="tab-engine4" class="tab-content" style="display:none">
+<div id="tab-engine4" class="tab-content">
 
 <div class="card">
   <h2>🔄 引擎4：回调重启流</h2>
@@ -913,12 +914,7 @@ function showTab(name, btn) {
   if (btn) btn.classList.add('active');
   window.scrollTo(0,0);
 }
-document.getElementById('tab-summary').style.display = 'block';
-document.getElementById('tab-engine1').style.display = 'none';
-document.getElementById('tab-engine2').style.display = 'none';
-document.getElementById('tab-engine3').style.display = 'none';
-document.getElementById('tab-engine4').style.display = 'none';
-document.getElementById('tab-engine5').style.display = 'none';
+
 
 // ====== 渲染引擎 ======
 const SCORE_MAP = { high:'score-high', mid:'score-mid', low:'score-low' };
