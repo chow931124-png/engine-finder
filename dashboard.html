@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A股三引擎选股系统</title>
+<title>A股三引擎选股系统 | 2026-06-11</title>
 <style>
   :root {
     --bg: #0d1117; --card: #161b22; --border: #30363d;
@@ -51,7 +51,7 @@
   /* Verdict badges */
   .verdict { display:inline-block; padding:4px 14px; border-radius:6px; font-size:0.85em; font-weight:bold; }
   .pass { background:rgba(63,185,80,.15); color:var(--green); border:1px solid var(--green); }
-  .cond { background:rgba(210,153,29,.15); color:var(--yellow); border:1px solid var(--yellow); }
+  .cond { background:rgba(210,153,29,.15); color:var(--yellow); border:1px solid var(--yellow)); }
   .fail { background:rgba(248,81,73,.15); color:var(--red); border:1px solid var(--red); }
 
   /* Resonance matrix */
@@ -96,73 +96,15 @@
   .badge-orange { background:rgba(240,136,62,.2); color:var(--orange); }
 
   .tag { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.8em; border:1px solid var(--border); margin:2px; }
-
-  /* Trade form */
-  .form-row { display:flex; gap:8px; margin:8px 0; flex-wrap:wrap; }
-  .form-row input,.form-row select { padding:8px 12px; background:var(--bg); border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:0.85em; font-family:inherit; flex:1; min-width:100px; }
-  .form-row input:focus,.form-row select:focus { border-color:var(--blue); outline:none; }
-  .btn { padding:8px 20px; border:none; border-radius:6px; font-size:0.85em; font-family:inherit; cursor:pointer; transition:opacity.2s; }
-  .btn-primary { background:var(--blue); color:#fff; }
-  .btn-danger { background:var(--red); color:#fff; }
-  .btn-small { padding:4px 10px; font-size:0.78em; }
-  .btn:hover { opacity:.8; }
-  .trade-list { max-height:300px; overflow-y:auto; font-size:0.83em; }
-  .trade-list tr:hover { background:rgba(255,255,255,.03); }
-  .stat-box { text-align:center; padding:12px; background:var(--bg); border-radius:8px; border:1px solid var(--border); }
-  .stat-box .num { font-size:1.6em; font-weight:bold; }
-  .stat-box .label { color:var(--dim); font-size:0.78em; }
-  .suggest-list { font-size:0.9em; }
-  .suggest-list li { margin:6px 0; padding:6px 12px; background:rgba(88,166,255,.06); border-radius:6px; list-style:none; }
-</style>
-<style>
-  /* Login overlay */
-  .login-overlay {
-    position:fixed; inset:0; background:var(--bg);
-    display:flex; align-items:center; justify-content:center; z-index:9999;
-  }
-  .login-overlay.hidden { display:none; }
-  .login-box {
-    background:var(--card); border:1px solid var(--border); border-radius:16px;
-    padding:48px; max-width:400px; width:90%; text-align:center;
-  }
-  .login-box h1 { font-size:1.6em; margin-bottom:8px; background:linear-gradient(135deg,var(--green),var(--blue)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-  .login-box p { color:var(--dim); font-size:0.9em; margin-bottom:24px; }
-  .login-box input {
-    width:100%; padding:12px 16px; background:var(--bg); border:1px solid var(--border);
-    border-radius:8px; color:var(--text); font-size:1em; outline:none; box-sizing:border-box;
-    font-family:inherit;
-  }
-  .login-box input:focus { border-color:var(--blue); }
-  .login-box .error { color:var(--red); font-size:0.85em; margin-top:8px; min-height:1.2em; }
-  .login-box button {
-    margin-top:16px; width:100%; padding:12px; border:none; border-radius:8px;
-    background:var(--blue); color:#fff; font-size:1em; cursor:pointer; font-family:inherit;
-    transition:opacity .2s;
-  }
-  .login-box button:hover { opacity:.85; }
-  .login-box .hint { color:var(--dim); font-size:0.75em; margin-top:20px; }
 </style>
 </head>
 <body>
-
-<!-- ====== LOGIN OVERLAY ====== -->
-<div class="login-overlay" id="loginOverlay">
-  <div class="login-box">
-    <h1>🔒 A股三引擎选股系统</h1>
-    <p>请输入访问密码</p>
-    <input type="password" id="loginPass" placeholder="输入密码" autocomplete="off" />
-    <div class="error" id="loginError"></div>
-    <button onclick="verifyLogin()">确认</button>
-    <div class="hint">首次使用请联系管理员获取密码</div>
-  </div>
-</div>
-
 <div class="container">
 
 <!-- ====== HEADER ====== -->
 <div class="header">
   <h1>🧠 A股三引擎选股系统</h1>
-  <div class="date" id="header-date"></div>
+  <div class="date">📅 2026年6月11日（周三）盘后 → 明日6/11建仓</div>
   <div class="engines">
     <span class="engine-badge" style="border-color:var(--green)">🔬 引擎1: Serenity深度辩论</span>
     <span class="engine-badge" style="border-color:var(--orange)">🎯 引擎2: 聪明钱投机</span>
@@ -174,12 +116,12 @@
 
 <!-- ====== TABS ====== -->
 <div class="tabs">
-  <div class="tab active" onclick="showTab('summary',this)">🔗 汇总</div>
-  <div class="tab" onclick="showTab('engine1',this)">🔬 引擎1: 深度辩论</div>
-  <div class="tab" onclick="showTab('engine2',this)">🎯 引擎2: 聪明钱投机</div>
-  <div class="tab" onclick="showTab('engine3',this)">📈 引擎3: 趋势中继</div>
-  <div class="tab" onclick="showTab('engine4',this)">🔄 引擎4: 回调重启</div>
-  <div class="tab" onclick="showTab('engine5',this)">🌍 引擎5: 宏观驱动</div>
+  <div class="tab active" onclick="switchTab('summary')">🔗 汇总</div>
+  <div class="tab" onclick="switchTab('engine1')">🔬 引擎1: 深度辩论</div>
+  <div class="tab" onclick="switchTab('engine2')">🎯 引擎2: 聪明钱投机</div>
+  <div class="tab" onclick="switchTab('engine3')">📈 引擎3: 趋势中继</div>
+  <div class="tab" onclick="switchTab('engine4')">🔄 引擎4: 回调重启</div>
+  <div class="tab" onclick="switchTab('engine5')">🌍 引擎5: 宏观驱动</div>
 </div>
 
 <!-- ================================================================ -->
@@ -190,7 +132,12 @@
 <!-- Market Overview -->
 <div class="card">
   <h2>📊 今日市场</h2>
-  <div data-render="market"></div>
+  <div class="grid3">
+    <div><span class="dim">上证指数</span><br><span class="red">3976 (-0.85%)</span></div>
+    <div><span class="dim">深证成指</span><br><span class="red">14820 (-1.20%)</span></div>
+    <div><span class="dim">创业板指</span><br><span class="red">3820 (-1.50%)</span></div>
+  </div>
+  <p style="margin-top:12px">成交 <b>2.58万亿</b> | 涨停76 跌停74 | 隔夜美股暴跌(Dow-950)+CPI 4.2%三年新高→A股低开震荡。高位科技继续退潮，半导体材料逆势走强，银行保险护盘。6/11变盘窗口。</p>
 </div>
 
 <!-- 市场温度计 -->
@@ -199,7 +146,14 @@
 <div class="card" style="border-color:var(--red)">
   <h2>🚫 流量灯过滤·今日避开</h2>
   <p class="dim">以下标的触发多条红灯→不推荐。新亚强=典型案例:涨停秒炸板+主力出货=明日大概率低开。</p>
-  <div data-render="avoid"></div>
+  <table style="font-size:0.85em">
+    <tr><th>标的</th><th>红灯</th><th>绿灯</th><th>净</th><th>为何避开</th></tr>
+    <tr style="background:rgba(248,81,73,.08)"><td><b>新亚强</b></td><td>●●●</td><td>●</td><td class="red">+2</td><td class="red">今日炸板·主力-1614万·拉高出货·排13/14</td></tr>
+    <tr style="background:rgba(248,81,73,.05)"><td><b>天娱数科</b></td><td>●●●●</td><td>●●</td><td class="red">+2</td><td class="red">4连板+换手21%+假机构+公司澄清=跌停</td></tr>
+    <tr style="background:rgba(248,81,73,.05)"><td><b>金安国纪</b></td><td>●●●●</td><td>●●</td><td class="red">+2</td><td class="red">RSI91+开板8次+PE107+公司警告</td></tr>
+    <tr><td>天洋新材</td><td>●●</td><td>○</td><td class="yellow">+2</td><td>主力连续5日净流出1.89亿</td></tr>
+    <tr><td>华电辽能</td><td>●●</td><td>○</td><td class="yellow">+2</td><td>跌停破位·MACD死叉</td></tr>
+  </table>
   <div class="attack" style="margin-top:8px"><b>⚠️ 教训：新亚强排名第13/14(40分)+今天炸板=双重警告。不在推荐列表里的票不要碰。</b></div>
 </div>
 
@@ -216,10 +170,31 @@
 </div>
 
 <!-- 🆕 绩效追踪 -->
-  <div class="card" style="border-color:var(--purple)">
-  <h2>📊 绩效追踪与自学习系统 <span style="font-size:0.7em;color:var(--dim)">[实时]</span></h2>
-  <div id="learning-dashboard" style="min-height:100px">
-    <p class="dim data-loading">⏳ 加载交易数据...</p>
+<div class="card" style="border-color:var(--purple)">
+  <h2>📊 绩效追踪与自动优化 <span style="font-size:0.7em;color:var(--dim)">[自学习系统]</span></h2>
+  <div class="grid2">
+    <div>
+      <table>
+        <tr><th>优化规则</th><th>触发条件</th><th>状态</th></tr>
+        <tr><td>🎯引擎权重动态调整</td><td>某引擎胜率≥70%→加仓；≤40%→减仓</td><td class="yellow">⏳待数据积累</td></tr>
+        <tr><td>🚫退潮期引擎2禁用</td><td>情绪=退潮 + 引擎2胜率≤40%</td><td class="yellow">⏳待验证</td></tr>
+        <tr><td>📐PEG<2.5硬过滤</td><td>PEG>2.5的票胜率≤40%→跳过</td><td class="yellow">⏳待验证</td></tr>
+        <tr><td>⚡紫阳东路最优周期</td><td>回测T+3胜率最高→默认T+3走</td><td class="yellow">⏳待验证</td></tr>
+        <tr><td>🔗产业链动态调权</td><td>某链胜率≤30%→降权重/等右侧</td><td class="yellow">⏳待验证</td></tr>
+      </table>
+    </div>
+    <div style="text-align:center; padding:20px">
+      <div style="font-size:2em">🔬</div>
+      <div style="font-size:1.2em"><b>自学习引擎</b></div>
+      <p class="dim">当前数据: <b>7笔待验证</b> | 0笔已完成</p>
+      <p class="dim">需要≥5笔完成交易后<br>自动产出优化建议</p>
+      <div style="margin-top:8px">
+        <span class="badge badge-yellow">⏳学习中</span>
+      </div>
+    </div>
+  </div>
+  <div class="insight" style="margin-top:12px">
+    <b>💡 工作方式：</b>每天更新trade-log.json中每笔交易的盈亏→系统自动回测→发现模式→产出优化规则→下次推荐时自动应用。你不需要手动调参数，系统自己学习。
   </div>
 </div>
 
@@ -266,16 +241,69 @@
   <div class="grid2">
     <div>
       <h3>🟢 主力净流入板块</h3>
-      <div data-render="sectorInflow"></div>
+      <table style="font-size:0.85em">
+        <tr><th>板块</th><th>净流入(亿)</th><th>信号</th></tr>
+        <tr><td><b>基础化工</b></td><td class="green">+9.55</td><td>🟢唯一申万一级净流入<br><span class="small">昊华/三孚/双星/圣泉涨停</span></td></tr>
+        <tr><td><b>证券</b></td><td class="green">+12.67</td><td>🟢护盘主力</td></tr>
+        <tr><td><b>保险</b></td><td class="green">+9.65</td><td>🟢涨3.19%</td></tr>
+        <tr><td><b>银行</b></td><td class="green">+8.84</td><td>🟢建行新高</td></tr>
+        <tr><td><b>能源金属</b></td><td class="green">+7.82</td><td>🟢</td></tr>
+        <tr><td><b>白酒</b></td><td class="green">+6.02</td><td>🟡防御回流</td></tr>
+      </table>
     </div>
     <div>
       <h3>🔴 主力净流出板块</h3>
-      <div data-render="sectorOutflow"></div>
+      <table style="font-size:0.85em">
+        <tr><th>板块</th><th>净流出(亿)</th><th>信号</th></tr>
+        <tr><td><b>电子</b></td><td class="red">-266.71</td><td>🔴半导体内部轮动·材料强设计弱</td></tr>
+        <tr><td><b>电力设备</b></td><td class="red">-101.52</td><td>🔴光伏试探回流中</td></tr>
+        <tr><td><b>通信</b></td><td class="red">-83.46</td><td>🔴CPO/光模块获利了结</td></tr>
+        <tr><td><b>机械设备</b></td><td class="red">-66.12</td><td>🔴机器人回调</td></tr>
+        <tr><td><b>计算机</b></td><td class="red">-21.82</td><td>🟡AI应用分化</td></tr>
+      </table>
     </div>
   </div>
 
   <h3 style="margin-top:16px">🔄 板块轮动预测</h3>
-  <div data-render="sectorRotation"></div>
+  <table style="font-size:0.85em">
+    <tr><th>阶段</th><th>方向</th><th>逻辑</th><th>对应标的</th></tr>
+    <tr style="background:rgba(63,185,80,.05)">
+      <td><b>🔥 当前主线</b></td>
+      <td><b>半导体材料/设备</b></td>
+      <td>电子板块资金-266亿但材料逆势流入·资金从设计/存储切向上游材料·国产替代+AI拉动双重逻辑</td>
+      <td>雅克科技·昊华科技·盛美上海·北方华创</td>
+    </tr>
+    <tr style="background:rgba(63,185,80,.05)">
+      <td><b>🟢 持续看好</b></td>
+      <td><b>银行/保险/红利</b></td>
+      <td>防御底仓·建行新高·全球加息潮利好金融·哑铃型配置防守端</td>
+      <td>建设银行·邮储银行·中国平安</td>
+    </tr>
+    <tr style="background:rgba(210,153,29,.05)">
+      <td><b>🟡 轮动中</b></td>
+      <td><b>机器人→回调蓄力</b></td>
+      <td>6/5资金涌入→6/9-10再度承压·人形机器人逻辑没变·等调整充分后二次启动</td>
+      <td>绿的谐波·中大力德·拓斯达</td>
+    </tr>
+    <tr style="background:rgba(210,153,29,.05)">
+      <td><b>🟡 试探回流</b></td>
+      <td><b>光伏</b></td>
+      <td>6/11尾盘异动·爱旭/晶澳涨停·资金从科技切出后在试探新能源·需次日放量确认</td>
+      <td>隆基绿能·晶澳科技·阳光电源</td>
+    </tr>
+    <tr style="background:rgba(248,81,73,.05)">
+      <td><b>🔴 短期回避</b></td>
+      <td><b>CPO/光模块/液冷</b></td>
+      <td>前期涨幅过大·通信-83亿·天孚-7%/中际-3%/沪电-7%·等充分回调</td>
+      <td>中际旭创·天孚通信·沪电股份</td>
+    </tr>
+    <tr style="background:rgba(248,81,73,.05)">
+      <td><b>🔴 高位兑现</b></td>
+      <td><b>半导体设计/存储</b></td>
+      <td>博通指引不及预期+美日韩暴跌传导·兆易-4%/佰维存储大跌·等待调整到位</td>
+      <td>兆易创新·寒武纪</td>
+    </tr>
+  </table>
 
   <div class="insight" style="margin-top:12px">
     <b>💡 轮动规律总结：</b>当前市场处于<b>"科技内部高低切换+防御板块吸金"</b>阶段。<br>
@@ -326,8 +354,8 @@
     <tr><td>东财API全量扫描</td><td class="red">❌ 盘后限流</td><td>run-scanner.sh待API恢复</td></tr>
     <tr><td>akshare MCP</td><td class="red">❌ 常断</td><td>备选数据源</td></tr>
     <tr><td>5个工作流</td><td class="red">❌ DeepSeek不兼容</td><td>需切Sonnet才能跑</td></tr>
-    <tr id="status-trade-log"><td>交易API</td><td class="yellow">⏳ 检测中</td><td>连接后端...</td></tr>
-    <tr id="status-learning"><td>自学习引擎</td><td class="yellow">⏳ 检测中</td><td>等待API响应</td></tr>
+    <tr><td>trade-log</td><td class="yellow">⏳ 7笔待验证</td><td>0笔完成·暂无胜率数据</td></tr>
+    <tr><td>自学习引擎</td><td class="yellow">⏳ 数据不足</td><td>需≥5笔完成交易后激活</td></tr>
     <tr><td>仪表盘</td><td class="green">✅ 正常</td><td>1307行·5引擎·18链</td></tr>
   </table>
 </div>
@@ -358,13 +386,23 @@
 
 <div class="card">
   <h2>🎯 明日(6/11)综合操作</h2>
-  <div data-render="ops"></div>
+  <table>
+    <tr><th>优先级</th><th>标的</th><th>引擎来源</th><th>仓位</th><th>入场</th><th>止损</th></tr>
+    <tr><td>🥇</td><td><b>雅克科技</b></td><td>引擎1✅85+引擎3趋势</td><td class="green">6成</td><td>&lt;3%高开</td><td>115元</td></tr>
+    <tr><td>🥈</td><td><b>海光信息</b></td><td>引擎1✅78+引擎3趋势</td><td class="blue">3成</td><td>270元低吸</td><td>250元</td></tr>
+    <tr><td>🥉</td><td><b>金安国纪</b></td><td>引擎2紫阳跟庄</td><td class="orange">2成</td><td>平开&lt;3%</td><td>70.38元</td></tr>
+    <tr><td>4</td><td><b>拓维信息</b></td><td>引擎2连板65%+引擎1</td><td class="yellow">1成</td><td>&lt;3%高开</td><td>29元</td></tr>
+    <tr><td>💎</td><td><b>光迅科技</b></td><td>引擎1CPO链+引擎5政策</td><td>1成</td><td>现价埋伏</td><td>-8%</td></tr>
+  </table>
 </div>
 
 <!-- 跟踪 -->
 <div class="card">
   <h2>📊 推荐跟踪</h2>
-  <div data-render="tracking"></div>
+  <table><tr><th>标的</th><th>入场</th><th>状态</th><th>盈亏</th></tr>
+  <tr><td>雅克科技</td><td>待入场</td><td>⏳</td><td>—</td></tr>
+  <tr><td>海光信息</td><td>等270元</td><td>⏳</td><td>—</td></tr>
+  <tr><td>金安国纪</td><td>待入场</td><td>⏳</td><td>—</td></tr></table>
   <p class="small">跟踪文件: trade-log.json | 累积数据后自动算胜率</p>
 </div>
 
@@ -372,7 +410,68 @@
 <div class="card">
   <h2>🗂️ 7轮搜索全量数据池 <span class="dim" style="font-size:0.7em">约700只·13轮交叉去重</span></h2>
 
-  <div data-render="dataPool"></div>
+  <h3>🟢🟢🟢 4轮以上命中（最强信号·7只）</h3>
+  <table style="font-size:0.8em"><tr><th>标的</th><th>命中轮次</th><th>信号来源</th></tr>
+  <tr><td><b>雅克科技</b></td><td>4轮</td><td>主力③+龙虎榜+北向+涨停</td></tr>
+  <tr><td><b>金安国纪</b></td><td>5轮</td><td>主力+龙虎榜+北向+涨停+缩量洗盘</td></tr>
+  <tr><td><b>双星新材</b></td><td>4轮</td><td>主力+龙虎榜+涨停+放量突破</td></tr>
+  <tr><td><b>天娱数科</b></td><td>4轮</td><td>龙虎榜+北向+涨停+金叉</td></tr>
+  <tr><td><b>中科三环</b></td><td>4轮</td><td>主力+龙虎榜①+北向+涨停</td></tr>
+  <tr><td><b>昊华科技</b></td><td>3轮</td><td>主力+涨停+行业流入</td></tr>
+  <tr style="background:rgba(240,136,62,.08)"><td><b>中钨高新</b></td><td>3轮</td><td>主力⑤+5亿·钨链全球龙头·Q1+264%·PE23倍</td></tr>
+  <tr><td><b>拓维信息</b></td><td>4轮</td><td>主力④+涨停+放量突破+金叉</td></tr>
+  </table>
+
+  <h3>🟢🟢 2轮命中（可靠·17只）</h3>
+  <table style="font-size:0.78em"><tr><th>标的</th><th>信号</th><th>标的</th><th>信号</th><th>标的</th><th>信号</th></tr>
+  <tr><td><b>海光信息</b></td><td>主力①+北向+调研</td><td><b>康强电子</b></td><td>主力+涨停+突破</td><td><b>宗申动力</b></td><td>主力+连板</td></tr>
+  <tr><td><b>江丰电子</b></td><td>主力+上涨</td><td><b>中微公司</b></td><td>主力+北向</td><td><b>圣泉集团</b></td><td>涨停+缩量+突破</td></tr>
+  <tr><td><b>和远气体</b></td><td>涨停+缩量+连板</td><td><b>百合花</b></td><td>涨停+缩量+连板</td><td><b>中船特气</b></td><td>涨停+缩量+新高</td></tr>
+  <tr><td><b>三孚股份</b></td><td>主力+涨停+连板</td><td><b>索辰科技</b></td><td>缩量+上涨</td><td><b>博迁新材</b></td><td>缩量+MLCC</td></tr>
+  <tr><td><b>东威科技</b></td><td>缩量+上涨</td><td><b>长盈通</b></td><td>缩量+光纤</td><td><b>三孚新科</b></td><td>缩量+PCB</td></tr>
+  <tr><td><b>德福科技</b></td><td>缩量+铜箔</td><td><b>铜冠铜箔</b></td><td>缩量+铜箔</td><td></td><td></td></tr>
+  </table>
+
+  <h3>💰 主力净流入TOP50</h3>
+  <p class="small">海光12.9亿·宏景9.3·雅克7.8·拓维7.2·有研新材6.3·中信证6.0·江丰6.0·宗申5.9·<b style="color:var(--orange)">中钨高新5.0</b>·中微4.9·中科三环4.7·华丰4.5·盛新锂能4.3·粤传媒4.1·康强4.0·长川3.8·昊华3.8·平安3.8·天华3.7·华泰3.7·三孚3.6·招行3.6·金螳3.4·拓邦3.4·飞凯3.1·巨化3.1·菲利华3.1·华特2.9·茅台2.7·双星2.7·华虹2.6·北方华创2.6·美利云2.6·融捷2.5·铜陵2.3·恒瑞2.3·兴业2.3·睿创2.2·泰嘉2.2·有研粉材2.2·东芯2.1·三祥2.1·中国电2.1·山东玻纤2.0·湘潭2.0·太保2.0·中科金财2.0·品高2.0·盛科1.9·华安1.9</p>
+
+  <h3>🔥 涨停股(76只)</h3>
+  <p class="small">有研粉材+20%·富信+20%·怡达+20%·美邦+20%·中船特气+16%·常友+15%·苏大维格+12%·聚石+11%·悦安+11%·中巨芯+11%·山东玻纤+10%·百合花+10%·康强+10%·昊华+10%·金安国纪+10%·和远气体+10%·华亚+10%·法狮龙+10%·圣泉+10%·三孚+10%·惠泉+10%·金螳螂+10%·美利云+10%·中科三环+10%·湘潭+10%·中科金财+10%·拓维+10%·雅克+10%·天娱+10%·双星+10%·爱旭+10%·京基+10%·宏昌+10%·天地源+10%·劲拓+10%·华正+9%·温州宏丰+9%·江丰+8%·亚翔+8%·凡拓+8%·逸豪+7%·三祥+7%·远东+7%·燕京+6%·珠江+6%·天创+6%·红星+6%·洪田+5%·有研硅+5%·亨通+5%·东材+5%·百润+5%·旭光+4%·中兰+4%·重庆啤酒+4%·万朗+4%·福莱+4%·索辰+3%·东威+3%·沃格+3%·京源+3%·友邦+3%·汇成+2%·青岛啤酒+2%·得邦+2%·光智+2%·安联+2%</p>
+
+  <h3>🐉 龙虎榜净买入TOP15</h3>
+  <p class="small">中科三环+3.14亿·雅克+2.08亿·大普微+1.59亿·天娱+1.45亿·王子新材+1.07亿·怡达+0.98亿·太极实业+0.78亿·双星+0.68亿·九州一轨+0.62亿·鑫科+0.50亿·山东玻纤+0.25亿·苏豪汇鸿+0.44亿·佳创+0.36亿·京基+0.72亿·康达-0.83亿</p>
+
+  <h3>📈 放量突破+均线多头(189只中精选)</h3>
+  <p class="small">常友科技·中力股份·西域旅游·华体科技·西藏旅游·一诺威·厦门银行·返利科技·邮储银行·云南旅游·天地源·双星新材·金安国纪·中化国际·拓维信息·中晶科技·康强电子·三孚股份·宏昌电子·圣泉集团·康达新材·苏大维格·森鹰窗业·中贝通信·天娱数科·民德电子·三花智控·思进智能·莲花控股·贝斯特·长盛轴承·江苏雷利·雷赛智能·汉威科技·北方华创·通富微电·沪硅产业·亨通光电·有研粉材·三孚新科</p>
+
+  <h3>🔄 缩量回调·二次启动(21只)</h3>
+  <p class="small">中船特气·索辰科技·博迁新材·长盈通·三孚新科·德福科技·铜冠铜箔·东威科技·海川智能·金安国纪·利和兴·圣泉集团·博硕科技·江化微·和远气体·金海高科·晶华新材·百合花·奥康国际·凯瑞德·浙江众成</p>
+
+  <h3>🌍 北向资金增持(龙虎榜)</h3>
+  <p class="small">宏昌电子+4.12亿·春秋电子+1.46亿·天娱+1.48亿·中科三环+1.06亿·雅克+9358万·爱旭+6492万·京基+3621万·金安国纪+6514万·太极实业+9217万·双星新材·雄韬股份·王子新材</p>
+
+  <h3>🔬 机构密集调研TOP10</h3>
+  <p class="small">怡合达292家·乐鑫253·汇川技术148·中科曙光146·海光信息145·稳健医疗144·百利天恒136·中科创达130·孩子王123·天孚通信112</p>
+
+  <p class="small" style="margin-top:12px">📐 数据来源：证券之星/东方财富/同花顺/证券时报/财联社 2026-06-11 收盘 | 13轮搜索合并去重约700只
+  <h3>🏆 隐形冠军·行业龙头(8轮)</h3>
+  <p class="small">长盛轴承(自润滑轴承全球第三)·兴业银行(PB0.45/PE5.1/股息6%)·春光集团(软磁铁氧体单项冠军)·瑞丰新材(润滑油添加剂龙头/PE21)·日联科技(X射线检测)·美德乐(智能输送+18亿订单)·腾景科技(精密光学/量子)</p>
+
+  <h3>📈 中报业绩预增(9轮)</h3>
+  <p class="small">AI算力硬件(PCB/液冷订单+80%)·存储芯片(HBM+200%/DDR5+120%)·先进封装(排至2027Q1)·光通信CPO(800G+50%·净利+60-90%)</p>
+
+  <h3>📉 超跌反弹(10轮)</h3>
+  <p class="small">消费电子·元器件·机器人·液冷跌幅居前·超跌修复非反转·等放量确认</p>
+
+  <h3>🔬 专精特新小巨人(11轮)</h3>
+  <p class="small">春光集团·恒运昌(射频电源)·日联科技(X射线)·美德乐(18亿订单)·长盛轴承(机器人轴承PE20)·腾景科技(光学)·皓元医药(ADC/CDMO)</p>
+
+  <h3>💰 高股息红利(12轮)</h3>
+  <p class="small">汇洁11%·荣晟8.7%·立霸8.3%·君正7.9%·神华7.3%·陕煤6.9%·工行5.4%·长电5.7%·石化5.4%·大秦5.8%·茅台4%·建行5.5%</p>
+
+  <h3>💵 超大单增仓(13轮)</h3>
+  <p class="small">双星新材(超大单+3亿·5日+6亿)·怡达股份(超大单+1.6亿)·同宇新材(换手42%)·中泰证券(超大单+8741万)</p>
+</p>
 </div>
 
 </div><!-- /summary tab -->
@@ -389,26 +488,97 @@
 <div class="card">
   <h2>📊 全市场统一评分 TOP18</h2>
   <p class="dim">8维度自动打分：资金15%+持续10%+成长20%+PEG15%+机构10%+北向10%+链位10%+技术10%</p>
-  <div data-render="engine1Top18"></div>
+  <table style="font-size:0.85em">
+    <tr><th>#</th><th>标的</th><th>产业链位置</th><th>成长</th><th>PEG</th><th>资金</th><th>链位</th><th>总分</th><th>判断</th></tr>
+    <tr style="background:rgba(240,136,62,.08)"><td>1</td><td><b style="color:var(--orange)">中钨高新</b></td><td>稀有金属·钨全链</td><td class="green">+264%</td><td class="green"><0.1</td><td class="green">+5.0亿</td><td>🟡</td><td><b>70</b></td><td class="green">🟢极度低估·PEG<0.1</td></tr>
+    <tr style="background:rgba(63,185,80,.06)"><td>2</td><td><b>海光信息</b></td><td>AI算力·GPU</td><td class="green">+57%</td><td>2.0</td><td class="green">+12.9亿</td><td class="red">🔑</td><td><b>68</b></td><td class="green">🟢国产GPU唯一</td></tr>
+    <tr style="background:rgba(63,185,80,.06)"><td>3</td><td><b>雅克科技</b></td><td>HBM·前驱体</td><td class="green">+30%</td><td>1.2</td><td class="green">+7.8亿</td><td class="red">🔑全球仅3家</td><td><b>68</b></td><td class="green">🟢HBM必经之路</td></tr>
+    <tr><td>4</td><td><b>埃科光电</b></td><td>设备·机器视觉</td><td class="green">+169%</td><td class="green"><0.5</td><td>+</td><td>🟡</td><td><b>60</b></td><td class="green">🟢国产替代先锋</td></tr>
+    <tr><td>5</td><td><b>金安国纪</b></td><td>材料·覆铜板</td><td class="green">+764%</td><td>—</td><td class="green">多方共振</td><td>🟡</td><td><b>60</b></td><td class="yellow">🟡跟庄标的</td></tr>
+    <tr><td>6</td><td><b>厦门钨业</b></td><td>稀有金属·钨</td><td class="green">+183%</td><td class="green"><0.3</td><td>+</td><td>🟡</td><td><b>56</b></td><td class="green">🟢低估资源</td></tr>
+    <tr><td>7</td><td><b>中科三环</b></td><td>稀土·永磁</td><td>+</td><td>—</td><td class="green">龙虎①</td><td>🟡</td><td><b>56</b></td><td class="green">🟢稀土龙头</td></tr>
+    <tr><td>8</td><td><b>盛美上海</b></td><td>设备·清洗</td><td class="green">+40%</td><td>~1.5</td><td>+</td><td class="red">🔑</td><td><b>52</b></td><td class="green">🟢清洗唯一</td></tr>
+    <tr><td>9</td><td><b>昊华科技</b></td><td>材料·电子特气</td><td class="green">+30%</td><td>—</td><td class="green">+3.8亿</td><td>🟡</td><td><b>51</b></td><td>🟢</td></tr>
+    <tr><td>10</td><td><b>双星新材</b></td><td>材料·复合铜箔</td><td>扭亏</td><td>—</td><td class="green">2连板</td><td>🟡</td><td><b>51</b></td><td>🟢</td></tr>
+    <tr style="background:rgba(188,140,255,.04)"><td>11</td><td><b style="color:var(--purple)">绿的谐波</b></td><td>机器人·谐波减速器</td><td>+61%</td><td>—</td><td>+</td><td class="red">🔑全球第二</td><td><b>48</b></td><td class="yellow">🟡等回调</td></tr>
+    <tr><td>12</td><td>北方华创</td><td>设备·刻蚀/薄膜</td><td>+</td><td>~2</td><td>+</td><td class="red">🔑</td><td><b>46</b></td><td>🟢</td></tr>
+    <tr><td>13</td><td>天娱数科</td><td>AI应用</td><td>扭亏</td><td>—</td><td>北向1.5亿</td><td>—</td><td><b>45</b></td><td class="yellow">⚠️</td></tr>
+    <tr><td>14</td><td>康强电子</td><td>封装·引线框架</td><td>+</td><td>—</td><td class="green">+4.0亿</td><td>🟡</td><td><b>38</b></td><td>🟢</td></tr>
+    <tr><td>15</td><td>拓维信息</td><td>算力租赁</td><td>-4.7%</td><td>—</td><td class="green">+7.2亿</td><td>—</td><td><b>37</b></td><td class="yellow">⚠️壁垒弱</td></tr>
+    <tr><td>16</td><td>隆基绿能</td><td>光伏·组件</td><td>底</td><td>—</td><td>刚反弹</td><td>🟡</td><td><b>33</b></td><td class="yellow">🟡等确认</td></tr>
+    <tr><td>17</td><td>亿华通</td><td>氢能·燃料电池</td><td>亏损收窄</td><td>—</td><td>底部</td><td>🟡</td><td><b>28</b></td><td class="yellow">🟡极小仓位</td></tr>
+    <tr><td>18</td><td>航发动力</td><td>军工·发动机</td><td>+14.8%</td><td>—</td><td>底部·12机构买</td><td class="red">🔑唯一</td><td><b>28</b></td><td class="yellow">🟡等止跌</td></tr>
+  </table>
 </div>
 
 <!-- ====== 产业链分布 ====== -->
 <div class="card">
   <h2>🗺️ 18条产业链 × 评分映射</h2>
   <p class="dim">每条产业链的核心标的在统一评分中的位置。🟢=TOP10 | 🟡=TOP18 | ⚪=未入榜</p>
-  <div data-render="engine1Chains"></div>
+  <table style="font-size:0.78em">
+    <tr><th>产业链</th><th>核心标的及评分</th></tr>
+    <tr><td><b>集成电路·HBM</b></td><td><span class="green">🟢雅克科技68分</span> | 通富微电⚪ | 昊华科技51分</td></tr>
+    <tr><td><b>集成电路·AI算力</b></td><td><span class="green">🟢海光信息68分</span> | 寒武纪⚪ | 中芯国际⚪</td></tr>
+    <tr><td><b>集成电路·CPO</b></td><td><span class="yellow">🟡光迅科技</span> | 中际旭创⚪ | 天孚⚪(等回调)</td></tr>
+    <tr><td><b>集成电路·设备</b></td><td><span class="green">🟢盛美上海52分</span> | <span class="yellow">🟡北方华创46分</span> | 中微⚪</td></tr>
+    <tr><td><b>稀有金属·钨</b></td><td><span class="green">🟢🟢中钨高新70分</span> | <span class="green">🟢厦门钨业56分</span></td></tr>
+    <tr><td><b>稀土永磁</b></td><td><span class="green">🟢中科三环56分</span> | 北方稀土⚪</td></tr>
+    <tr><td><b>智能机器人</b></td><td><span class="yellow">🟡绿的谐波48分</span> | <span class="yellow">🟡中大力德</span> | 拓斯达⚪</td></tr>
+    <tr><td><b>光伏/新能源</b></td><td><span class="yellow">🟡隆基绿能33分</span> | 阳光电源⚪ | 晶澳⚪</td></tr>
+    <tr><td><b>氢能</b></td><td><span class="yellow">🟡亿华通28分</span>(底部)</td></tr>
+    <tr><td><b>军工航空</b></td><td><span class="yellow">🟡航发动力28分</span>(等止跌)</td></tr>
+    <tr><td colspan="2" class="small">低空经济(中信海直)·6G(中兴/亨通)·储能(宁德/赣锋)·量子(国盾)·脑机(博睿康)·生物制造(华大)·数据(中国软件)·新能源车(宁德/比亚迪)：今日均未入TOP18，等待轮动催化。</td></tr>
+  </table>
 </div>
 
 <!-- ====== 深度辩论 TOP5 ====== -->
 <div class="card">
   <h2>⚔️ Serenity级深度辩论 — TOP5</h2>
 
-  <div data-render="engine1Debate"></div>
+  <h3>🥇 中钨高新 — 70分 <span class="verdict pass">✅</span></h3>
+  <div class="insight"><b>⛓️ 产业链位置：</b>钨全产业链一体化(矿山→冶炼→深加工→工具)。硬质合金产量<b>全球第一</b>。PCB微钻50倍长径比<b>全球唯一量产</b>。五矿集团持股53%·中国钨储量占全球50%。</div>
+  <div class="attack"><b>🔥 致命攻击：</b>钨价年内最大涨幅131%也出现了41%的回撤。利润高度依赖钨价——如果钨价回调30%，利润可能腰斩。Q1+264%的增速不可持续。</div>
+  <div class="rebuttal"><b>🛡️ 多方反驳：</b>PE仅23倍、PEG<0.1——即使增速从264%降到50%，仍然极度低估。柿竹园+远景钨业注入后自给率持续提升，量增可以部分对冲价跌。PCB微钻受益AI服务器需求是结构性增长，不依赖钨价。</div>
+  <div class="insight"><b>💡 洞察：</b>市场把它当周期股给23倍PE——但它有全球独家的PCB微钻(25%净利率)+数控刀具(成长业务)，这些是成长股逻辑。一旦市场重估为"资源+成长"，估值可能翻倍至50倍。</div>
+  <p><b>确信度：</b><span class="conviction conv-high">高</span> | <b>仓位：</b>正常5-6成 | <b>入场：</b>现价72.9或回踩70元 | <b>止损：</b>65元(-10%)</p>
+
+  <hr class="divider">
+
+  <h3>🥈 海光信息 — 68分 <span class="verdict pass">✅</span></h3>
+  <div class="insight"><b>⛓️ 产业链位置：</b>国内<b>唯一</b>x86 CPU + 类CUDA GPU双架构。145家机构调研。吸收合并中科曙光→芯片→整机→算力全栈。</div>
+  <div class="attack"><b>🔥 致命攻击：</b>PE 130倍处于历史98%分位。毛利率从63%降至55%趋势下行。PEG~2偏高。</div>
+  <div class="rebuttal"><b>🛡️ 多方反驳：</b>2027E ROE 20%+、净利60亿+→前瞻PE可降至80倍。国产GPU唯一标的应享战略溢价。</div>
+  <p><b>确信度：</b><span class="conviction conv-mid">中</span> | <b>仓位：</b>3-5成 | <b>入场：</b>等270元(-5%)低吸 | <b>止损：</b>250元</p>
+
+  <hr class="divider">
+
+  <h3>🥉 雅克科技 — 68分 <span class="verdict pass">✅</span></h3>
+  <div class="insight"><b>⛓️ 产业链位置：</b>HBM前驱体全球仅3家能做。SK海力士HBM4<b>100%独家供应</b>至2031年。长鑫存储前驱体份额超60%。</div>
+  <div class="attack"><b>🔥 致命攻击：</b>HBF混合键合技术若成熟，可能跳过前驱体工序。前驱体市场天花板约50亿美元，规模有限。</div>
+  <div class="rebuttal"><b>🛡️ 多方反驳：</b>HBF量产至少2030年。LNG在手96亿+光刻胶+硅微粉多线布局。</div>
+  <p><b>确信度：</b><span class="conviction conv-high">高</span> | <b>仓位：</b>6成 | <b>入场：</b>明日<3%高开 | <b>止损：</b>115元</p>
+
+  <hr class="divider">
+
+  <h3>4. 埃科光电 — 60分 <span class="verdict pass">✅</span></h3>
+  <p>Q1营收+96%·净利+169%·PEG<0.5·机器视觉国产替代先锋·打破奥林巴斯垄断·均线多头初启动。<b>确信度：中 | 仓位：3成 | 入场：现价 | 止损：MA20</b></p>
+
+  <h3>5. 厦门钨业 — 56分 <span class="verdict pass">✅</span></h3>
+  <p>Q1+183%·PE25x·PEG<0.3·钨全产业链+光伏钨丝+硬质合金三驱动·国家队持仓。<b>确信度：中 | 仓位：3成 | 入场：回踩5日线 | 止损：-8%</b></p>
+</div>
 
 <!-- ====== 最终推荐 ====== -->
 <div class="card" style="border-color:var(--green)">
   <h2>🎯 引擎1最终推荐</h2>
-  <div data-render="engine1Recs"></div>
+  <table>
+    <tr><th>优先级</th><th>标的</th><th>总分</th><th>确信度</th><th>仓位</th><th>入场</th><th>核心逻辑</th></tr>
+    <tr style="background:rgba(240,136,62,.08)"><td>🥇</td><td><b>中钨高新</b></td><td>70</td><td class="green">高</td><td>5-6成</td><td>现价/回踩70</td><td>PEG<0.1+钨链全球龙头+PCB微钻独家</td></tr>
+    <tr><td>🥈</td><td><b>雅克科技</b></td><td>68</td><td class="green">高</td><td>6成</td><td>&lt;3%高开进</td><td>HBM前驱体垄断·SK海力士独家至2031</td></tr>
+    <tr><td>🥉</td><td><b>海光信息</b></td><td>68</td><td>中</td><td>3-5成</td><td>等270元</td><td>国产GPU唯一·145家机构调研</td></tr>
+    <tr><td>4</td><td><b>埃科光电</b></td><td>60</td><td>中</td><td>3成</td><td>现价</td><td>机器视觉国产替代·PEG<0.5</td></tr>
+    <tr><td>5</td><td><b>厦门钨业</b></td><td>56</td><td>中</td><td>3成</td><td>回踩5日线</td><td>PEG<0.3+国家队·钨+光伏双驱动</td></tr>
+    <tr><td>💎</td><td><b>绿的谐波</b></td><td>48</td><td>中</td><td>等回调</td><td>350元</td><td>谐波减速器全球第二·人形机器人必配</td></tr>
+  </table>
 </div>
 
 </div><!-- /engine1 tab -->
@@ -516,13 +686,31 @@
   <h2>🎯 L4：跟庄策略 — 12只候选·8只可操作</h2>
 
   <h3>🟢🟢🟢 三方共振（机构+北向+知名游资同时买入·最可靠）</h3>
-  <div data-render="engine2Triple"></div>
+  <table style="font-size:0.82em">
+    <tr><th>标的</th><th>机构</th><th>北向</th><th>游资</th><th>连板</th><th>炸板率</th><th>策略</th><th>仓位</th></tr>
+    <tr style="background:rgba(63,185,80,.08)"><td><b>🥇金安国纪</b></td><td>+1.06亿</td><td>+6514万</td><td>紫阳+9157·低位+4170</td><td>3板</td><td>~25%</td><td>紫阳T+3走·平开<3%进·老资金全清筹码干净</td><td class="orange">2成</td></tr>
+    <tr style="background:rgba(63,185,80,.08)"><td><b>🥈中科三环</b></td><td>+1952万</td><td>+1.06亿</td><td>作手新一+4672·杭州帮+7186</td><td>首板</td><td>~20%</td><td>稀土龙头·作手新一T+1~T+2·首板安全</td><td class="yellow">1.5成</td></tr>
+    <tr style="background:rgba(63,185,80,.08)"><td><b>🥉双星新材</b></td><td>+2775万</td><td>买入</td><td>紫阳+3948·方新侠+4846·湛江万豪</td><td>2板</td><td>~25%</td><td>复合铜箔·三板确认加仓·紫阳+方新侠双保险</td><td class="yellow">1.5成</td></tr>
+  </table>
 
   <h3 style="margin-top:16px">🟢🟢 双信号（主力+游资/北向·可靠）</h3>
-  <div data-render="engine2Double"></div>
+  <table style="font-size:0.82em">
+    <tr><th>标的</th><th>信号1</th><th>信号2</th><th>连板</th><th>策略</th><th>仓位</th></tr>
+    <tr><td><b>4.拓维信息</b></td><td class="green">主力+7.2亿(39%)</td><td>华为大会6/12催化·游资参与</td><td>首板</td><td>连板概率65%·高开<3%进·29止损</td><td class="yellow">1成</td></tr>
+    <tr><td><b>5.天娱数科</b></td><td class="green">机构+4602万</td><td class="green">北向+1.48亿</td><td>4板</td><td>4板分歧低吸(跌2-3%进)·5日线止损·不追板</td><td class="yellow">1成</td></tr>
+    <tr><td><b>6.康强电子</b></td><td class="green">主力+4.0亿</td><td>DDE大单4.19·全市场第一</td><td>首板</td><td>先进封装概念·首板·回踩5日线进</td><td>0.5成</td></tr>
+    <tr><td><b>7.宗申动力</b></td><td class="green">主力+5.9亿</td><td>龙虎榜净买居前</td><td>3板</td><td>低空经济·3进4风险·轻仓博弈</td><td>0.5成</td></tr>
+  </table>
 
   <h3 style="margin-top:16px">🟢 单信号（观察·等确认）</h3>
-  <div data-render="engine2Single"></div>
+  <table style="font-size:0.82em">
+    <tr><th>标的</th><th>信号</th><th>等待什么</th></tr>
+    <tr><td>8.昊华科技</td><td>主力+3.8亿+涨停·电子特气龙头</td><td>等龙虎榜数据确认席位</td></tr>
+    <tr><td>9.王子新材</td><td>机构+1413万·北向+2484万·南京帮+3035万</td><td>单笔太小·等放量确认</td></tr>
+    <tr><td>10.江丰电子</td><td>主力+6.0亿·靶材龙头</td><td>趋势股·非连板博弈·等回调</td></tr>
+    <tr><td>11.中微公司</td><td>主力+5.0亿·设备龙头</td><td>偏中线·非引擎2短线标的</td></tr>
+    <tr><td>12.雅克科技</td><td>章盟主+1.1亿·北向+9358万</td><td class="green">→ 去引擎1深度辩论·不在此重复</td></tr>
+  </table>
 </div>
 
 <!-- ====== 今日核心结论 ====== -->
@@ -573,19 +761,109 @@
 <!-- 主升初期 -->
 <div class="card" style="border-color:var(--blue)">
   <h2>🔵 主升初期 — 刚启动，多数人还没注意到</h2>
-  <div data-render="engine3Early"></div>
+  <table>
+    <tr><th>标的</th><th>行业</th><th>趋势强度</th><th>估值/PEG</th><th>情绪溢价</th><th>预期差</th><th>综合</th><th>入场/止损</th></tr>
+    <tr>
+      <td><b>埃科光电</b><br><span class="small">688610</span></td>
+      <td>机器视觉</td>
+      <td><span class="score score-high">90</span></td>
+      <td class="green">PE55x/PEG&lt;0.5</td>
+      <td class="green">🟢很低 无人讨论</td>
+      <td class="green">大：打破奥林巴斯垄断</td>
+      <td><span class="score score-high">82</span></td>
+      <td>现价/跌破MA20出</td>
+    </tr>
+    <tr>
+      <td><b>盛美上海</b><br><span class="small">688082</span></td>
+      <td>半导体清洗</td>
+      <td><span class="score score-high">85</span></td>
+      <td class="green">PE40x/在手90亿</td>
+      <td class="yellow">🟡合理 业内关注</td>
+      <td>中：清洗设备唯一国产</td>
+      <td><span class="score score-mid">78</span></td>
+      <td>现价~120/止损-10%</td>
+    </tr>
+    <tr>
+      <td><b>厦门钨业</b><br><span class="small">600549</span></td>
+      <td>稀有金属</td>
+      <td><span class="score score-high">80</span></td>
+      <td class="green">PE25x/PEG~0.3</td>
+      <td class="green">🟢很低 资源股冷</td>
+      <td class="green">大：Q1+183%未充分定价</td>
+      <td><span class="score score-mid">76</span></td>
+      <td>回踩5日线/止损-8%</td>
+    </tr>
+    <tr>
+      <td><b>皖维高新</b><br><span class="small">600063</span></td>
+      <td>PVA新材料</td>
+      <td><span class="score score-mid">75</span></td>
+      <td class="green">PE20x/PEG&lt;1</td>
+      <td class="green">🟢很低 传统化工</td>
+      <td>中：光学薄膜国产替代</td>
+      <td><span class="score score-mid">72</span></td>
+      <td>现价/止损-8%</td>
+    </tr>
+  </table>
 </div>
 
 <!-- 主升中继 -->
 <div class="card" style="border-color:var(--green)">
   <h2>🟢 主升中继 — 已在涨，估值未透支，还有空间</h2>
-  <div data-render="engine3Mid"></div>
+  <table>
+    <tr><th>标的</th><th>行业</th><th>已涨</th><th>剩余空间</th><th>估值</th><th>情绪</th><th>综合</th><th>入场/止损</th></tr>
+    <tr>
+      <td><b>中大力德</b><br><span class="small">002896</span></td>
+      <td>机器人减速器</td>
+      <td class="yellow">~40%</td>
+      <td class="green">+30%(目标75)</td>
+      <td class="yellow">PE60x PEG~1</td>
+      <td class="yellow">🟡机器人热</td>
+      <td><span class="score score-mid">74</span></td>
+      <td>回踩20日线/止损-10%</td>
+    </tr>
+    <tr>
+      <td><b>欧科亿</b><br><span class="small">688308</span></td>
+      <td>数控刀具</td>
+      <td class="yellow">~35%</td>
+      <td class="green">+30%(目标50)</td>
+      <td class="green">PE35x PEG&lt;0.3</td>
+      <td class="green">🟢冷门 无人推</td>
+      <td><span class="score score-mid">76</span></td>
+      <td>回踩10日线/止损-8%</td>
+    </tr>
+    <tr>
+      <td><b>鸿合科技</b><br><span class="small">002955</span></td>
+      <td>教育信息化</td>
+      <td class="yellow">~25%</td>
+      <td class="green">+25%(目标45)</td>
+      <td class="green">PE25x PEG&lt;1</td>
+      <td class="green">🟢教育冷门</td>
+      <td><span class="score score-mid">70</span></td>
+      <td>现价/止损-8%</td>
+    </tr>
+    <tr>
+      <td><b>昊华科技</b><br><span class="small">600378</span></td>
+      <td>电子特气</td>
+      <td class="yellow">~30%</td>
+      <td class="yellow">+20%(目标40)</td>
+      <td class="yellow">PE30x 合理</td>
+      <td class="yellow">🟡材料热</td>
+      <td><span class="score score-mid">68</span></td>
+      <td>等回调5日线/止损-8%</td>
+    </tr>
+  </table>
 </div>
 
 <!-- 已排除 -->
 <div class="card">
   <h2>🔴 已排除（主升末期/过度透支）</h2>
-  <div data-render="engine3Excluded"></div>
+  <table>
+    <tr><th>标的</th><th>排除原因</th></tr>
+    <tr><td>百合花(603823)</td><td class="red">PE 98x vs 行业17x | Q1净利-6.23% | 8天4板已Price In未来2年 | RSI超买</td></tr>
+    <tr><td>和远气体(002971)</td><td class="red">5天3板短期涨幅过大 | 等待回调至10日线再评估</td></tr>
+    <tr><td>金安国纪(002636)</td><td class="red">PE 107x | 10倍涨幅后估值严重透支 | 公司自己发警告</td></tr>
+    <tr><td>宗申动力(001696)</td><td class="red">3连板+低空经济概念炒作 | 非核心标的 | 涨幅已大</td></tr>
+  </table>
 </div>
 
 <!-- 趋势交易纪律 -->
@@ -810,7 +1088,13 @@
 <!-- Engine 3 Pre-positioning -->
 <div class="card" style="border-color:var(--blue)">
   <h2>💎 引擎3提前埋伏组合</h2>
-  <div data-render="engine5Prep"></div>
+  <table>
+    <tr><th>标的</th><th>驱动逻辑</th><th>等多久</th><th>仓位</th><th>止损</th></tr>
+    <tr><td><b>光迅科技</b></td><td>CPO政策刚出+光芯片龙头，市场未反应</td><td>1-4周</td><td>1成</td><td>-8%</td></tr>
+    <tr><td><b>中际旭创</b></td><td>800G+CPO双受益，今日跌2.8%是低吸机会</td><td>1-4周</td><td>1成</td><td>-10%</td></tr>
+    <tr><td><b>北京科锐</b></td><td>国网中标7.18亿(占营收33%)+电力基建周期</td><td>1-4周</td><td>0.5成</td><td>-8%</td></tr>
+    <tr><td><b>中兴通讯</b></td><td>6G政策催化剂+低估值+通信设备龙头</td><td>3-6月</td><td>0.5成</td><td>-10%</td></tr>
+  </table>
   <div class="contrarian" style="margin-top:12px">
     <b>🔄 反向思维：</b>CPO今天板块大跌（天孚通信-7.4%, 中际旭创-2.8%, 光库科技-7%），政策刚出市场却在卖——恰恰是提前埋伏的窗口。等市场反应过来的时候这些标的已经涨了20-30%。
   </div>
@@ -842,17 +1126,42 @@
 
 <div class="card" style="border-color:var(--yellow)">
   <h2>🟡 反弹待确认（21只）</h2>
-  <div data-render="engine4Pending"></div>
+  <table style="font-size:0.8em">
+    <tr><th>标的</th><th>代码</th><th>方向</th><th>反弹信号</th><th>评分</th><th>操作</th></tr>
+    <tr><td><b>双星新材</b></td><td>002585</td><td>复合铜箔</td><td>2连板涨停</td><td><span class="score score-mid">78</span></td><td>三板封住加仓</td></tr>
+    <tr><td><b>圣泉集团</b></td><td>605589</td><td>合成树脂</td><td>涨停封单3.6亿</td><td><span class="score score-mid">74</span></td><td>回踩5日线进</td></tr>
+    <tr><td><b>生益科技</b></td><td>600183</td><td>PCB</td><td>高位洗盘</td><td><span class="score score-mid">72</span></td><td>144支撑低吸</td></tr>
+    <tr><td><b>博迁新材</b></td><td>605376</td><td>MLCC上游</td><td>平台支撑</td><td><span class="score score-mid">70</span></td><td>等放量阳线</td></tr>
+    <tr><td><b>中船特气</b></td><td>688146</td><td>电子特气</td><td>均线上方止跌</td><td>68</td><td>等放量突破</td></tr>
+    <tr><td><b>京东方A</b></td><td>000725</td><td>面板</td><td>回踩5日线</td><td>65</td><td>6元不破低吸</td></tr>
+    <tr><td><b>德福科技</b></td><td>301511</td><td>铜箔</td><td>支撑位企稳</td><td>66</td><td>等量比>1.3</td></tr>
+    <tr><td><b>东威科技</b></td><td>688700</td><td>铜箔设备</td><td>缩量止跌</td><td>65</td><td>等放量</td></tr>
+    <tr><td colspan="6" class="small">...等共21只（完整列表见WebSearch多轮结果）</td></tr>
+  </table>
 </div>
 
 <div class="card" style="border-color:var(--green)">
   <h2>🟢 企稳已确认（13只）</h2>
-  <div data-render="engine4Confirmed"></div>
+  <table style="font-size:0.8em">
+    <tr><th>标的</th><th>代码</th><th>方向</th><th>企稳确认</th><th>空间</th><th>评分</th><th>操作</th></tr>
+    <tr><td><b>中信海直</b></td><td>000099</td><td>低空经济</td><td>巨量长阳突破大箱体</td><td class="green">+15%</td><td><span class="score score-high">80</span></td><td>回踩箱体上沿加</td></tr>
+    <tr><td><b>沃格光电</b></td><td>—</td><td>玻璃基板</td><td>2月涨3倍+新高</td><td class="green">+20%</td><td><span class="score score-mid">75</span></td><td>5日线低吸</td></tr>
+    <tr><td><b>风华高科</b></td><td>—</td><td>MLCC</td><td>涨停反包</td><td class="green">+15%</td><td><span class="score score-mid">75</span></td><td>回踩5日线</td></tr>
+    <tr><td><b>立昂微</b></td><td>605358</td><td>半导体硅片</td><td>涨停反弹</td><td class="green">+12%</td><td><span class="score score-mid">74</span></td><td>回踩10日线</td></tr>
+    <tr><td><b>帝尔激光</b></td><td>—</td><td>TGV激光</td><td>2月涨130%+新高</td><td class="green">+18%</td><td><span class="score score-mid">73</span></td><td>等回调10日线</td></tr>
+    <tr><td><b>隆基绿能</b></td><td>—</td><td>光伏</td><td>三日跌10%后放量收复</td><td class="green">+10%</td><td><span class="score score-mid">72</span></td><td>回踩14元</td></tr>
+    <tr><td><b>中国中免</b></td><td>601888</td><td>免税</td><td>双底+突破颈线</td><td class="yellow">+10%</td><td><span class="score score-mid">71</span></td><td>回踩颈线</td></tr>
+    <tr><td colspan="7" class="small">...等共13只（完整列表见WebSearch多轮结果）</td></tr>
+  </table>
 </div>
 
 <div class="card">
   <h2>🔴 还在回调 — 等待</h2>
-  <div data-render="engine4Waiting"></div>
+  <table>
+    <tr><td>中际旭创</td><td class="red">跌破1280支撑</td></tr>
+    <tr><td>天孚通信</td><td class="red">跌7%+支撑已破</td></tr>
+    <tr><td>沪电股份</td><td class="red">主力净卖19亿</td></tr>
+  </table>
 </div>
 
 <div class="card" style="border-color:var(--red)">
@@ -866,432 +1175,26 @@
 <div style="text-align:center; padding:30px; color:var(--dim); border-top:1px solid var(--border); margin-top:30px">
   <p>📌 数据来源：东方财富、证券时报·数据宝、同花顺iNews、财联社、各机构研报（2026/6/11）</p>
   <p>⚠️ AI分析仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
-  <p style="margin-top:12px"><span class="badge badge-green">引擎1:深度辩论</span> <span class="badge badge-orange">引擎2:聪明钱投机</span> <span class="badge badge-blue">引擎3:趋势中继</span> <span class="badge badge-purple">引擎4:回调重启</span> <span class="badge badge-orange">引擎5:宏观驱动</span></p>
-  <p class="small" style="margin-top:8px">五引擎互补：引擎1告诉你产业链什么值得买 | 引擎2告诉你聪明钱在炒什么 | 引擎3告诉你什么在涨还能涨 | 引擎4告诉你什么回调后有机会 | 引擎5告诉你未来什么会涨</p>
+  <p style="margin-top:12px"><span class="badge badge-green">引擎1:深度辩论</span> <span class="badge badge-orange">引擎2:聪明钱投机</span> <span class="badge badge-blue">引擎3:宏观事件驱动</span></p>
+  <p class="small" style="margin-top:8px">三引擎互补：引擎1告诉你什么值得买 | 引擎2告诉你聪明钱在炒什么 | 引擎3告诉你未来什么会涨</p>
 </div>
 
 </div><!-- /container -->
 
 <script>
-// ====== 密码验证 ======
-// 如需修改密码：将下方 'stock2024' 替换后，用浏览器控制台运行
-//   crypto.subtle.digest('SHA-256', new TextEncoder().encode('你的密码'))
-//   .then(h => console.log(btoa(String.fromCharCode(...new Uint8Array(h)))))
-// 将结果粘贴到 PASS_HASH
-// GitHub Pages 部署后无需密码，直接显示
-function verifyLogin() {
-  document.getElementById('loginOverlay').classList.add('hidden');
-}
-// 回车提交
-document.addEventListener('DOMContentLoaded', () => {
-  // GitHub Pages 直接显示
-  document.getElementById('loginOverlay').classList.add('hidden');
-});
-
-// ====== 日期自动更新 ======
-const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六'];
-const today = new Date();
-const tomorrow = new Date(today);
-tomorrow.setDate(today.getDate() + 1);
-const fmt = d => `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
-document.getElementById('header-date').textContent =
-  `📅 ${fmt(today)}（周${WEEKDAYS[today.getDay()]}）盘后 → 明日${fmt(tomorrow)}建仓`;
-
-function showTab(name, btn) {
-  var all = document.querySelectorAll('.tab-content');
-  for (var i = 0; i < all.length; i++) { all[i].classList.remove('active'); }
-  var t = document.getElementById('tab-' + name);
-  if (t) t.classList.add('active');
-  var b = document.querySelectorAll('.tab');
-  for (var i = 0; i < b.length; i++) { b[i].classList.remove('active'); }
-  if (btn) btn.classList.add('active');
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t => {
+    var n = {summary:'汇总',engine1:'引擎1',engine2:'引擎2',engine3:'引擎3',engine4:'引擎4',engine5:'引擎5'};
+    if (t.textContent.includes(n[name])) t.classList.add('active');
+  });
   window.scrollTo(0,0);
 }
-
-
-// ====== 渲染引擎 ======
-const SCORE_MAP = { high:'score-high', mid:'score-mid', low:'score-low' };
-const CONV_MAP = { '高':'conv-high', '中':'conv-mid', '低':'conv-low' };
-function scorePill(s) {
-  if (s===null||s===undefined) return '';
-  let cls = SCORE_MAP.low;
-  if (s>=70) cls=SCORE_MAP.high; else if (s>=50) cls=SCORE_MAP.mid;
-  return `<span class="score ${cls}">${s}</span>`;
-}
-function valClass(v) {
-  if (!v||v==='—'||v==='+'||v==='底'||v==='扭亏') return '';
-  const n=parseFloat(String(v).replace(/[+%亿,]/g,''));
-  if (isNaN(n)) return '';
-  return n>0?'green':'red';
-}
-function colored(v) { const c=valClass(v); return c?`<span class="${c}">${v}</span>`:v; }
-function coloredTd(v) { return valClass(v)?`<td class="${valClass(v)}">${v}</td>`:`<td>${v}</td>`; }
-function verdict(s) { return s==='pass'?'<span class="verdict pass">✅</span>':s==='cond'?'<span class="verdict cond">🟡</span>':'<span class="verdict fail">❌</span>'; }
-function conviction(s) { return `<span class="conviction ${CONV_MAP[s]||'conv-low'}">${s}</span>`; }
-// cTd(key) - coloredTd 包装器，从行对象提取字段值
-function cTd(k) { return (d)=> { const v=d[k]; const c=valClass(v); return c?`<td class="${c}">${v}</td>`:`<td>${v}</td>`; }; }
-
-let D={};
-async function loadData() {
-  try {
-    const r=await fetch('dashboard-data.json?'+Date.now());
-    D=await r.json(); renderAll();
-  } catch(e) {
-    console.error('数据加载失败', e);
-    document.querySelectorAll('[data-render]').forEach(el=>el.innerHTML='<p class="red">⚠️ 数据加载失败</p>');
-  }
-  // 加载自学习系统数据
-  await loadLearning();
-}
-function renderAll() {
-  document.querySelectorAll('[data-render]').forEach(el=>{
-    const fn=renderFns[el.dataset.render];
-    if (fn) try { el.innerHTML=fn(); } catch(e) { console.error('渲染错误('+el.dataset.render+'):', e); el.innerHTML='<p class="red">⚠️ 渲染错误</p>'; }
-  });
-}
-const renderFns={};
-
-// helper: 渲染一个简单的带标题表格
-function rTable(data, headers, fields, opts={}) {
-  if (!data||!data.length) return '<p class="dim">暂无数据</p>';
-  const rowFn=opts.rowFn||((d,i)=>fields.map(f=>{
-    if (f._render) return f._render(d, i);
-    return `<td>${d[f.key]!==undefined?colored(d[f.key]):''}</td>`;
-  }));
-  return `<table style="font-size:${opts.fontSize||'0.85em'}">
-    <tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr>
-    ${data.map((d,i)=>`<tr>${rowFn(d,i).join('')}</tr>`).join('')}
-  </table>`;
-}
-
-renderFns.market = function() {
-  const m=D.market;
-  return `<div class="grid3">
-    <div><span class="dim">上证指数</span><br><span class="${m.shanghai.change<0?'red':'green'}">${m.shanghai.value} (${m.shanghai.change>0?'+':''}${m.shanghai.change}%)</span></div>
-    <div><span class="dim">深证成指</span><br><span class="${m.shenzhen.change<0?'red':'green'}">${m.shenzhen.value} (${m.shenzhen.change>0?'+':''}${m.shenzhen.change}%)</span></div>
-    <div><span class="dim">创业板指</span><br><span class="${m.cyb.change<0?'red':'green'}">${m.cyb.value} (${m.cyb.change>0?'+':''}${m.cyb.change}%)</span></div>
-  </div><p style="margin-top:12px">${m.summary}</p>`;
-};
-
-renderFns.avoid = function() {
-  const a=D.avoid;
-  return rTable(a, ['标的','红灯','绿灯','净','为何避开'],
-    [{key:'name'},{key:'red'},{key:'green'},{key:'net',_render:(d)=>`<td class="${d.netClass}">${d.net}</td>`},{key:'reason'}],
-    {rowFn:(d)=>[
-      `<td><b>${d.name}</b></td>`,
-      `<td>${'●'.repeat(Math.max(0,d.red))}</td>`,
-      `<td>${'●'.repeat(Math.max(0,d.green))}</td>`,
-      `<td class="${d.netClass}">${d.net}</td>`,
-      `<td class="${d.netClass}">${d.reason}</td>`
-    ]});
-};
-
-renderFns.ops = function() {
-  return rTable(D.operations, ['优先级','标的','引擎来源','仓位','入场','止损'],
-    [{key:'priority'},{key:'name'},{key:'engine'},{key:'position'},{key:'entry'},{key:'stopLoss'}]);
-};
-
-renderFns.tracking = function() {
-  return rTable(D.tracking, ['标的','入场','状态','盈亏'],
-    [{key:'name'},{key:'entry'},{key:'status'},{key:'pnl'}]);
-};
-
-renderFns.dataPool = function() {
-  const p=D.dataPool;
-  let h=`<h3>🟢🟢🟢 4轮以上命中（最强信号·${p.strongSignal.length}只）</h3>`;
-  h+=rTable(p.strongSignal,['标的','命中轮次','信号来源'],[{key:'name'},{key:'rounds',_render:(d)=>`<td>${d.rounds}轮</td>`},{key:'source'}]);
-
-  h+=`<h3>🟢🟢 2轮命中（可靠·${p.twoHit.length}只）</h3>`;
-  h+=rTable(p.twoHit,['标的','信号'],[{key:'name'},{key:'signal'}]);
-
-  h+=`<h3>💰 主力净流入TOP50</h3>${renderText(p.topInflow)}`;
-  h+=`<h3>🔥 涨停股(${(p.limitUp.match(/·/g)||[]).length+1}只)</h3>${renderText(p.limitUp)}`;
-  h+=`<h3>🐉 龙虎榜净买入TOP15</h3>${renderText(p.dragonTiger)}`;
-  h+=`<h3>📈 放量突破+均线多头</h3>${renderText(p.volumeBreakout)}`;
-  h+=`<h3>🔄 缩量回调·二次启动</h3>${renderText(p.pullback)}`;
-  h+=`<h3>🌍 北向资金增持</h3>${renderText(p.northbound)}`;
-  h+=`<h3>🔬 机构密集调研TOP10</h3>${renderText(p.institutionResearch)}`;
-  h+=`<h3>🏆 隐形冠军·行业龙头</h3>${renderText(p.hiddenChampion)}`;
-  h+=`<h3>📈 中报业绩预增</h3>${renderText(p.earningsForecast)}`;
-  h+=`<h3>📉 超跌反弹</h3>${renderText(p.oversold)}`;
-  h+=`<h3>🔬 专精特新小巨人</h3>${renderText(p.specialNew)}`;
-  h+=`<h3>💰 高股息红利</h3>${renderText(p.highDividend)}`;
-  h+=`<h3>💵 超大单增仓</h3>${renderText(p.superLargeOrder)}`;
-  h+=`<p class="small" style="margin-top:12px">📐 数据来源：证券之星/东方财富/同花顺/证券时报/财联社 2026-06-11 收盘 | 13轮搜索合并去重约700只</p>`;
-  return h;
-};
-function renderText(t) {
-  if (!t) return '<p class="dim">暂无数据</p>';
-  const items = t.split('·').filter(Boolean);
-  return `<div style="display:flex;flex-wrap:wrap;gap:4px;line-height:1.8">${items.map(i => `<span class="tag">${i}</span>`).join('')}</div>`;
-}
-
-renderFns.engine1Top18 = function() {
-  return rTable(D.engine1.top18, ['#','标的','产业链位置','成长','PEG','资金','链位','总分','判断'],
-    [{key:'rank',_render:(d)=>`<td>${d.rank}</td>`},
-     {key:'name',_render:(d)=>`<td>${d.style?`<b style="color:var(--${d.style})">${d.name}</b>`:`<b>${d.name}</b>`}</td>`},
-     {key:'chain'},{key:'growth',_render:cTd('growth')},
-     {key:'peg'},{key:'money',_render:cTd('money')},
-     {key:'chainPos',_render:(d)=>`<td>${d.chainPos}</td>`},
-     {key:'score',_render:(d)=>`<td>${scorePill(d.score)}</td>`},
-     {key:'judgment',_render:(d)=>`<td class="${d.score>=70?'green':d.score>=50?'yellow':'orange'}">${d.judgment}</td>`}]);
-};
-
-renderFns.engine1Chains = function() {
-  const chains=D.engine1.chains;
-  const levelMap={green:'🟢',yellow:'🟡',white:'⚪'};
-  return `<table style="font-size:0.78em"><tr><th>产业链</th><th>核心标的及评分</th></tr>
-    ${chains.map(c=>`<tr><td><b>${c.chain}</b></td><td>${c.items.map(i=>`${levelMap[i.level]||'⚪'} ${i.name}${i.score!==null?' '+scorePill(i.score):''}`).join(' | ')}</td></tr>`).join('')}
-    <tr><td colspan="2" class="small">低空经济(中信海直)·6G(中兴/亨通)·储能(宁德/赣锋)·量子(国盾)·脑机(博睿康)·生物制造(华大)·数据(中国软件)·新能源车(宁德/比亚迪)：今日均未入TOP18，等待轮动催化。</td></tr>
-  </table>`;
-};
-
-renderFns.engine1Debate = function() {
-  const d=D.engine1.debateTop5.map(stock=>{
-    let h=`<h3>${stock.rank} ${stock.name} — ${stock.score}分 ${verdict(stock.verdict)}</h3>`;
-    h+=`<div class="insight"><b>⛓️ 产业链位置：</b>${stock.chain}</div>`;
-    if(stock.attack) h+=`<div class="attack"><b>🔥 致命攻击：</b>${stock.attack}</div>`;
-    if(stock.rebuttal) h+=`<div class="rebuttal"><b>🛡️ 多方反驳：</b>${stock.rebuttal}</div>`;
-    if(stock.insight) h+=`<div class="insight"><b>💡 洞察：</b>${stock.insight}</div>`;
-    h+=`<p><b>确信度：</b>${conviction(stock.conviction)} | <b>仓位：</b>${stock.position} | <b>入场：</b>${stock.entry} | <b>止损：</b>${stock.stopLoss}</p>`;
-    return h;
-  });
-  return d.join('<hr class="divider">');
-};
-
-renderFns.engine1Recs = function() {
-  return rTable(D.engine1.recommendations,['优先级','标的','总分','确信度','仓位','入场','核心逻辑'],
-    [{key:'priority'},{key:'name'},{key:'score',_render:(d)=>`<td>${scorePill(d.score)}</td>`},
-     {key:'conviction',_render:(d)=>`<td class="green">${d.conviction}</td>`},{key:'position'},{key:'entry'},{key:'logic'}]);
-};
-
-renderFns.engine2Triple = function() {
-  return rTable(D.engine2.tripleConfirm,['标的','机构','北向','游资','连板','炸板率','策略','仓位'],
-    [{key:'name'},{key:'inst',_render:cTd('inst')},{key:'north',_render:cTd('north')},{key:'youzi'},{key:'board',_render:(d)=>`<td>${d.board}板</td>`},{key:'blowRate'},{key:'strategy'},{key:'position'}]);
-};
-
-renderFns.engine2Double = function() {
-  return rTable(D.engine2.doubleSignal,['标的','信号1','信号2','连板','策略','仓位'],
-    [{key:'name'},{key:'signal1'},{key:'signal2'},{key:'board',_render:(d)=>`<td>${d.board}板</td>`},{key:'strategy'},{key:'position'}]);
-};
-
-renderFns.engine2Single = function() {
-  return rTable(D.engine2.singleSignal,['标的','信号','等待什么'],
-    [{key:'name'},{key:'signal'},{key:'wait'}]);
-};
-
-renderFns.engine3Early = function() {
-  return rTable(D.engine3.earlyStage,['标的','行业','趋势','估值/PEG','情绪溢价','预期差','综合','入场/止损'],
-    [{key:'name',_render:(d)=>`<td><b>${d.name}</b><br><span class="small">${d.code}</span></td>`},{key:'industry'},
-     {key:'trend',_render:(d)=>`<td>${scorePill(d.trend)}</td>`},{key:'valuation'},{key:'sentiment'},{key:'diff'},
-     {key:'score',_render:(d)=>`<td>${scorePill(d.score)}</td>`},{key:'action'}]);
-};
-
-renderFns.engine3Mid = function() {
-  return rTable(D.engine3.midStage,['标的','行业','已涨','剩余空间','估值','情绪','综合','入场/止损'],
-    [{key:'name',_render:(d)=>`<td><b>${d.name}</b><br><span class="small">${d.code}</span></td>`},{key:'industry'},
-     {key:'gained',_render:cTd('gained')},{key:'remaining',_render:cTd('remaining')},{key:'valuation'},{key:'sentiment'},
-     {key:'score',_render:(d)=>`<td>${scorePill(d.score)}</td>`},{key:'action'}]);
-};
-
-renderFns.engine3Excluded = function() {
-  return rTable(D.engine3.excluded,['标的','排除原因'],[{key:'name',_render:(d)=>`<td>${d.name}(${d.code})</td>`},{key:'reason',_render:(d)=>`<td class="red">${d.reason}</td>`}]);
-};
-
-renderFns.engine4Pending = function() {
-  return rTable(D.engine4.pendingConfirm,['标的','方向','反弹信号','评分','操作'],
-    [{key:'name',_render:(d)=>`<td><b>${d.name}</b><br><span class="small">${d.code}</span></td>`},{key:'direction'},{key:'signal'},
-     {key:'score',_render:(d)=>`<td>${scorePill(d.score)}</td>`},{key:'action'}]);
-};
-
-renderFns.engine4Confirmed = function() {
-  return rTable(D.engine4.confirmed,['标的','方向','企稳确认','空间','评分','操作'],
-    [{key:'name',_render:(d)=>`<td><b>${d.name}</b><br><span class="small">${d.code}</span></td>`},{key:'direction'},{key:'signal'},
-     {key:'upside',_render:cTd('upside')},{key:'score',_render:(d)=>`<td>${scorePill(d.score)}</td>`},{key:'action'}]);
-};
-
-renderFns.engine4Waiting = function() {
-  return rTable(D.engine4.waiting,['标的','状态'],[{key:'name'},{key:'status'}]);
-};
-
-renderFns.engine5Prep = function() {
-  return rTable(D.engine5.prePosition,['标的','驱动逻辑','时间','仓位','止损'],
-    [{key:'name'},{key:'logic'},{key:'timeframe'},{key:'position'},{key:'stopLoss'}]);
-};
-
-renderFns.sectorInflow = function() {
-  return rTable(D.sectorFlow.inflow,['板块','净流入(亿)','信号'],
-    [{key:'sector',_render:(d)=>`<td><b>${d.sector}</b></td>`},{key:'amount',_render:cTd('amount')},
-     {key:'signal',_render:(d)=>`<td>${d.signal}${d.detail?'<br><span class="small">'+d.detail+'</span>':''}</td>`}]);
-};
-
-renderFns.sectorOutflow = function() {
-  return rTable(D.sectorFlow.outflow,['板块','净流出(亿)','信号'],
-    [{key:'sector',_render:(d)=>`<td><b>${d.sector}</b></td>`},{key:'amount',_render:cTd('amount')},{key:'signal'}]);
-};
-
-renderFns.sectorRotation = function() {
-  return rTable(D.sectorFlow.rotation,['阶段','方向','逻辑','对应标的'],
-    [{key:'stage'},{key:'direction'},{key:'logic'},{key:'targets'}]);
-};
-
-// ====== 自学习系统（后端 API） ======
-const LS_KEY = 'stock_trades';
-
-// 加载交易数据（使用 localStorage）
-async function loadLearning() {
-  const el = document.getElementById('learning-dashboard');
-  if (!el) return;
-  try {
-    const trades = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
-    const stats = computeStats(trades);
-    const { dataPoolVersion } = D;
-    el.innerHTML = renderLearning(trades, stats, dataPoolVersion);
-    // 更新系统自检
-    const st = document.getElementById('status-trade-log');
-    const sl = document.getElementById('status-learning');
-    if (st) st.innerHTML = '<td>交易记录</td><td class="green">✅ ' + stats.total + '笔</td><td>胜率' + stats.winRate + '</td>';
-    if (sl) sl.innerHTML = '<td>自学习引擎</td><td class="green">✅ 运行中</td><td>' + (stats.suggestions?.length||0) + '条建议</td>';
-  } catch(e) {
-    el.innerHTML = `<div class="stat-box"><div class="num">0</div><div class="label">加载失败</div></div>`;
-  }
-}
-
-function saveTrades(trades) {
-  localStorage.setItem(LS_KEY, JSON.stringify(trades));
-  return computeStats(trades);
-}
-
-function computeStats(trades) {
-  const closed = trades.filter(t => t.status === 'closed');
-  const open = trades.filter(t => t.status === 'open');
-  const wins = closed.filter(t => t.pnl > 0);
-  const losses = closed.filter(t => t.pnl <= 0);
-  const winRate = closed.length > 0 ? (wins.length / closed.length * 100).toFixed(1) : 0;
-  const totalPnl = closed.reduce((s, t) => s + parseFloat(t.pnl || 0), 0);
-  const totalPnlStr = (totalPnl > 0 ? '+' : '') + totalPnl.toFixed(2) + '%';
-
-  const byEngine = {};
-  for (const t of closed) {
-    const key = t.engine || '未分类';
-    if (!byEngine[key]) byEngine[key] = { total:0, wins:0, pnlSum:0 };
-    byEngine[key].total++;
-    if (t.pnl > 0) byEngine[key].wins++;
-    byEngine[key].pnlSum += parseFloat(t.pnl || 0);
-  }
-  const engineStats = Object.entries(byEngine).map(([e,s]) => ({
-    engine:e, total:s.total,
-    winRate:(s.wins/s.total*100).toFixed(1)+'%',
-    avgPnl:((s.pnlSum/s.total)>0?'+':'')+(s.pnlSum/s.total).toFixed(2)+'%'
-  })).sort((a,b)=>parseFloat(b.winRate)-parseFloat(a.winRate));
-
-  const suggestions = [];
-  if (trades.length < 3) suggestions.push('📊 记录至少3笔完成交易后开始生成优化建议');
-  else {
-    if (winRate >= 70) suggestions.push('🎯 总胜率' + winRate + '%——表现优秀，可适当加大仓位');
-    else if (winRate >= 50) suggestions.push('📈 总胜率' + winRate + '%——中等偏上，关注亏损共性');
-    else suggestions.push('⚠️ 总胜率' + winRate + '%——偏低，建议暂停复盘');
-    if (engineStats.length > 0) {
-      const best = engineStats[0];
-      if (parseFloat(best.winRate) >= 70) suggestions.push('🔬 推荐优先使用「' + best.engine + '」，胜率' + best.winRate + '，均盈' + best.avgPnl);
-    }
-  }
-
-  return {
-    total: trades.length, open: open.length, closed: closed.length,
-    wins: wins.length, losses: losses.length,
-    winRate: winRate + '%', totalPnl: totalPnlStr,
-    avgPnl: closed.length > 0 ? ((totalPnl/closed.length) > 0 ? '+' : '') + (totalPnl/closed.length).toFixed(2) + '%' : '0%',
-    byEngine: engineStats, suggestions
-  };
-}
-
-function renderLearning(trades, stats, dataVer) {
-  return `
-  <div class="grid2">
-    <div>
-      <div class="grid3" style="margin-bottom:16px">
-        <div class="stat-box"><div class="num green">${stats.total}</div><div class="label">总交易</div></div>
-        <div class="stat-box"><div class="num ${parseFloat(stats.winRate)>=50?'green':'red'}">${stats.winRate}</div><div class="label">胜率</div></div>
-        <div class="stat-box"><div class="num ${stats.totalPnl.startsWith('+')?'green':'red'}">${stats.totalPnl}</div><div class="label">总盈亏</div></div>
-      </div>
-      ${renderTradeForm()}
-      <div class="trade-list">${renderTradeTable(trades)}</div>
-    </div>
-    <div>
-      <div style="font-size:1.1em;margin-bottom:12px"><b>🧠 自学习建议</b></div>
-      ${stats.suggestions.length ? '<ul class="suggest-list">'+stats.suggestions.map(s=>`<li>${s}</li>`).join('')+'</ul>' : '<p class="dim">继续积累交易记录...</p>'}
-      ${stats.byEngine.length ? '<div style="margin-top:16px"><b>⚡ 引擎绩效排名</b>'+rTable(stats.byEngine,['引擎','交易','胜率','均盈亏'],[{key:'engine'},{key:'total'},{key:'winRate',_render:(v)=>coloredTd(v)},{key:'avgPnl',_render:(v)=>coloredTd(v)}])+'</div>' : ''}
-    </div>
-  </div>`;
-}
-
-function renderTradeForm() {
-  return '<div style="margin-bottom:12px;padding:12px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">'+
-    '<b style="font-size:0.9em">✏️ 记录新交易</b>'+
-    '<div class="form-row">'+
-    '<input id="tf-name" placeholder="标的名称" />'+
-    '<input id="tf-symbol" placeholder="代码" style="min-width:80px" />'+
-    '<input id="tf-entry" type="number" step="0.01" placeholder="入场价" style="min-width:80px" />'+
-    '<input id="tf-exit" type="number" step="0.01" placeholder="出场价" style="min-width:80px" />'+
-    '</div><div class="form-row">'+
-    '<select id="tf-engine"><option value="">选择引擎</option><option>引擎1:深度辩论</option><option>引擎2:聪明钱</option><option>引擎3:趋势中继</option><option>引擎4:回调重启</option><option>引擎5:宏观驱动</option></select>'+
-    '<input id="tf-position" placeholder="仓位(如 3成)" style="min-width:80px" />'+
-    '<button class="btn btn-primary" onclick="addTrade()">📝 记录</button>'+
-    '</div></div>';
-}
-
-function renderTradeTable(trades) {
-  if (!trades.length) return '<p class="dim">暂无交易记录。完成交易后填写上方表单，系统自动学习。</p>';
-  return '<table style="font-size:0.8em"><tr><th>标的</th><th>入场</th><th>出场</th><th>盈亏</th><th>引擎</th><th>操作</th></tr>'+
-    trades.map(t => '<tr>'+
-      '<td><b>'+t.name+'</b>'+(t.symbol?'<br><span class="small">'+t.symbol+'</span>':'')+'</td>'+
-      '<td>'+(t.entryPrice||'-')+'</td>'+
-      '<td>'+(t.exitPrice||(t.status==='open'?'<span class="yellow">持仓中</span>':'-'))+'</td>'+
-      '<td class="'+(t.pnl>0?'green':t.pnl<0?'red':'')+'">'+(t.pnl!==null?(t.pnl>0?'+':'')+t.pnl+'%':'-')+'</td>'+
-      '<td><span class="small">'+(t.engine||'-')+'</span></td>'+
-      '<td><button class="btn btn-danger btn-small" onclick="deleteTrade(\''+t.id+'\')">✕</button></td>'+
-    '</tr>').join('')+'</table>';
-}
-
-function addTrade() {
-  const name = document.getElementById('tf-name').value.trim();
-  if (!name) { alert('请输入标的名称'); return; }
-  const trades = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
-  const entryPrice = document.getElementById('tf-entry').value;
-  const exitPrice = document.getElementById('tf-exit').value;
-  const trade = {
-    id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
-    name, symbol: document.getElementById('tf-symbol').value.trim(),
-    entryPrice: entryPrice ? Number(entryPrice) : null,
-    exitPrice: exitPrice ? Number(exitPrice) : null,
-    engine: document.getElementById('tf-engine').value,
-    position: document.getElementById('tf-position').value,
-    status: exitPrice ? 'closed' : 'open',
-    date: new Date().toISOString().slice(0,10),
-  };
-  if (trade.exitPrice && trade.entryPrice) {
-    trade.pnl = ((trade.exitPrice - trade.entryPrice) / trade.entryPrice * 100).toFixed(2);
-  } else {
-    trade.pnl = null;
-  }
-  trades.unshift(trade);
-  saveTrades(trades);
-  ['tf-name','tf-symbol','tf-entry','tf-exit','tf-position'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('tf-engine').value='';
-  loadLearning();
-}
-
-function deleteTrade(id) {
-  if (!confirm('确定删除此交易？')) return;
-  let trades = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
-  trades = trades.filter(t => t.id !== id);
-  saveTrades(trades);
-  loadLearning();
-}
-
-// 加载数据
-loadData();
+document.querySelectorAll('.tab').forEach((t,i) => {
+  t.onclick = () => switchTab(['summary','engine1','engine2','engine3','engine4','engine5'][i]);
+});
 </script>
 
 </body>
