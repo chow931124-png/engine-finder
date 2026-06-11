@@ -45,11 +45,12 @@ def parse_line(line):
         high = float(parts[5]) if parts[5] else price
         low = float(parts[6]) if parts[6] else price
         volume = int(parts[7]) if parts[7] else 0           # 成交量(手)
-        amount = round(float(parts[9]) if parts[9] else 0, 2)  # 成交额(万)
-        turnover = float(parts[10]) if len(parts) > 10 and parts[10] else 0  # 换手率%
-        pe = float(parts[11]) if len(parts) > 11 and parts[11] else 0
-        amplitude = float(parts[12]) if len(parts) > 12 and parts[12] else 0  # 振幅%
-        market_cap = float(parts[45]) if len(parts) > 45 and parts[45] else 0  # 总市值
+        amount = float(parts[37]) if len(parts) > 37 and parts[37] else 0  # 成交额(万)
+        turnover = float(parts[43]) if len(parts) > 43 and parts[43] else 0  # 换手率%
+        pe = float(parts[39]) if len(parts) > 39 and parts[39] else 0  # PE(TTM)
+        # 振幅通过 (high-low)/prev_close 计算更准确
+        amplitude = round((high - low) / prev_close * 100, 2) if prev_close > 0 else 0
+        market_cap = float(parts[44]) if len(parts) > 44 and parts[44] else 0  # 总市值(万)
         pb = float(parts[46]) if len(parts) > 46 and parts[46] else 0
         high_60d = float(parts[48]) if len(parts) > 48 and parts[48] else 0  # 60日最高
 
@@ -139,11 +140,11 @@ def engine2_score(s):
     指标: 成交额, 换手率, 振幅, 涨幅, 量价配合
     """
     sc = 0
-    # 成交额(大资金入场信号)
-    if s["amount"] and s["amount"] > 10000: sc += 20
-    elif s["amount"] and s["amount"] > 5000: sc += 15
-    elif s["amount"] and s["amount"] > 2000: sc += 10
-    elif s["amount"] and s["amount"] > 500: sc += 5
+    # 成交额(大资金入场信号，单位万)
+    if s["amount"] and s["amount"] > 50000: sc += 20    # >5亿
+    elif s["amount"] and s["amount"] > 20000: sc += 15  # >2亿
+    elif s["amount"] and s["amount"] > 10000: sc += 10  # >1亿
+    elif s["amount"] and s["amount"] > 5000: sc += 5    # >0.5亿
     # 换手率(游资活跃信号)
     if s["turnover"] and s["turnover"] > 8: sc += 20
     elif s["turnover"] and s["turnover"] > 5: sc += 15
@@ -190,9 +191,9 @@ def engine3_score(s):
     # 市值适中(趋势股偏好)
     if s["market_cap"] and 50 < s["market_cap"] < 500: sc += 10
     elif s["market_cap"] and 30 < s["market_cap"] <= 50: sc += 5
-    # 成交额适中(非庄股)
-    if s["amount"] and s["amount"] > 1000: sc += 10
-    elif s["amount"] and s["amount"] > 300: sc += 5
+    # 成交额适中(非庄股，单位万)
+    if s["amount"] and s["amount"] > 10000: sc += 10  # >1亿
+    elif s["amount"] and s["amount"] > 5000: sc += 5  # >0.5亿
     # 涨停排除(连板后风险大)
     if s["change_pct"] and s["change_pct"] >= 9.5: sc -= 20
     return max(min(sc, 100), 0)
@@ -295,7 +296,7 @@ def tag_stock(s, scores, engine_mark):
         "pb": round(s["pb"], 2) if s["pb"] else 0,
         "turnover": s["turnover"],
         "amount": s["amount"],
-        "market_cap": round(s["market_cap"] / 1e8, 1) if s["market_cap"] else 0,
+        "market_cap": round(s["market_cap"], 1) if s["market_cap"] else 0,  # 亿
         "amplitude": s["amplitude"],
         "score": scores,
         "engine": engine_mark,

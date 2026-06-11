@@ -1172,17 +1172,9 @@ async function loadLearning() {
     const sl = document.getElementById('status-learning');
     if (st) st.innerHTML = '<td>交易记录</td><td class="green">✅ ' + stats.total + '笔</td><td>胜率' + stats.winRate + '</td>';
     if (sl) sl.innerHTML = '<td>自学习引擎</td><td class="green">✅ 运行中</td><td>' + (stats.suggestions?.length||0) + '条建议</td>';
-    // 同步到 API（可选，不阻塞）
-    syncToApi(trades);
   } catch(e) {
     el.innerHTML = `<div class="stat-box"><div class="num">0</div><div class="label">加载失败</div></div>`;
   }
-}
-
-async function syncToApi(trades) {
-  try {
-    const r = await fetch('/api/trades', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({trades,sync:true}) });
-  } catch(e) { /* API 不可用时静默 */ }
 }
 
 function saveTrades(trades) {
