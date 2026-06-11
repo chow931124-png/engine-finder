@@ -1,0 +1,11 @@
+{
+  "name": "stock-engine-pack",
+  "version": "1.0.0",
+  "description": "A股五引擎选股系统",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@vercel/kv": "^3.0.0"
+  }
+}
