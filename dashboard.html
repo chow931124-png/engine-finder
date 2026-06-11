@@ -1150,54 +1150,91 @@ renderFns.sectorRotation = function() {
 };
 
 // ====== 自学习系统（后端 API） ======
-const API = '/api/trades';
+const LS_KEY = 'stock_trades';
 
-// 加载交易数据
+// 加载交易数据（使用 localStorage）
 async function loadLearning() {
   const el = document.getElementById('learning-dashboard');
   if (!el) return;
   try {
-    const r = await fetch(API + '?stats=true');
-    if (!r.ok) throw new Error('API 不可用');
-    const { trades, stats } = await r.json();
-    el.innerHTML = renderLearning(trades, stats);
+    const trades = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+    const stats = computeStats(trades);
+    const { dataPoolVersion } = D;
+    el.innerHTML = renderLearning(trades, stats, dataPoolVersion);
     // 更新系统自检
     const st = document.getElementById('status-trade-log');
     const sl = document.getElementById('status-learning');
-    if (st) st.innerHTML = '<td>交易API</td><td class="green">✅ ' + stats.total + '笔</td><td>胜率' + stats.winRate + '</td>';
+    if (st) st.innerHTML = '<td>交易记录</td><td class="green">✅ ' + stats.total + '笔</td><td>胜率' + stats.winRate + '</td>';
     if (sl) sl.innerHTML = '<td>自学习引擎</td><td class="green">✅ 运行中</td><td>' + (stats.suggestions?.length||0) + '条建议</td>';
+    // 同步到 API（可选，不阻塞）
+    syncToApi(trades);
   } catch(e) {
-    // API 不可用后备
-    el.innerHTML = `<div class="grid2">
-      <div><div class="stat-box"><div class="num">—</div><div class="label">待连接后端</div></div></div>
-      <div style="text-align:center;padding:20px">
-        <div style="font-size:2em">🔬</div>
-        <b>自学习引擎</b>
-        <p class="dim">⏳ 需在 Vercel 中创建 KV 数据库</p>
-        <div class="attack" style="margin-top:8px;font-size:0.85em">
-          <b>📖 设置方法：</b><br>
-          1. 打开 <a href="https://vercel.com/dashboard/stores" target="_blank" style="color:var(--blue)">Vercel → Storage</a><br>
-          2. 点击 "Create KV Database"<br>
-          3. 链接到 stock-engine-pack 项目<br>
-          4. 重新部署即可
-        </div>
-      </div>
-    </div>`;
-    // 更新系统自检为离线
-    const st = document.getElementById('status-trade-log');
-    const sl = document.getElementById('status-learning');
-    if (st) st.innerHTML = '<td>交易API</td><td class="yellow">⏳ 待配置</td><td>需创建 KV 数据库</td>';
-    if (sl) sl.innerHTML = '<td>自学习引擎</td><td class="yellow">⏳ 离线</td><td>后端未连接</td>';
+    el.innerHTML = `<div class="stat-box"><div class="num">0</div><div class="label">加载失败</div></div>`;
   }
 }
 
-function renderLearning(trades, stats) {
-  const h = `
+async function syncToApi(trades) {
+  try {
+    const r = await fetch('/api/trades', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({trades,sync:true}) });
+  } catch(e) { /* API 不可用时静默 */ }
+}
+
+function saveTrades(trades) {
+  localStorage.setItem(LS_KEY, JSON.stringify(trades));
+  return computeStats(trades);
+}
+
+function computeStats(trades) {
+  const closed = trades.filter(t => t.status === 'closed');
+  const open = trades.filter(t => t.status === 'open');
+  const wins = closed.filter(t => t.pnl > 0);
+  const losses = closed.filter(t => t.pnl <= 0);
+  const winRate = closed.length > 0 ? (wins.length / closed.length * 100).toFixed(1) : 0;
+  const totalPnl = closed.reduce((s, t) => s + parseFloat(t.pnl || 0), 0);
+  const totalPnlStr = (totalPnl > 0 ? '+' : '') + totalPnl.toFixed(2) + '%';
+
+  const byEngine = {};
+  for (const t of closed) {
+    const key = t.engine || '未分类';
+    if (!byEngine[key]) byEngine[key] = { total:0, wins:0, pnlSum:0 };
+    byEngine[key].total++;
+    if (t.pnl > 0) byEngine[key].wins++;
+    byEngine[key].pnlSum += parseFloat(t.pnl || 0);
+  }
+  const engineStats = Object.entries(byEngine).map(([e,s]) => ({
+    engine:e, total:s.total,
+    winRate:(s.wins/s.total*100).toFixed(1)+'%',
+    avgPnl:((s.pnlSum/s.total)>0?'+':'')+(s.pnlSum/s.total).toFixed(2)+'%'
+  })).sort((a,b)=>parseFloat(b.winRate)-parseFloat(a.winRate));
+
+  const suggestions = [];
+  if (trades.length < 3) suggestions.push('📊 记录至少3笔完成交易后开始生成优化建议');
+  else {
+    if (winRate >= 70) suggestions.push('🎯 总胜率' + winRate + '%——表现优秀，可适当加大仓位');
+    else if (winRate >= 50) suggestions.push('📈 总胜率' + winRate + '%——中等偏上，关注亏损共性');
+    else suggestions.push('⚠️ 总胜率' + winRate + '%——偏低，建议暂停复盘');
+    if (engineStats.length > 0) {
+      const best = engineStats[0];
+      if (parseFloat(best.winRate) >= 70) suggestions.push('🔬 推荐优先使用「' + best.engine + '」，胜率' + best.winRate + '，均盈' + best.avgPnl);
+    }
+  }
+
+  return {
+    total: trades.length, open: open.length, closed: closed.length,
+    wins: wins.length, losses: losses.length,
+    winRate: winRate + '%', totalPnl: totalPnlStr,
+    avgPnl: closed.length > 0 ? ((totalPnl/closed.length) > 0 ? '+' : '') + (totalPnl/closed.length).toFixed(2) + '%' : '0%',
+    byEngine: engineStats, suggestions
+  };
+}
+
+function renderLearning(trades, stats, dataVer) {
+  return `
   <div class="grid2">
     <div>
       <div class="grid3" style="margin-bottom:16px">
         <div class="stat-box"><div class="num green">${stats.total}</div><div class="label">总交易</div></div>
-        <div class="stat-box"><div class="num ${stats.winRate>=50?'green':'red'}">${stats.winRate}</div><div class="label">胜率</div></div>
+        <div class="stat-box"><div class="num ${parseFloat(stats.winRate)>=50?'green':'red'}">${stats.winRate}</div><div class="label">胜率</div></div>
         <div class="stat-box"><div class="num ${stats.totalPnl.startsWith('+')?'green':'red'}">${stats.totalPnl}</div><div class="label">总盈亏</div></div>
       </div>
       ${renderTradeForm()}
@@ -1205,81 +1242,74 @@ function renderLearning(trades, stats) {
     </div>
     <div>
       <div style="font-size:1.1em;margin-bottom:12px"><b>🧠 自学习建议</b></div>
-      ${stats.suggestions && stats.suggestions.length
-        ? `<ul class="suggest-list">${stats.suggestions.map(s=>`<li>${s}</li>`).join('')}</ul>`
-        : '<p class="dim">数据不足，继续积累交易记录...</p>'}
-      ${stats.byEngine && stats.byEngine.length
-        ? `<div style="margin-top:16px"><b>⚡ 引擎绩效排名</b>${rTable(stats.byEngine,['引擎','交易','胜率','均盈亏'],[{key:'engine'},{key:'total'},{key:'winRate',_render:(d)=>coloredTd(d.winRate+'%')},{key:'avgPnl',_render:(d)=>coloredTd((d.avgPnl>0?'+':'')+d.avgPnl+'%')}])}</div>`
-        : ''}
+      ${stats.suggestions.length ? '<ul class="suggest-list">'+stats.suggestions.map(s=>`<li>${s}</li>`).join('')+'</ul>' : '<p class="dim">继续积累交易记录...</p>'}
+      ${stats.byEngine.length ? '<div style="margin-top:16px"><b>⚡ 引擎绩效排名</b>'+rTable(stats.byEngine,['引擎','交易','胜率','均盈亏'],[{key:'engine'},{key:'total'},{key:'winRate',_render:(d)=>coloredTd(d.winRate)},{key:'avgPnl',_render:(d)=>coloredTd(d.avgPnl)}])+'</div>' : ''}
     </div>
   </div>`;
-  return h;
 }
 
 function renderTradeForm() {
-  return `<div style="margin-bottom:12px;padding:12px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">
-    <b style="font-size:0.9em">✏️ 记录新交易</b>
-    <div class="form-row">
-      <input id="tf-name" placeholder="标的名称" />
-      <input id="tf-symbol" placeholder="代码" style="min-width:80px" />
-      <input id="tf-entry" type="number" step="0.01" placeholder="入场价" style="min-width:80px" />
-      <input id="tf-exit" type="number" step="0.01" placeholder="出场价" style="min-width:80px" />
-    </div>
-    <div class="form-row">
-      <select id="tf-engine"><option value="">选择引擎</option><option>引擎1:深度辩论</option><option>引擎2:聪明钱</option><option>引擎3:趋势中继</option><option>引擎4:回调重启</option><option>引擎5:宏观驱动</option></select>
-      <input id="tf-position" placeholder="仓位(如 3成)" style="min-width:80px" />
-      <button class="btn btn-primary" onclick="addTrade()">📝 记录</button>
-    </div>
-  </div>`;
+  return '<div style="margin-bottom:12px;padding:12px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">'+
+    '<b style="font-size:0.9em">✏️ 记录新交易</b>'+
+    '<div class="form-row">'+
+    '<input id="tf-name" placeholder="标的名称" />'+
+    '<input id="tf-symbol" placeholder="代码" style="min-width:80px" />'+
+    '<input id="tf-entry" type="number" step="0.01" placeholder="入场价" style="min-width:80px" />'+
+    '<input id="tf-exit" type="number" step="0.01" placeholder="出场价" style="min-width:80px" />'+
+    '</div><div class="form-row">'+
+    '<select id="tf-engine"><option value="">选择引擎</option><option>引擎1:深度辩论</option><option>引擎2:聪明钱</option><option>引擎3:趋势中继</option><option>引擎4:回调重启</option><option>引擎5:宏观驱动</option></select>'+
+    '<input id="tf-position" placeholder="仓位(如 3成)" style="min-width:80px" />'+
+    '<button class="btn btn-primary" onclick="addTrade()">📝 记录</button>'+
+    '</div></div>';
 }
 
 function renderTradeTable(trades) {
-  if (!trades.length) return '<p class="dim">暂无交易记录。完成一笔交易后记录到这里，系统会自动学习。</p>';
-  return `<table style="font-size:0.8em">
-    <tr><th>标的</th><th>入场</th><th>出场</th><th>盈亏</th><th>引擎</th><th>操作</th></tr>
-    ${trades.map(t => `<tr>
-      <td><b>${t.name}</b>${t.symbol?'<br><span class="small">'+t.symbol+'</span>':''}</td>
-      <td>${t.entryPrice||'-'}</td>
-      <td>${t.exitPrice||(t.status==='open'?'<span class="yellow">持仓中</span>':'-')}</td>
-      <td class="${t.pnl>0?'green':t.pnl<0?'red':''}">${t.pnl!==null?(t.pnl>0?'+':'')+t.pnl+'%':'-'}</td>
-      <td><span class="small">${t.engine||'-'}</span></td>
-      <td><button class="btn btn-danger btn-small" onclick="deleteTrade('${t.id}')">✕</button></td>
-    </tr>`).join('')}
-  </table>`;
+  if (!trades.length) return '<p class="dim">暂无交易记录。完成交易后填写上方表单，系统自动学习。</p>';
+  return '<table style="font-size:0.8em"><tr><th>标的</th><th>入场</th><th>出场</th><th>盈亏</th><th>引擎</th><th>操作</th></tr>'+
+    trades.map(t => '<tr>'+
+      '<td><b>'+t.name+'</b>'+(t.symbol?'<br><span class="small">'+t.symbol+'</span>':'')+'</td>'+
+      '<td>'+(t.entryPrice||'-')+'</td>'+
+      '<td>'+(t.exitPrice||(t.status==='open'?'<span class="yellow">持仓中</span>':'-'))+'</td>'+
+      '<td class="'+(t.pnl>0?'green':t.pnl<0?'red':'')+'">'+(t.pnl!==null?(t.pnl>0?'+':'')+t.pnl+'%':'-')+'</td>'+
+      '<td><span class="small">'+(t.engine||'-')+'</span></td>'+
+      '<td><button class="btn btn-danger btn-small" onclick="deleteTrade(\''+t.id+'\')">✕</button></td>'+
+    '</tr>').join('')+'</table>';
 }
 
-function renderLearningOffline() {
-  return `<div class="stat-box"><div class="num">0</div><div class="label">需连接后端</div></div>`;
-}
-
-async function addTrade() {
+function addTrade() {
   const name = document.getElementById('tf-name').value.trim();
   if (!name) { alert('请输入标的名称'); return; }
-  const body = {
-    name,
-    symbol: document.getElementById('tf-symbol').value.trim(),
-    entryPrice: document.getElementById('tf-entry').value || null,
-    exitPrice: document.getElementById('tf-exit').value || null,
+  const trades = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+  const entryPrice = document.getElementById('tf-entry').value;
+  const exitPrice = document.getElementById('tf-exit').value;
+  const trade = {
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+    name, symbol: document.getElementById('tf-symbol').value.trim(),
+    entryPrice: entryPrice ? Number(entryPrice) : null,
+    exitPrice: exitPrice ? Number(exitPrice) : null,
     engine: document.getElementById('tf-engine').value,
     position: document.getElementById('tf-position').value,
+    status: exitPrice ? 'closed' : 'open',
+    date: new Date().toISOString().slice(0,10),
   };
-  try {
-    const r = await fetch(API, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
-    if (!r.ok) throw new Error('保存失败');
-    // 清空表单
-    ['tf-name','tf-symbol','tf-entry','tf-exit','tf-position'].forEach(id=>document.getElementById(id).value='');
-    document.getElementById('tf-engine').value='';
-    await loadLearning();
-  } catch(e) { alert('❌ ' + e.message); }
+  if (trade.exitPrice && trade.entryPrice) {
+    trade.pnl = ((trade.exitPrice - trade.entryPrice) / trade.entryPrice * 100).toFixed(2);
+  } else {
+    trade.pnl = null;
+  }
+  trades.unshift(trade);
+  saveTrades(trades);
+  ['tf-name','tf-symbol','tf-entry','tf-exit','tf-position'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('tf-engine').value='';
+  loadLearning();
 }
 
-async function deleteTrade(id) {
+function deleteTrade(id) {
   if (!confirm('确定删除此交易？')) return;
-  try {
-    const r = await fetch(API + '?id=' + id, { method:'DELETE' });
-    if (!r.ok) throw new Error('删除失败');
-    await loadLearning();
-  } catch(e) { alert('❌ ' + e.message); }
+  let trades = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+  trades = trades.filter(t => t.id !== id);
+  saveTrades(trades);
+  loadLearning();
 }
 
 // 加载数据
