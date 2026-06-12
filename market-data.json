@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-06-12T06:59:47.492Z",
-  "updatedAtCN": "2026-06-12 14:59",
-  "isTrading": true,
+  "updatedAt": "2026-06-12T11:04:54.749Z",
+  "updatedAtCN": "2026-06-12 19:04",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "4032.05",
-      "changePct": "1.13"
+      "price": "4031.51",
+      "changePct": "1.12"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 494,
     "limitDown": 0,
-    "rise": 1683,
-    "fall": 631
+    "rise": 1700,
+    "fall": 622
   },
   "sectorFlow": [
     {
       "name": "有色金属",
-      "netInflow": "144.10亿",
-      "changePct": "5.63%"
+      "netInflow": "144.09亿",
+      "changePct": "5.56%"
     },
     {
       "name": "电力设备",
-      "netInflow": "91.79亿",
-      "changePct": "3.28%"
+      "netInflow": "91.76亿",
+      "changePct": "3.23%"
     },
     {
       "name": "工业金属",
       "netInflow": "83.69亿",
-      "changePct": "9.79%"
+      "changePct": "9.65%"
     },
     {
       "name": "电池",
       "netInflow": "74.37亿",
-      "changePct": "6.33%"
+      "changePct": "6.24%"
     },
     {
       "name": "铜",
-      "netInflow": "63.00亿",
-      "changePct": "12.53%"
+      "netInflow": "63.01亿",
+      "changePct": "12.39%"
     }
   ],
   "status": "ok"
