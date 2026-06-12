@@ -126,10 +126,12 @@ async function main() {
   ]);
 
   const now = new Date();
-  const h = String(now.getHours()).padStart(2,'0');
-  const m = String(now.getMinutes()).padStart(2,'0');
-  const d = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-  const isTrading = now.getHours() >= 9 && now.getHours() < 15;
+  // 转北京时间 (UTC+8)，因为GitHub Actions跑在UTC时区
+  const bj = new Date(now.getTime() + 8 * 60 * 60 * 1000);
+  const h = String(bj.getUTCHours()).padStart(2,'0');  // getUTCHours 因为手动加了8小时偏移
+  const m = String(bj.getUTCMinutes()).padStart(2,'0');
+  const d = `${bj.getUTCFullYear()}-${String(bj.getUTCMonth()+1).padStart(2,'0')}-${String(bj.getUTCDate()).padStart(2,'0')}`;
+  const isTrading = bj.getUTCHours() >= 9 && bj.getUTCHours() < 15;
 
   const data = {
     updatedAt: now.toISOString(),
