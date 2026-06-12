@@ -1,0 +1,47 @@
+{
+  "updatedAt": "2026-06-12T02:00:19.520Z",
+  "updatedAtCN": "2026-06-12 10:00",
+  "isTrading": true,
+  "indices": {
+    "sh": {
+      "name": "上证指数",
+      "price": "4032.41",
+      "changePct": "1.14"
+    },
+    "volume": null
+  },
+  "marketTemp": {
+    "limitUp": 494,
+    "limitDown": 0,
+    "rise": 1671,
+    "fall": 614
+  },
+  "sectorFlow": [
+    {
+      "name": "电子",
+      "netInflow": "111.63亿",
+      "changePct": "3.26%"
+    },
+    {
+      "name": "半导体",
+      "netInflow": "75.49亿",
+      "changePct": "4.53%"
+    },
+    {
+      "name": "数字芯片设计",
+      "netInflow": "46.62亿",
+      "changePct": "8.48%"
+    },
+    {
+      "name": "印制电路板",
+      "netInflow": "33.30亿",
+      "changePct": "7.08%"
+    },
+    {
+      "name": "元件",
+      "netInflow": "32.26亿",
+      "changePct": "5.13%"
+    }
+  ],
+  "status": "ok"
+}

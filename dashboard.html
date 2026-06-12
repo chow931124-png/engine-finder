@@ -173,13 +173,13 @@
 
 <!-- Market Overview -->
 <div class="card">
-  <h2>📊 今日市场</h2>
+  <h2>📊 今日市场 <span id="market-status" style="font-size:0.5em;color:var(--dim);font-weight:normal"></span></h2>
   <div class="grid3">
-    <div><span class="dim">上证指数</span><br><span class="red">3976 (-0.85%)</span></div>
-    <div><span class="dim">深证成指</span><br><span class="red">14820 (-1.20%)</span></div>
-    <div><span class="dim">创业板指</span><br><span class="red">3820 (-1.50%)</span></div>
+    <div><span class="dim">上证指数</span><br><span id="idx-sh" class="red">3976 (-0.85%)</span></div>
+    <div><span class="dim">深证成指</span><br><span id="idx-sz" class="red">14820 (-1.20%)</span></div>
+    <div><span class="dim">创业板指</span><br><span id="idx-cy" class="red">3820 (-1.50%)</span></div>
   </div>
-  <p style="margin-top:12px">成交 <b>2.58万亿</b> | 涨停76 跌停74 | 隔夜美股暴跌(Dow-950)+CPI 4.2%三年新高→A股低开震荡。高位科技继续退潮，半导体材料逆势走强，银行保险护盘。6/11变盘窗口。</p>
+  <p style="margin-top:12px">成交 <b id="mkt-volume">2.58万亿</b> | 涨停<b id="mkt-up">76</b> 跌停<b id="mkt-down">74</b> | 隔夜美股暴跌(Dow-950)+CPI 4.2%三年新高→A股低开震荡。高位科技继续退潮，半导体材料逆势走强，银行保险护盘。6/11变盘窗口。</p>
 </div>
 
 <!-- 市场温度计 -->
@@ -1318,7 +1318,37 @@ document.addEventListener('DOMContentLoaded', function() {
     input.addEventListener('keydown', function(e) { if (e.key === 'Enter') verifyLogin(); });
     setTimeout(function(){ input.focus(); }, 100);
   }
-});
+  // 📡 加载盘中数据（启动后+每5分钟自动刷新）
+  setTimeout(async function loadMD(){
+    try {
+      var r = await fetch('./market-data.json?t='+Date.now());
+      if (!r.ok) return;
+      var d = await r.json();
+      if (!d || d.status==='error') return;
+      ['sh','sz','cy'].forEach(function(k){
+        var el = document.getElementById('idx-'+k);
+        if(el && d.indices && d.indices[k]){
+          el.className = parseFloat(d.indices[k].changePct)>=0?'green':'red';
+          el.textContent = d.indices[k].price+' ('+d.indices[k].changePct+'%)';
+        }
+      });
+      if(d.volume){ var v=document.getElementById('mkt-volume'); if(v) v.textContent=d.volume; }
+      if(d.marketTemp){
+        var u=document.getElementById('mkt-up'), w=document.getElementById('mkt-down');
+        if(u) u.textContent=d.marketTemp.limitUp; if(w) w.textContent=d.marketTemp.limitDown;
+      }
+      if(d.updatedAtCN){ var h=document.getElementById('header-date'); if(h) h.textContent='📅 '+d.updatedAtCN; }
+      var s=document.getElementById('market-status');
+      if(s) s.textContent='⏱️ '+Math.floor((Date.now()-new Date(d.updatedAt).getTime())/60000)+'分钟前';
+      console.log('📡 数据已更新: '+d.updatedAtCN);
+    } catch(e){}
+  }, 500);
+  setInterval(function(){
+    var s=document.getElementById('market-status');
+    if(s) s.textContent='⏱️ 刷新中...';
+    var btn=document.getElementById('loginOverlay');
+    if(!btn||btn.classList.contains('hidden')) location.reload();
+  }, 300000);
 </script>
 
 </body>
