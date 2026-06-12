@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-06-12T02:17:10.018Z",
-  "updatedAtCN": "2026-06-12 02:17",
+  "updatedAt": "2026-06-12T02:50:27.811Z",
+  "updatedAtCN": "2026-06-12 02:50",
   "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "4042.17",
-      "changePct": "1.38"
+      "price": "4050.88",
+      "changePct": "1.60"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 494,
     "limitDown": 0,
-    "rise": 1962,
-    "fall": 346
+    "rise": 1920,
+    "fall": 395
   },
   "sectorFlow": [
     {
       "name": "电子",
-      "netInflow": "106.70亿",
-      "changePct": "2.55%"
+      "netInflow": "107.53亿",
+      "changePct": "2.03%"
     },
     {
-      "name": "半导体",
-      "netInflow": "71.10亿",
-      "changePct": "3.52%"
-    },
-    {
-      "name": "数字芯片设计",
-      "netInflow": "49.01亿",
-      "changePct": "7.31%"
-    },
-    {
-      "name": "国防军工",
-      "netInflow": "36.25亿",
-      "changePct": "7.88%"
+      "name": "有色金属",
+      "netInflow": "79.58亿",
+      "changePct": "5.83%"
     },
     {
       "name": "印制电路板",
-      "netInflow": "34.58亿",
-      "changePct": "6.13%"
+      "netInflow": "55.34亿",
+      "changePct": "7.53%"
+    },
+    {
+      "name": "半导体",
+      "netInflow": "55.28亿",
+      "changePct": "2.15%"
+    },
+    {
+      "name": "工业金属",
+      "netInflow": "50.57亿",
+      "changePct": "11.19%"
     }
   ],
   "status": "ok"
