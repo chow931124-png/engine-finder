@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-06-15T06:17:53.845Z",
-  "updatedAtCN": "2026-06-15 14:17",
-  "isTrading": true,
+  "updatedAt": "2026-06-15T12:47:52.236Z",
+  "updatedAtCN": "2026-06-15 20:47",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "4079.94",
-      "changePct": "1.20"
+      "price": "4096.47",
+      "changePct": "1.61"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 494,
     "limitDown": 0,
-    "rise": 1469,
-    "fall": 811
+    "rise": 1602,
+    "fall": 687
   },
   "sectorFlow": [
     {
       "name": "电子",
-      "netInflow": "302.21亿",
-      "changePct": "4.05%"
+      "netInflow": "363.36亿",
+      "changePct": "4.22%"
     },
     {
       "name": "半导体",
-      "netInflow": "125.08亿",
-      "changePct": "3.64%"
+      "netInflow": "163.43亿",
+      "changePct": "4.08%"
     },
     {
       "name": "通信",
-      "netInflow": "122.23亿",
-      "changePct": "5.38%"
+      "netInflow": "152.59亿",
+      "changePct": "5.83%"
     },
     {
       "name": "通信设备",
-      "netInflow": "117.48亿",
-      "changePct": "5.52%"
+      "netInflow": "147.03亿",
+      "changePct": "6.01%"
     },
     {
-      "name": "元件",
-      "netInflow": "108.79亿",
-      "changePct": "7.08%"
+      "name": "通信网络设备及器件",
+      "netInflow": "129.54亿",
+      "changePct": "7.82%"
     }
   ],
   "status": "ok"
