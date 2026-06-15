@@ -1,0 +1,21 @@
+{
+  "updatedAt": "2026-06-15T05:52:10.485Z",
+  "updatedAtCN": "2026-06-15 13:52",
+  "isTrading": true,
+  "indices": {
+    "sh": {
+      "name": "上证指数",
+      "price": "4081.31",
+      "changePct": "1.24"
+    },
+    "volume": null
+  },
+  "marketTemp": {
+    "limitUp": 0,
+    "limitDown": 0,
+    "rise": 1452,
+    "fall": 838
+  },
+  "sectorFlow": [],
+  "status": "ok"
+}
