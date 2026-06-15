@@ -1,0 +1,13 @@
+name: 📊 全A股每日扫描
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "请在本地运行 python3 full-market-scan-v2.py 后推送"
