@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-06-17T11:20:45.626Z",
-  "updatedAtCN": "2026-06-17 19:20",
-  "isTrading": false,
+  "updatedAt": "2026-06-18T05:49:49.995Z",
+  "updatedAtCN": "2026-06-18 13:49",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "4108.08",
-      "changePct": "0.40"
+      "price": "4093.27",
+      "changePct": "-0.36"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 494,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 785,
-    "fall": 1534
+    "rise": 845,
+    "fall": 1461
   },
-  "sectorFlow": [
-    {
-      "name": "电子",
-      "netInflow": "259.08亿",
-      "changePct": "2.53%"
-    },
-    {
-      "name": "半导体",
-      "netInflow": "154.01亿",
-      "changePct": "3.23%"
-    },
-    {
-      "name": "数字芯片设计",
-      "netInflow": "81.74亿",
-      "changePct": "4.35%"
-    },
-    {
-      "name": "光学光电子",
-      "netInflow": "65.60亿",
-      "changePct": "6.65%"
-    },
-    {
-      "name": "面板",
-      "netInflow": "61.60亿",
-      "changePct": "13.25%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
