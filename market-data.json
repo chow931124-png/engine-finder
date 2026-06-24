@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-06-23T08:25:24.880Z",
-  "updatedAtCN": "2026-06-23 16:25",
-  "isTrading": false,
+  "updatedAt": "2026-06-24T04:58:47.791Z",
+  "updatedAtCN": "2026-06-24 12:58",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "4106.25",
-      "changePct": "-1.37"
+      "price": "4096.14",
+      "changePct": "-0.25"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 494,
     "limitDown": 0,
-    "rise": 1168,
-    "fall": 1127
+    "rise": 486,
+    "fall": 1843
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "半导体",
+      "netInflow": "65.87亿",
+      "changePct": "1.92%"
+    },
+    {
+      "name": "集成电路封测",
+      "netInflow": "60.28亿",
+      "changePct": "11.27%"
+    },
+    {
+      "name": "医药生物",
+      "netInflow": "38.72亿",
+      "changePct": "4.28%"
+    },
+    {
+      "name": "医疗服务",
+      "netInflow": "21.05亿",
+      "changePct": "9.23%"
+    },
+    {
+      "name": "电子",
+      "netInflow": "20.86亿",
+      "changePct": "0.31%"
+    }
+  ],
   "status": "ok"
 }
