@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-06-29T10:04:44.916Z",
-  "updatedAtCN": "2026-06-29 18:04",
-  "isTrading": false,
+  "updatedAt": "2026-06-30T04:57:50.016Z",
+  "updatedAtCN": "2026-06-30 12:57",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "4073.90",
-      "changePct": "1.16"
+      "price": "4082.13",
+      "changePct": "0.20"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 494,
     "limitDown": 0,
-    "rise": 1241,
-    "fall": 1045
+    "rise": 1049,
+    "fall": 1248
   },
   "sectorFlow": [
     {
-      "name": "医药生物",
-      "netInflow": "63.31亿",
-      "changePct": "3.98%"
+      "name": "电子",
+      "netInflow": "149.96亿",
+      "changePct": "1.91%"
     },
     {
-      "name": "数字芯片设计",
-      "netInflow": "44.20亿",
-      "changePct": "1.71%"
+      "name": "通信",
+      "netInflow": "103.95亿",
+      "changePct": "6.74%"
     },
     {
-      "name": "半导体设备",
-      "netInflow": "33.81亿",
-      "changePct": "3.97%"
+      "name": "通信设备",
+      "netInflow": "100.48亿",
+      "changePct": "6.90%"
     },
     {
-      "name": "化学制药",
-      "netInflow": "28.11亿",
-      "changePct": "4.79%"
+      "name": "通信网络设备及器件",
+      "netInflow": "98.23亿",
+      "changePct": "10.03%"
     },
     {
-      "name": "化学制剂",
-      "netInflow": "25.55亿",
-      "changePct": "5.40%"
+      "name": "光学光电子",
+      "netInflow": "72.76亿",
+      "changePct": "7.03%"
     }
   ],
   "status": "ok"
