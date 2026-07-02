@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-07-01T08:57:50.674Z",
-  "updatedAtCN": "2026-07-01 16:57",
-  "isTrading": false,
+  "updatedAt": "2026-07-02T04:53:58.763Z",
+  "updatedAtCN": "2026-07-02 12:53",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "4112.45",
-      "changePct": "0.44"
+      "price": "4075.31",
+      "changePct": "-0.90"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 494,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 1795,
-    "fall": 529
+    "rise": 1312,
+    "fall": 962
   },
-  "sectorFlow": [
-    {
-      "name": "非银金融",
-      "netInflow": "109.44亿",
-      "changePct": "9.27%"
-    },
-    {
-      "name": "证券Ⅲ",
-      "netInflow": "90.55亿",
-      "changePct": "9.80%"
-    },
-    {
-      "name": "证券Ⅱ",
-      "netInflow": "90.55亿",
-      "changePct": "9.80%"
-    },
-    {
-      "name": "软件开发",
-      "netInflow": "33.88亿",
-      "changePct": "5.41%"
-    },
-    {
-      "name": "医药生物",
-      "netInflow": "32.43亿",
-      "changePct": "1.93%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
