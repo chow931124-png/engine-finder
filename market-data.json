@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-07-03T04:36:34.794Z",
-  "updatedAtCN": "2026-07-03 12:36",
-  "isTrading": true,
+  "updatedAt": "2026-07-03T07:56:39.119Z",
+  "updatedAtCN": "2026-07-03 15:56",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "4056.78",
-      "changePct": "0.69"
+      "price": "4043.64",
+      "changePct": "0.37"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 495,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 1468,
-    "fall": 793
+    "rise": 1567,
+    "fall": 730
   },
-  "sectorFlow": [
-    {
-      "name": "印制电路板",
-      "netInflow": "41.49亿",
-      "changePct": "4.82%"
-    },
-    {
-      "name": "汽车",
-      "netInflow": "39.59亿",
-      "changePct": "5.43%"
-    },
-    {
-      "name": "汽车零部件",
-      "netInflow": "34.40亿",
-      "changePct": "5.76%"
-    },
-    {
-      "name": "有色金属",
-      "netInflow": "32.78亿",
-      "changePct": "2.32%"
-    },
-    {
-      "name": "工业金属",
-      "netInflow": "29.11亿",
-      "changePct": "5.90%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
