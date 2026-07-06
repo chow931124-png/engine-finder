@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-07-06T05:04:10.170Z",
-  "updatedAtCN": "2026-07-06 13:04",
-  "isTrading": true,
+  "updatedAt": "2026-07-06T09:15:09.144Z",
+  "updatedAtCN": "2026-07-06 17:15",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "4045.49",
-      "changePct": "0.05"
+      "price": "4041.24",
+      "changePct": "-0.06"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 496,
     "limitDown": 0,
-    "rise": 918,
-    "fall": 1356
+    "rise": 936,
+    "fall": 1362
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "医药生物",
+      "netInflow": "29.11亿",
+      "changePct": "1.59%"
+    },
+    {
+      "name": "化学制药",
+      "netInflow": "20.65亿",
+      "changePct": "2.52%"
+    },
+    {
+      "name": "化学制剂",
+      "netInflow": "19.95亿",
+      "changePct": "2.91%"
+    },
+    {
+      "name": "其他计算机设备",
+      "netInflow": "17.63亿",
+      "changePct": "5.09%"
+    },
+    {
+      "name": "计算机设备",
+      "netInflow": "15.34亿",
+      "changePct": "3.66%"
+    }
+  ],
   "status": "ok"
 }
