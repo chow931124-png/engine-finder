@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-07-07T04:43:41.503Z",
-  "updatedAtCN": "2026-07-07 12:43",
-  "isTrading": true,
+  "updatedAt": "2026-07-07T08:16:22.336Z",
+  "updatedAtCN": "2026-07-07 16:16",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3999.03",
-      "changePct": "-1.04"
+      "price": "3990.24",
+      "changePct": "-1.26"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 496,
     "limitDown": 0,
-    "rise": 308,
-    "fall": 2025
+    "rise": 307,
+    "fall": 2023
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "集成电路封测",
+      "netInflow": "50.30亿",
+      "changePct": "8.59%"
+    },
+    {
+      "name": "游戏Ⅲ",
+      "netInflow": "12.60亿",
+      "changePct": "5.82%"
+    },
+    {
+      "name": "游戏Ⅱ",
+      "netInflow": "12.60亿",
+      "changePct": "5.82%"
+    },
+    {
+      "name": "传媒",
+      "netInflow": "10.76亿",
+      "changePct": "2.15%"
+    },
+    {
+      "name": "半导体材料",
+      "netInflow": "10.06亿",
+      "changePct": "1.68%"
+    }
+  ],
   "status": "ok"
 }
