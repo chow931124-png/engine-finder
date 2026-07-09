@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-07-08T09:21:54.786Z",
-  "updatedAtCN": "2026-07-08 17:21",
-  "isTrading": false,
+  "updatedAt": "2026-07-09T04:43:24.681Z",
+  "updatedAtCN": "2026-07-09 12:43",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3970.88",
-      "changePct": "-0.49"
+      "price": "3952.49",
+      "changePct": "-0.46"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 496,
     "limitDown": 0,
-    "rise": 765,
-    "fall": 1507
+    "rise": 390,
+    "fall": 1915
   },
   "sectorFlow": [
     {
-      "name": "计算机",
-      "netInflow": "85.49亿",
-      "changePct": "5.61%"
+      "name": "半导体",
+      "netInflow": "82.73亿",
+      "changePct": "2.42%"
     },
     {
-      "name": "IT服务Ⅲ",
-      "netInflow": "51.43亿",
-      "changePct": "8.82%"
-    },
-    {
-      "name": "IT服务Ⅱ",
-      "netInflow": "51.43亿",
-      "changePct": "8.82%"
+      "name": "集成电路封测",
+      "netInflow": "44.13亿",
+      "changePct": "10.15%"
     },
     {
       "name": "通信网络设备及器件",
-      "netInflow": "34.48亿",
-      "changePct": "2.85%"
+      "netInflow": "18.15亿",
+      "changePct": "2.32%"
     },
     {
-      "name": "通信",
-      "netInflow": "23.75亿",
-      "changePct": "1.25%"
+      "name": "集成电路制造",
+      "netInflow": "18.13亿",
+      "changePct": "5.78%"
+    },
+    {
+      "name": "电子",
+      "netInflow": "17.47亿",
+      "changePct": "0.30%"
     }
   ],
   "status": "ok"
