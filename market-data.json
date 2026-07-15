@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-07-14T08:33:19.674Z",
-  "updatedAtCN": "2026-07-14 16:33",
-  "isTrading": false,
+  "updatedAt": "2026-07-15T03:53:28.927Z",
+  "updatedAtCN": "2026-07-15 11:53",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3967.13",
-      "changePct": "1.36"
+      "price": "3963.90",
+      "changePct": "-0.08"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 495,
     "limitDown": 0,
-    "rise": 1735,
-    "fall": 570
+    "rise": 1546,
+    "fall": 777
   },
   "sectorFlow": [
     {
-      "name": "元件",
-      "netInflow": "141.37亿",
-      "changePct": "9.18%"
+      "name": "医药生物",
+      "netInflow": "96.54亿",
+      "changePct": "6.38%"
     },
     {
-      "name": "印制电路板",
-      "netInflow": "132.83亿",
-      "changePct": "10.76%"
+      "name": "化学制药",
+      "netInflow": "44.65亿",
+      "changePct": "7.43%"
     },
     {
-      "name": "有色金属",
-      "netInflow": "94.24亿",
-      "changePct": "6.48%"
+      "name": "化学制剂",
+      "netInflow": "41.03亿",
+      "changePct": "8.27%"
     },
     {
-      "name": "通信设备",
-      "netInflow": "91.52亿",
-      "changePct": "4.17%"
+      "name": "医疗服务",
+      "netInflow": "31.38亿",
+      "changePct": "8.39%"
     },
     {
-      "name": "通信",
-      "netInflow": "82.86亿",
-      "changePct": "3.52%"
+      "name": "医疗研发外包",
+      "netInflow": "28.19亿",
+      "changePct": "8.90%"
     }
   ],
   "status": "ok"
