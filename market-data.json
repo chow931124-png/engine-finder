@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-07-16T08:39:16.427Z",
-  "updatedAtCN": "2026-07-16 16:39",
-  "isTrading": false,
+  "updatedAt": "2026-07-17T03:55:50.457Z",
+  "updatedAtCN": "2026-07-17 11:55",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3882.41",
-      "changePct": "-1.85"
+      "price": "3818.59",
+      "changePct": "-1.64"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 495,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 946,
-    "fall": 1339
+    "rise": 0,
+    "fall": 0
   },
-  "sectorFlow": [
-    {
-      "name": "计算机",
-      "netInflow": "20.85亿",
-      "changePct": "1.47%"
-    },
-    {
-      "name": "IT服务Ⅲ",
-      "netInflow": "14.51亿",
-      "changePct": "2.65%"
-    },
-    {
-      "name": "IT服务Ⅱ",
-      "netInflow": "14.51亿",
-      "changePct": "2.65%"
-    },
-    {
-      "name": "印制电路板",
-      "netInflow": "9.44亿",
-      "changePct": "0.84%"
-    },
-    {
-      "name": "传媒",
-      "netInflow": "8.30亿",
-      "changePct": "1.48%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
