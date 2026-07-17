@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-07-17T03:55:50.457Z",
-  "updatedAtCN": "2026-07-17 11:55",
+  "updatedAt": "2026-07-17T06:09:59.380Z",
+  "updatedAtCN": "2026-07-17 14:09",
   "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3818.59",
-      "changePct": "-1.64"
+      "price": "3805.53",
+      "changePct": "-1.98"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 495,
     "limitDown": 0,
-    "rise": 0,
-    "fall": 0
+    "rise": 325,
+    "fall": 1975
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "电力",
+      "netInflow": "5.46亿",
+      "changePct": "1.04%"
+    },
+    {
+      "name": "公用事业",
+      "netInflow": "4.67亿",
+      "changePct": "0.81%"
+    },
+    {
+      "name": "火力发电",
+      "netInflow": "4.39亿",
+      "changePct": "1.99%"
+    },
+    {
+      "name": "国有大型银行Ⅲ",
+      "netInflow": "3.26亿",
+      "changePct": "2.55%"
+    },
+    {
+      "name": "体外诊断",
+      "netInflow": "2.70亿",
+      "changePct": "3.80%"
+    }
+  ],
   "status": "ok"
 }
