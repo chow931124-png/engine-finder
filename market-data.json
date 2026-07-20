@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-07-20T04:31:14.017Z",
-  "updatedAtCN": "2026-07-20 12:31",
-  "isTrading": true,
+  "updatedAt": "2026-07-20T07:53:04.794Z",
+  "updatedAtCN": "2026-07-20 15:53",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3808.39",
-      "changePct": "1.18"
+      "price": "3796.28",
+      "changePct": "0.85"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 495,
     "limitDown": 0,
-    "rise": 1330,
-    "fall": 973
+    "rise": 910,
+    "fall": 1406
   },
-  "sectorFlow": [
-    {
-      "name": "计算机",
-      "netInflow": "43.30亿",
-      "changePct": "4.19%"
-    },
-    {
-      "name": "IT服务Ⅲ",
-      "netInflow": "27.04亿",
-      "changePct": "6.99%"
-    },
-    {
-      "name": "IT服务Ⅱ",
-      "netInflow": "27.04亿",
-      "changePct": "6.99%"
-    },
-    {
-      "name": "电力",
-      "netInflow": "21.00亿",
-      "changePct": "4.32%"
-    },
-    {
-      "name": "公用事业",
-      "netInflow": "20.28亿",
-      "changePct": "3.84%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
