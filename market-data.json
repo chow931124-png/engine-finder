@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-07-21T04:10:49.301Z",
-  "updatedAtCN": "2026-07-21 12:10",
-  "isTrading": true,
+  "updatedAt": "2026-07-21T07:04:42.197Z",
+  "updatedAtCN": "2026-07-21 15:04",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3819.66",
-      "changePct": "0.62"
+      "price": "3864.37",
+      "changePct": "1.79"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 495,
     "limitDown": 0,
-    "rise": 1108,
-    "fall": 1183
+    "rise": 1236,
+    "fall": 1052
   },
   "sectorFlow": [
     {
       "name": "电子",
-      "netInflow": "81.34亿",
-      "changePct": "1.30%"
+      "netInflow": "274.97亿",
+      "changePct": "2.98%"
     },
     {
       "name": "半导体",
-      "netInflow": "44.39亿",
-      "changePct": "1.25%"
+      "netInflow": "166.18亿",
+      "changePct": "3.19%"
+    },
+    {
+      "name": "数字芯片设计",
+      "netInflow": "60.60亿",
+      "changePct": "2.82%"
     },
     {
       "name": "通信网络设备及器件",
-      "netInflow": "20.36亿",
-      "changePct": "1.83%"
+      "netInflow": "49.89亿",
+      "changePct": "2.95%"
     },
     {
-      "name": "电池",
-      "netInflow": "18.98亿",
-      "changePct": "3.29%"
-    },
-    {
-      "name": "面板",
-      "netInflow": "17.32亿",
-      "changePct": "6.30%"
+      "name": "有色金属",
+      "netInflow": "49.20亿",
+      "changePct": "3.44%"
     }
   ],
   "status": "ok"
