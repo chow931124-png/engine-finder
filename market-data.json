@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-07-23T09:20:24.170Z",
-  "updatedAtCN": "2026-07-23 17:20",
-  "isTrading": false,
+  "updatedAt": "2026-07-24T04:08:43.610Z",
+  "updatedAtCN": "2026-07-24 12:08",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3876.78",
-      "changePct": "0.25"
+      "price": "3830.19",
+      "changePct": "-1.20"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 495,
     "limitDown": 0,
-    "rise": 1739,
-    "fall": 579
+    "rise": 267,
+    "fall": 2066
   },
   "sectorFlow": [
     {
-      "name": "电力设备",
-      "netInflow": "111.67亿",
-      "changePct": "5.89%"
+      "name": "集成电路封测",
+      "netInflow": "15.27亿",
+      "changePct": "4.92%"
     },
     {
-      "name": "有色金属",
-      "netInflow": "65.68亿",
-      "changePct": "4.16%"
+      "name": "半导体设备",
+      "netInflow": "13.42亿",
+      "changePct": "3.68%"
     },
     {
-      "name": "电网设备",
-      "netInflow": "53.93亿",
-      "changePct": "9.57%"
+      "name": "半导体",
+      "netInflow": "10.11亿",
+      "changePct": "0.49%"
     },
     {
-      "name": "电池",
-      "netInflow": "37.29亿",
-      "changePct": "5.27%"
+      "name": "半导体材料",
+      "netInflow": "4.18亿",
+      "changePct": "1.65%"
     },
     {
-      "name": "工业金属",
-      "netInflow": "29.19亿",
-      "changePct": "4.25%"
+      "name": "地面兵装Ⅲ",
+      "netInflow": "3.21亿",
+      "changePct": "6.47%"
     }
   ],
   "status": "ok"
