@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-07-24T06:45:08.714Z",
-  "updatedAtCN": "2026-07-24 14:45",
-  "isTrading": true,
+  "updatedAt": "2026-07-24T09:15:21.360Z",
+  "updatedAtCN": "2026-07-24 17:15",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3814.50",
+      "price": "3814.20",
       "changePct": "-1.61"
     },
     "volume": null
@@ -13,34 +13,34 @@
   "marketTemp": {
     "limitUp": 495,
     "limitDown": 0,
-    "rise": 270,
-    "fall": 2052
+    "rise": 258,
+    "fall": 2071
   },
   "sectorFlow": [
     {
       "name": "半导体",
-      "netInflow": "40.75亿",
-      "changePct": "1.27%"
+      "netInflow": "33.06亿",
+      "changePct": "0.95%"
     },
     {
       "name": "集成电路封测",
-      "netInflow": "33.31亿",
-      "changePct": "6.92%"
+      "netInflow": "32.35亿",
+      "changePct": "6.24%"
     },
     {
       "name": "半导体设备",
-      "netInflow": "22.52亿",
-      "changePct": "3.74%"
+      "netInflow": "23.46亿",
+      "changePct": "3.64%"
     },
     {
       "name": "半导体材料",
-      "netInflow": "8.14亿",
-      "changePct": "2.03%"
+      "netInflow": "7.31亿",
+      "changePct": "1.69%"
     },
     {
       "name": "地面兵装Ⅲ",
-      "netInflow": "3.76亿",
-      "changePct": "6.34%"
+      "netInflow": "3.82亿",
+      "changePct": "6.13%"
     }
   ],
   "status": "ok"
