@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-07-28T06:20:40.372Z",
-  "updatedAtCN": "2026-07-28 14:20",
-  "isTrading": true,
+  "updatedAt": "2026-07-28T09:14:02.820Z",
+  "updatedAtCN": "2026-07-28 17:14",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3808.43",
-      "changePct": "-1.29"
+      "price": "3813.31",
+      "changePct": "-1.16"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 495,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 979,
-    "fall": 1279
+    "rise": 1067,
+    "fall": 1208
   },
-  "sectorFlow": [
-    {
-      "name": "银行",
-      "netInflow": "14.44亿",
-      "changePct": "5.10%"
-    },
-    {
-      "name": "银行Ⅱ",
-      "netInflow": "14.44亿",
-      "changePct": "5.10%"
-    },
-    {
-      "name": "国有大型银行Ⅲ",
-      "netInflow": "11.76亿",
-      "changePct": "9.50%"
-    },
-    {
-      "name": "食品饮料",
-      "netInflow": "7.95亿",
-      "changePct": "3.00%"
-    },
-    {
-      "name": "白酒Ⅲ",
-      "netInflow": "7.43亿",
-      "changePct": "5.64%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
