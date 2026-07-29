@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-07-29T06:31:43.160Z",
-  "updatedAtCN": "2026-07-29 14:31",
-  "isTrading": true,
+  "updatedAt": "2026-07-29T09:33:18.818Z",
+  "updatedAtCN": "2026-07-29 17:33",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3827.28",
-      "changePct": "0.37"
+      "price": "3828.47",
+      "changePct": "0.40"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 1766,
-    "fall": 560
+    "rise": 1812,
+    "fall": 515
   },
   "sectorFlow": [
     {
       "name": "被动元件",
-      "netInflow": "25.26亿",
-      "changePct": "8.64%"
+      "netInflow": "25.94亿",
+      "changePct": "8.32%"
     },
     {
       "name": "食品饮料",
-      "netInflow": "17.67亿",
-      "changePct": "4.42%"
+      "netInflow": "17.79亿",
+      "changePct": "4.04%"
     },
     {
       "name": "游戏Ⅲ",
-      "netInflow": "16.51亿",
-      "changePct": "10.70%"
+      "netInflow": "16.63亿",
+      "changePct": "10.01%"
     },
     {
       "name": "游戏Ⅱ",
-      "netInflow": "16.51亿",
-      "changePct": "10.70%"
+      "netInflow": "16.63亿",
+      "changePct": "10.01%"
     },
     {
-      "name": "传媒",
-      "netInflow": "14.55亿",
-      "changePct": "3.78%"
+      "name": "证券Ⅲ",
+      "netInflow": "15.20亿",
+      "changePct": "4.60%"
     }
   ],
   "status": "ok"
