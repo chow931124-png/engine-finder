@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-07-28T09:14:02.820Z",
-  "updatedAtCN": "2026-07-28 17:14",
-  "isTrading": false,
+  "updatedAt": "2026-07-29T03:58:37.235Z",
+  "updatedAtCN": "2026-07-29 11:58",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3813.31",
-      "changePct": "-1.16"
+      "price": "3793.18",
+      "changePct": "-0.53"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 504,
     "limitDown": 0,
-    "rise": 1067,
-    "fall": 1208
+    "rise": 1488,
+    "fall": 822
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "被动元件",
+      "netInflow": "21.05亿",
+      "changePct": "9.52%"
+    },
+    {
+      "name": "食品饮料",
+      "netInflow": "19.62亿",
+      "changePct": "6.50%"
+    },
+    {
+      "name": "游戏Ⅲ",
+      "netInflow": "12.04亿",
+      "changePct": "10.91%"
+    },
+    {
+      "name": "游戏Ⅱ",
+      "netInflow": "12.04亿",
+      "changePct": "10.91%"
+    },
+    {
+      "name": "乘用车",
+      "netInflow": "10.09亿",
+      "changePct": "13.39%"
+    }
+  ],
   "status": "ok"
 }
