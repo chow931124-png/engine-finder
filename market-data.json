@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-08-05T09:16:55.476Z",
-  "updatedAtCN": "2026-08-05 17:16",
-  "isTrading": false,
+  "updatedAt": "2026-08-06T03:59:01.422Z",
+  "updatedAtCN": "2026-08-06 11:59",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3878.43",
-      "changePct": "1.47"
+      "price": "3878.92",
+      "changePct": "0.01"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 503,
     "limitDown": 0,
-    "rise": 1484,
-    "fall": 785
+    "rise": 752,
+    "fall": 1554
   },
   "sectorFlow": [
     {
+      "name": "印制电路板",
+      "netInflow": "37.26亿",
+      "changePct": "4.64%"
+    },
+    {
+      "name": "集成电路封测",
+      "netInflow": "23.58亿",
+      "changePct": "7.14%"
+    },
+    {
+      "name": "元件",
+      "netInflow": "22.82亿",
+      "changePct": "2.16%"
+    },
+    {
+      "name": "通信网络设备及器件",
+      "netInflow": "17.81亿",
+      "changePct": "1.79%"
+    },
+    {
       "name": "电子",
-      "netInflow": "301.46亿",
-      "changePct": "3.84%"
-    },
-    {
-      "name": "有色金属",
-      "netInflow": "135.83亿",
-      "changePct": "8.60%"
-    },
-    {
-      "name": "半导体",
-      "netInflow": "129.64亿",
-      "changePct": "3.10%"
-    },
-    {
-      "name": "消费电子零部件及组装",
-      "netInflow": "62.21亿",
-      "changePct": "7.07%"
-    },
-    {
-      "name": "消费电子",
-      "netInflow": "60.78亿",
-      "changePct": "6.58%"
+      "netInflow": "17.41亿",
+      "changePct": "0.33%"
     }
   ],
   "status": "ok"
