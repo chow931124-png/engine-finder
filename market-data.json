@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-08-11T06:52:28.317Z",
-  "updatedAtCN": "2026-08-11 14:52",
-  "isTrading": true,
+  "updatedAt": "2026-08-11T08:05:16.430Z",
+  "updatedAtCN": "2026-08-11 16:05",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3934.25",
+      "price": "3934.09",
       "changePct": "-0.82"
     },
     "volume": null
@@ -13,34 +13,34 @@
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 706,
-    "fall": 1587
+    "rise": 718,
+    "fall": 1574
   },
   "sectorFlow": [
     {
       "name": "通信网络设备及器件",
-      "netInflow": "34.80亿",
-      "changePct": "3.47%"
+      "netInflow": "34.35亿",
+      "changePct": "3.32%"
     },
     {
       "name": "被动元件",
-      "netInflow": "21.35亿",
-      "changePct": "4.63%"
-    },
-    {
-      "name": "通信设备",
-      "netInflow": "13.23亿",
-      "changePct": "0.93%"
+      "netInflow": "20.84亿",
+      "changePct": "4.38%"
     },
     {
       "name": "汽车零部件",
-      "netInflow": "13.14亿",
-      "changePct": "2.86%"
+      "netInflow": "13.76亿",
+      "changePct": "2.88%"
     },
     {
       "name": "工程咨询服务Ⅲ",
-      "netInflow": "12.93亿",
-      "changePct": "12.22%"
+      "netInflow": "13.36亿",
+      "changePct": "12.33%"
+    },
+    {
+      "name": "工程咨询服务Ⅱ",
+      "netInflow": "13.36亿",
+      "changePct": "12.33%"
     }
   ],
   "status": "ok"
