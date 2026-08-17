@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-08-14T08:07:50.216Z",
-  "updatedAtCN": "2026-08-14 16:07",
-  "isTrading": false,
+  "updatedAt": "2026-08-17T02:15:26.116Z",
+  "updatedAtCN": "2026-08-17 10:15",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3927.18",
-      "changePct": "0.01"
+      "price": "3944.02",
+      "changePct": "0.43"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 504,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 1012,
-    "fall": 1254
+    "rise": 1352,
+    "fall": 906
   },
-  "sectorFlow": [
-    {
-      "name": "通信",
-      "netInflow": "139.07亿",
-      "changePct": "6.86%"
-    },
-    {
-      "name": "通信设备",
-      "netInflow": "118.73亿",
-      "changePct": "6.61%"
-    },
-    {
-      "name": "通信线缆及配套",
-      "netInflow": "55.04亿",
-      "changePct": "9.70%"
-    },
-    {
-      "name": "通信网络设备及器件",
-      "netInflow": "48.01亿",
-      "changePct": "4.70%"
-    },
-    {
-      "name": "通信服务",
-      "netInflow": "20.34亿",
-      "changePct": "8.81%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
