@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-08-18T02:11:08.752Z",
-  "updatedAtCN": "2026-08-18 10:11",
+  "updatedAt": "2026-08-18T03:14:15.325Z",
+  "updatedAtCN": "2026-08-18 11:14",
   "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3981.96",
-      "changePct": "-0.02"
+      "price": "3959.17",
+      "changePct": "-0.59"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 504,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 821,
-    "fall": 1443
+    "rise": 0,
+    "fall": 0
   },
-  "sectorFlow": [
-    {
-      "name": "光学光电子",
-      "netInflow": "19.06亿",
-      "changePct": "5.12%"
-    },
-    {
-      "name": "面板",
-      "netInflow": "15.27亿",
-      "changePct": "8.09%"
-    },
-    {
-      "name": "农林牧渔",
-      "netInflow": "12.17亿",
-      "changePct": "7.50%"
-    },
-    {
-      "name": "基础化工",
-      "netInflow": "9.07亿",
-      "changePct": "1.61%"
-    },
-    {
-      "name": "化学原料",
-      "netInflow": "6.00亿",
-      "changePct": "7.10%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
