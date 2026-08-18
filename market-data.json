@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-08-17T07:44:43.747Z",
-  "updatedAtCN": "2026-08-17 15:44",
-  "isTrading": false,
+  "updatedAt": "2026-08-18T02:11:08.752Z",
+  "updatedAtCN": "2026-08-18 10:11",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3982.65",
-      "changePct": "1.41"
+      "price": "3981.96",
+      "changePct": "-0.02"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 1777,
-    "fall": 491
+    "rise": 821,
+    "fall": 1443
   },
   "sectorFlow": [
     {
-      "name": "电子",
-      "netInflow": "309.46亿",
-      "changePct": "4.22%"
+      "name": "光学光电子",
+      "netInflow": "19.06亿",
+      "changePct": "5.12%"
     },
     {
-      "name": "半导体",
-      "netInflow": "195.48亿",
-      "changePct": "4.98%"
+      "name": "面板",
+      "netInflow": "15.27亿",
+      "changePct": "8.09%"
     },
     {
-      "name": "数字芯片设计",
-      "netInflow": "101.93亿",
-      "changePct": "5.62%"
+      "name": "农林牧渔",
+      "netInflow": "12.17亿",
+      "changePct": "7.50%"
     },
     {
-      "name": "通信网络设备及器件",
-      "netInflow": "63.82亿",
-      "changePct": "4.51%"
+      "name": "基础化工",
+      "netInflow": "9.07亿",
+      "changePct": "1.61%"
     },
     {
-      "name": "通信设备",
-      "netInflow": "59.63亿",
-      "changePct": "2.72%"
+      "name": "化学原料",
+      "netInflow": "6.00亿",
+      "changePct": "7.10%"
     }
   ],
   "status": "ok"
