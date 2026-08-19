@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-08-19T05:00:13.750Z",
-  "updatedAtCN": "2026-08-19 13:00",
+  "updatedAt": "2026-08-19T05:35:42.295Z",
+  "updatedAtCN": "2026-08-19 13:35",
   "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3911.96",
-      "changePct": "-1.96"
+      "price": "3908.15",
+      "changePct": "-2.06"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 504,
     "limitDown": 0,
-    "rise": 321,
-    "fall": 2009
+    "rise": 262,
+    "fall": 2064
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "煤炭",
+      "netInflow": "10.28亿",
+      "changePct": "7.65%"
+    },
+    {
+      "name": "风电设备",
+      "netInflow": "7.69亿",
+      "changePct": "5.70%"
+    },
+    {
+      "name": "风电整机",
+      "netInflow": "6.61亿",
+      "changePct": "7.71%"
+    },
+    {
+      "name": "航运港口",
+      "netInflow": "6.44亿",
+      "changePct": "6.64%"
+    },
+    {
+      "name": "黄金",
+      "netInflow": "6.38亿",
+      "changePct": "4.07%"
+    }
+  ],
   "status": "ok"
 }
