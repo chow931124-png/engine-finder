@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-08-19T06:29:33.855Z",
-  "updatedAtCN": "2026-08-19 14:29",
-  "isTrading": true,
+  "updatedAt": "2026-08-19T07:21:16.128Z",
+  "updatedAtCN": "2026-08-19 15:21",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3892.81",
-      "changePct": "-2.44"
+      "price": "3894.42",
+      "changePct": "-2.40"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 504,
     "limitDown": 0,
-    "rise": 0,
-    "fall": 0
+    "rise": 239,
+    "fall": 2098
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "煤炭",
+      "netInflow": "11.79亿",
+      "changePct": "6.93%"
+    },
+    {
+      "name": "焦炭Ⅲ",
+      "netInflow": "6.81亿",
+      "changePct": "24.48%"
+    },
+    {
+      "name": "焦炭Ⅱ",
+      "netInflow": "6.81亿",
+      "changePct": "24.48%"
+    },
+    {
+      "name": "炼油化工",
+      "netInflow": "6.56亿",
+      "changePct": "5.93%"
+    },
+    {
+      "name": "航运港口",
+      "netInflow": "5.74亿",
+      "changePct": "4.42%"
+    }
+  ],
   "status": "ok"
 }
