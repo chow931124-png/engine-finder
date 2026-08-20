@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-08-20T05:01:32.841Z",
-  "updatedAtCN": "2026-08-20 13:01",
+  "updatedAt": "2026-08-20T05:53:57.777Z",
+  "updatedAtCN": "2026-08-20 13:53",
   "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3908.52",
-      "changePct": "0.36"
+      "price": "3896.14",
+      "changePct": "0.04"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 1803,
-    "fall": 487
+    "rise": 1609,
+    "fall": 678
   },
   "sectorFlow": [
     {
       "name": "医药生物",
-      "netInflow": "111.85亿",
-      "changePct": "6.51%"
-    },
-    {
-      "name": "有色金属",
-      "netInflow": "44.23亿",
-      "changePct": "4.35%"
+      "netInflow": "117.58亿",
+      "changePct": "5.87%"
     },
     {
       "name": "医疗服务",
-      "netInflow": "38.45亿",
-      "changePct": "8.39%"
+      "netInflow": "41.56亿",
+      "changePct": "7.72%"
     },
     {
-      "name": "贵金属",
-      "netInflow": "31.36亿",
-      "changePct": "11.31%"
+      "name": "有色金属",
+      "netInflow": "34.10亿",
+      "changePct": "2.88%"
+    },
+    {
+      "name": "医疗研发外包",
+      "netInflow": "32.97亿",
+      "changePct": "7.39%"
     },
     {
       "name": "化学制药",
-      "netInflow": "31.27亿",
-      "changePct": "5.05%"
+      "netInflow": "31.73亿",
+      "changePct": "4.35%"
     }
   ],
   "status": "ok"
