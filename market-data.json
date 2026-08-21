@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-08-20T07:34:02.009Z",
-  "updatedAtCN": "2026-08-20 15:34",
-  "isTrading": false,
+  "updatedAt": "2026-08-21T02:19:17.447Z",
+  "updatedAtCN": "2026-08-21 10:19",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3903.72",
-      "changePct": "0.24"
+      "price": "3907.48",
+      "changePct": "0.10"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 1711,
-    "fall": 591
+    "rise": 687,
+    "fall": 1614
   },
   "sectorFlow": [
     {
-      "name": "医药生物",
-      "netInflow": "109.16亿",
-      "changePct": "4.63%"
+      "name": "电子",
+      "netInflow": "74.83亿",
+      "changePct": "3.40%"
     },
     {
-      "name": "医疗服务",
-      "netInflow": "37.87亿",
-      "changePct": "6.01%"
+      "name": "通信设备",
+      "netInflow": "71.04亿",
+      "changePct": "8.68%"
     },
     {
-      "name": "贵金属",
-      "netInflow": "33.80亿",
-      "changePct": "9.51%"
+      "name": "通信",
+      "netInflow": "66.41亿",
+      "changePct": "7.66%"
     },
     {
-      "name": "生物制品",
-      "netInflow": "32.34亿",
-      "changePct": "9.81%"
+      "name": "通信网络设备及器件",
+      "netInflow": "65.02亿",
+      "changePct": "12.21%"
     },
     {
-      "name": "化学制药",
-      "netInflow": "29.42亿",
-      "changePct": "3.41%"
+      "name": "半导体",
+      "netInflow": "30.91亿",
+      "changePct": "2.87%"
     }
   ],
   "status": "ok"
