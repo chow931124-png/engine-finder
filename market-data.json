@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-08-24T06:00:42.216Z",
-  "updatedAtCN": "2026-08-24 14:00",
-  "isTrading": true,
+  "updatedAt": "2026-08-24T07:34:35.420Z",
+  "updatedAtCN": "2026-08-24 15:34",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3858.10",
-      "changePct": "-1.21"
+      "price": "3882.01",
+      "changePct": "-0.59"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 504,
     "limitDown": 0,
-    "rise": 485,
-    "fall": 1801
+    "rise": 690,
+    "fall": 1599
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "工业金属",
+      "netInflow": "10.02亿",
+      "changePct": "1.79%"
+    },
+    {
+      "name": "煤炭",
+      "netInflow": "8.53亿",
+      "changePct": "4.84%"
+    },
+    {
+      "name": "蓄电池及其他电池",
+      "netInflow": "5.89亿",
+      "changePct": "27.26%"
+    },
+    {
+      "name": "无机盐",
+      "netInflow": "5.85亿",
+      "changePct": "9.76%"
+    },
+    {
+      "name": "铜",
+      "netInflow": "5.82亿",
+      "changePct": "1.70%"
+    }
+  ],
   "status": "ok"
 }
