@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-08-24T02:18:32.320Z",
-  "updatedAtCN": "2026-08-24 10:18",
+  "updatedAt": "2026-08-24T03:29:28.247Z",
+  "updatedAtCN": "2026-08-24 11:29",
   "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3895.80",
-      "changePct": "-0.24"
+      "price": "3877.88",
+      "changePct": "-0.70"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 709,
-    "fall": 1574
+    "rise": 564,
+    "fall": 1732
   },
   "sectorFlow": [
     {
-      "name": "有色金属",
-      "netInflow": "17.85亿",
-      "changePct": "1.96%"
+      "name": "工业金属",
+      "netInflow": "8.98亿",
+      "changePct": "2.27%"
     },
     {
-      "name": "工业金属",
-      "netInflow": "10.09亿",
-      "changePct": "3.73%"
+      "name": "有色金属",
+      "netInflow": "8.00亿",
+      "changePct": "0.62%"
+    },
+    {
+      "name": "煤炭",
+      "netInflow": "6.22亿",
+      "changePct": "5.19%"
     },
     {
       "name": "铜",
-      "netInflow": "7.47亿",
-      "changePct": "4.30%"
+      "netInflow": "6.15亿",
+      "changePct": "2.50%"
     },
     {
-      "name": "能源金属",
-      "netInflow": "5.25亿",
-      "changePct": "4.77%"
-    },
-    {
-      "name": "半导体设备",
-      "netInflow": "5.13亿",
-      "changePct": "2.85%"
+      "name": "非银金融",
+      "netInflow": "5.45亿",
+      "changePct": "2.03%"
     }
   ],
   "status": "ok"
