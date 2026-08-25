@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-08-25T02:13:55.841Z",
-  "updatedAtCN": "2026-08-25 10:13",
+  "updatedAt": "2026-08-25T03:24:21.224Z",
+  "updatedAtCN": "2026-08-25 11:24",
   "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3876.02",
-      "changePct": "-0.15"
+      "price": "3872.35",
+      "changePct": "-0.25"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 504,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 1480,
-    "fall": 810
+    "rise": 0,
+    "fall": 0
   },
-  "sectorFlow": [
-    {
-      "name": "专用设备",
-      "netInflow": "24.42亿",
-      "changePct": "12.43%"
-    },
-    {
-      "name": "其他专用设备",
-      "netInflow": "23.04亿",
-      "changePct": "16.98%"
-    },
-    {
-      "name": "机械设备",
-      "netInflow": "21.90亿",
-      "changePct": "3.61%"
-    },
-    {
-      "name": "医药生物",
-      "netInflow": "16.95亿",
-      "changePct": "2.68%"
-    },
-    {
-      "name": "农林牧渔",
-      "netInflow": "8.94亿",
-      "changePct": "5.85%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
