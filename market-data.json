@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-08-25T07:36:59.326Z",
-  "updatedAtCN": "2026-08-25 15:36",
-  "isTrading": false,
+  "updatedAt": "2026-08-26T02:20:22.617Z",
+  "updatedAtCN": "2026-08-26 10:20",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3889.44",
-      "changePct": "0.19"
+      "price": "3904.94",
+      "changePct": "0.40"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 0,
-    "fall": 0
+    "rise": 1122,
+    "fall": 1146
   },
   "sectorFlow": [
     {
-      "name": "机械设备",
-      "netInflow": "66.07亿",
-      "changePct": "4.33%"
+      "name": "有色金属",
+      "netInflow": "49.43亿",
+      "changePct": "7.14%"
     },
     {
-      "name": "通信线缆及配套",
-      "netInflow": "43.89亿",
-      "changePct": "9.01%"
+      "name": "工业金属",
+      "netInflow": "48.97亿",
+      "changePct": "14.51%"
     },
     {
-      "name": "专用设备",
-      "netInflow": "41.54亿",
-      "changePct": "9.83%"
+      "name": "铜",
+      "netInflow": "39.62亿",
+      "changePct": "16.83%"
     },
     {
-      "name": "其他专用设备",
-      "netInflow": "40.23亿",
-      "changePct": "14.53%"
+      "name": "非银金融",
+      "netInflow": "20.81亿",
+      "changePct": "9.56%"
     },
     {
-      "name": "医药生物",
-      "netInflow": "36.71亿",
-      "changePct": "2.55%"
+      "name": "证券Ⅲ",
+      "netInflow": "20.47亿",
+      "changePct": "13.82%"
     }
   ],
   "status": "ok"
