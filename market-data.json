@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-08-26T07:39:04.083Z",
-  "updatedAtCN": "2026-08-26 15:39",
+  "updatedAt": "2026-08-27T10:47:51.260Z",
+  "updatedAtCN": "2026-08-27 18:47",
   "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3912.52",
-      "changePct": "0.59"
+      "price": "3956.57",
+      "changePct": "1.13"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 504,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 0,
-    "fall": 0
+    "rise": 1371,
+    "fall": 905
   },
-  "sectorFlow": [
-    {
-      "name": "工业金属",
-      "netInflow": "71.15亿",
-      "changePct": "10.58%"
-    },
-    {
-      "name": "铜",
-      "netInflow": "59.81亿",
-      "changePct": "13.41%"
-    },
-    {
-      "name": "非银金融",
-      "netInflow": "57.85亿",
-      "changePct": "9.64%"
-    },
-    {
-      "name": "有色金属",
-      "netInflow": "54.42亿",
-      "changePct": "3.69%"
-    },
-    {
-      "name": "证券Ⅲ",
-      "netInflow": "49.24亿",
-      "changePct": "12.12%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
