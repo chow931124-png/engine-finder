@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-08-28T12:24:14.399Z",
-  "updatedAtCN": "2026-08-28 20:24",
-  "isTrading": false,
+  "updatedAt": "2026-08-31T06:28:32.797Z",
+  "updatedAtCN": "2026-08-31 14:28",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3952.18",
-      "changePct": "-0.11"
+      "price": "3979.72",
+      "changePct": "0.70"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 504,
     "limitDown": 0,
-    "rise": 1285,
-    "fall": 1005
+    "rise": 1260,
+    "fall": 1029
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "传媒",
+      "netInflow": "57.34亿",
+      "changePct": "10.17%"
+    },
+    {
+      "name": "计算机",
+      "netInflow": "30.75亿",
+      "changePct": "2.77%"
+    },
+    {
+      "name": "数字媒体",
+      "netInflow": "24.87亿",
+      "changePct": "19.06%"
+    },
+    {
+      "name": "数字芯片设计",
+      "netInflow": "19.14亿",
+      "changePct": "1.87%"
+    },
+    {
+      "name": "机械设备",
+      "netInflow": "19.03亿",
+      "changePct": "1.33%"
+    }
+  ],
   "status": "ok"
 }
