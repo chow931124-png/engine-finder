@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-08-31T14:17:19.375Z",
-  "updatedAtCN": "2026-08-31 22:17",
-  "isTrading": false,
+  "updatedAt": "2026-09-01T05:55:25.117Z",
+  "updatedAtCN": "2026-09-01 13:55",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3986.30",
-      "changePct": "0.86"
+      "price": "3987.96",
+      "changePct": "0.04"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 0,
     "limitDown": 0,
-    "rise": 1269,
-    "fall": 1020
+    "rise": 1400,
+    "fall": 898
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "非银金融",
+      "netInflow": "27.26亿",
+      "changePct": "6.07%"
+    },
+    {
+      "name": "农林牧渔",
+      "netInflow": "26.28亿",
+      "changePct": "7.86%"
+    },
+    {
+      "name": "种植业",
+      "netInflow": "16.76亿",
+      "changePct": "11.95%"
+    },
+    {
+      "name": "商贸零售",
+      "netInflow": "16.57亿",
+      "changePct": "9.38%"
+    },
+    {
+      "name": "种子",
+      "netInflow": "15.58亿",
+      "changePct": "19.91%"
+    }
+  ],
   "status": "ok"
 }
