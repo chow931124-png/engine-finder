@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-09-03T05:22:49.945Z",
-  "updatedAtCN": "2026-09-03 13:22",
-  "isTrading": true,
+  "updatedAt": "2026-09-03T09:58:49.161Z",
+  "updatedAtCN": "2026-09-03 17:58",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3937.07",
-      "changePct": "-0.11"
+      "price": "3942.09",
+      "changePct": "0.02"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 703,
-    "fall": 1572
+    "rise": 920,
+    "fall": 1363
   },
   "sectorFlow": [
     {
       "name": "非银金融",
-      "netInflow": "26.07亿",
-      "changePct": "6.54%"
+      "netInflow": "21.51亿",
+      "changePct": "4.15%"
     },
     {
       "name": "有色金属",
-      "netInflow": "19.63亿",
-      "changePct": "2.58%"
+      "netInflow": "18.80亿",
+      "changePct": "1.79%"
+    },
+    {
+      "name": "机械设备",
+      "netInflow": "18.71亿",
+      "changePct": "1.22%"
+    },
+    {
+      "name": "通用设备",
+      "netInflow": "18.61亿",
+      "changePct": "2.60%"
     },
     {
       "name": "证券Ⅲ",
-      "netInflow": "16.86亿",
-      "changePct": "7.12%"
-    },
-    {
-      "name": "证券Ⅱ",
-      "netInflow": "16.86亿",
-      "changePct": "7.12%"
-    },
-    {
-      "name": "交通运输",
-      "netInflow": "14.12亿",
-      "changePct": "7.36%"
+      "netInflow": "16.18亿",
+      "changePct": "5.20%"
     }
   ],
   "status": "ok"
