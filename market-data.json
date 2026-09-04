@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-09-04T05:17:09.968Z",
-  "updatedAtCN": "2026-09-04 13:17",
-  "isTrading": true,
+  "updatedAt": "2026-09-04T09:47:51.634Z",
+  "updatedAtCN": "2026-09-04 17:47",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3960.54",
-      "changePct": "0.47"
+      "price": "3930.12",
+      "changePct": "-0.30"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 0,
     "limitDown": 0,
-    "rise": 1706,
-    "fall": 598
+    "rise": 1041,
+    "fall": 1228
   },
   "sectorFlow": [],
   "status": "ok"
