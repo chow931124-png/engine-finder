@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-09-08T05:29:40.629Z",
-  "updatedAtCN": "2026-09-08 13:29",
-  "isTrading": true,
+  "updatedAt": "2026-09-08T09:59:00.568Z",
+  "updatedAtCN": "2026-09-08 17:59",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3944.32",
-      "changePct": "0.30"
+      "price": "3940.55",
+      "changePct": "0.20"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 1526,
-    "fall": 766
+    "rise": 1489,
+    "fall": 817
   },
   "sectorFlow": [
     {
       "name": "工业金属",
-      "netInflow": "44.81亿",
-      "changePct": "10.68%"
-    },
-    {
-      "name": "有色金属",
-      "netInflow": "40.83亿",
-      "changePct": "5.21%"
-    },
-    {
-      "name": "铜",
-      "netInflow": "35.75亿",
-      "changePct": "12.05%"
+      "netInflow": "43.18亿",
+      "changePct": "7.90%"
     },
     {
       "name": "基础化工",
-      "netInflow": "33.89亿",
-      "changePct": "3.98%"
+      "netInflow": "38.64亿",
+      "changePct": "3.35%"
     },
     {
-      "name": "通信设备",
-      "netInflow": "25.63亿",
-      "changePct": "2.13%"
+      "name": "铜",
+      "netInflow": "34.22亿",
+      "changePct": "9.09%"
+    },
+    {
+      "name": "有色金属",
+      "netInflow": "32.25亿",
+      "changePct": "3.04%"
+    },
+    {
+      "name": "农化制品",
+      "netInflow": "27.65亿",
+      "changePct": "9.72%"
     }
   ],
   "status": "ok"
