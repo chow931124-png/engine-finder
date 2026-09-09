@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-09-08T09:59:00.568Z",
-  "updatedAtCN": "2026-09-08 17:59",
-  "isTrading": false,
+  "updatedAt": "2026-09-09T05:36:57.282Z",
+  "updatedAtCN": "2026-09-09 13:36",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3940.55",
-      "changePct": "0.20"
+      "price": "3934.87",
+      "changePct": "-0.14"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 1489,
-    "fall": 817
+    "rise": 617,
+    "fall": 1673
   },
   "sectorFlow": [
     {
-      "name": "工业金属",
-      "netInflow": "43.18亿",
-      "changePct": "7.90%"
+      "name": "通信设备",
+      "netInflow": "49.91亿",
+      "changePct": "3.95%"
     },
     {
-      "name": "基础化工",
-      "netInflow": "38.64亿",
-      "changePct": "3.35%"
+      "name": "通信",
+      "netInflow": "45.47亿",
+      "changePct": "3.42%"
     },
     {
-      "name": "铜",
-      "netInflow": "34.22亿",
-      "changePct": "9.09%"
-    },
-    {
-      "name": "有色金属",
-      "netInflow": "32.25亿",
-      "changePct": "3.04%"
-    },
-    {
-      "name": "农化制品",
-      "netInflow": "27.65亿",
+      "name": "通信线缆及配套",
+      "netInflow": "40.69亿",
       "changePct": "9.72%"
+    },
+    {
+      "name": "元件",
+      "netInflow": "33.50亿",
+      "changePct": "3.67%"
+    },
+    {
+      "name": "印制电路板",
+      "netInflow": "27.63亿",
+      "changePct": "3.71%"
     }
   ],
   "status": "ok"
