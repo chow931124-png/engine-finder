@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-09-09T05:36:57.282Z",
-  "updatedAtCN": "2026-09-09 13:36",
-  "isTrading": true,
+  "updatedAt": "2026-09-09T10:29:40.633Z",
+  "updatedAtCN": "2026-09-09 18:29",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3934.87",
-      "changePct": "-0.14"
+      "price": "3951.51",
+      "changePct": "0.28"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 504,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 617,
-    "fall": 1673
+    "rise": 0,
+    "fall": 0
   },
-  "sectorFlow": [
-    {
-      "name": "通信设备",
-      "netInflow": "49.91亿",
-      "changePct": "3.95%"
-    },
-    {
-      "name": "通信",
-      "netInflow": "45.47亿",
-      "changePct": "3.42%"
-    },
-    {
-      "name": "通信线缆及配套",
-      "netInflow": "40.69亿",
-      "changePct": "9.72%"
-    },
-    {
-      "name": "元件",
-      "netInflow": "33.50亿",
-      "changePct": "3.67%"
-    },
-    {
-      "name": "印制电路板",
-      "netInflow": "27.63亿",
-      "changePct": "3.71%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
