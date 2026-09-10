@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-09-10T05:27:47.693Z",
-  "updatedAtCN": "2026-09-10 13:27",
-  "isTrading": true,
+  "updatedAt": "2026-09-10T09:57:08.418Z",
+  "updatedAtCN": "2026-09-10 17:57",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3933.78",
-      "changePct": "-0.45"
+      "price": "3934.40",
+      "changePct": "-0.43"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 504,
     "limitDown": 0,
-    "rise": 489,
-    "fall": 1793
+    "rise": 0,
+    "fall": 0
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "印制电路板",
+      "netInflow": "30.17亿",
+      "changePct": "3.25%"
+    },
+    {
+      "name": "元件",
+      "netInflow": "30.17亿",
+      "changePct": "2.74%"
+    },
+    {
+      "name": "公用事业",
+      "netInflow": "20.31亿",
+      "changePct": "3.97%"
+    },
+    {
+      "name": "建筑装饰",
+      "netInflow": "18.01亿",
+      "changePct": "7.90%"
+    },
+    {
+      "name": "工程咨询服务Ⅲ",
+      "netInflow": "17.99亿",
+      "changePct": "25.58%"
+    }
+  ],
   "status": "ok"
 }
