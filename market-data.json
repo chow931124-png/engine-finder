@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-09-10T09:57:08.418Z",
-  "updatedAtCN": "2026-09-10 17:57",
-  "isTrading": false,
+  "updatedAt": "2026-09-11T05:28:31.114Z",
+  "updatedAtCN": "2026-09-11 13:28",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3934.40",
-      "changePct": "-0.43"
+      "price": "3875.26",
+      "changePct": "-1.50"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 0,
-    "fall": 0
+    "rise": 210,
+    "fall": 2130
   },
   "sectorFlow": [
     {
-      "name": "印制电路板",
-      "netInflow": "30.17亿",
-      "changePct": "3.25%"
+      "name": "地面兵装Ⅲ",
+      "netInflow": "11.01亿",
+      "changePct": "11.41%"
     },
     {
-      "name": "元件",
-      "netInflow": "30.17亿",
-      "changePct": "2.74%"
+      "name": "地面兵装Ⅱ",
+      "netInflow": "11.01亿",
+      "changePct": "11.41%"
     },
     {
-      "name": "公用事业",
-      "netInflow": "20.31亿",
-      "changePct": "3.97%"
+      "name": "集成电路制造",
+      "netInflow": "10.89亿",
+      "changePct": "7.45%"
     },
     {
-      "name": "建筑装饰",
-      "netInflow": "18.01亿",
-      "changePct": "7.90%"
+      "name": "被动元件",
+      "netInflow": "7.42亿",
+      "changePct": "3.58%"
     },
     {
-      "name": "工程咨询服务Ⅲ",
-      "netInflow": "17.99亿",
-      "changePct": "25.58%"
+      "name": "通信网络设备及器件",
+      "netInflow": "6.76亿",
+      "changePct": "0.88%"
     }
   ],
   "status": "ok"
