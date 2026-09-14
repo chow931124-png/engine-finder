@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-09-14T05:35:42.207Z",
-  "updatedAtCN": "2026-09-14 13:35",
-  "isTrading": true,
+  "updatedAt": "2026-09-14T11:21:07.911Z",
+  "updatedAtCN": "2026-09-14 19:21",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3881.61",
-      "changePct": "-0.17"
+      "price": "3885.33",
+      "changePct": "-0.07"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 504,
     "limitDown": 0,
-    "rise": 1278,
-    "fall": 976
+    "rise": 1330,
+    "fall": 928
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "医药生物",
+      "netInflow": "28.98亿",
+      "changePct": "3.21%"
+    },
+    {
+      "name": "元件",
+      "netInflow": "28.84亿",
+      "changePct": "2.00%"
+    },
+    {
+      "name": "印制电路板",
+      "netInflow": "23.10亿",
+      "changePct": "2.16%"
+    },
+    {
+      "name": "通用设备",
+      "netInflow": "18.52亿",
+      "changePct": "3.50%"
+    },
+    {
+      "name": "磨具磨料",
+      "netInflow": "18.10亿",
+      "changePct": "15.19%"
+    }
+  ],
   "status": "ok"
 }
