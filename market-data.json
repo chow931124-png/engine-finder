@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-09-14T11:21:07.911Z",
-  "updatedAtCN": "2026-09-14 19:21",
-  "isTrading": false,
+  "updatedAt": "2026-09-15T05:36:47.062Z",
+  "updatedAtCN": "2026-09-15 13:36",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3885.33",
-      "changePct": "-0.07"
+      "price": "3875.92",
+      "changePct": "-0.24"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 1330,
-    "fall": 928
+    "rise": 645,
+    "fall": 1662
   },
   "sectorFlow": [
     {
-      "name": "医药生物",
-      "netInflow": "28.98亿",
-      "changePct": "3.21%"
+      "name": "半导体",
+      "netInflow": "53.93亿",
+      "changePct": "3.58%"
     },
     {
-      "name": "元件",
-      "netInflow": "28.84亿",
-      "changePct": "2.00%"
+      "name": "电子",
+      "netInflow": "40.78亿",
+      "changePct": "1.17%"
     },
     {
-      "name": "印制电路板",
-      "netInflow": "23.10亿",
-      "changePct": "2.16%"
+      "name": "通信线缆及配套",
+      "netInflow": "21.93亿",
+      "changePct": "7.47%"
     },
     {
-      "name": "通用设备",
-      "netInflow": "18.52亿",
-      "changePct": "3.50%"
+      "name": "玻纤制造",
+      "netInflow": "18.28亿",
+      "changePct": "7.04%"
     },
     {
-      "name": "磨具磨料",
-      "netInflow": "18.10亿",
-      "changePct": "15.19%"
+      "name": "玻璃玻纤",
+      "netInflow": "18.16亿",
+      "changePct": "6.80%"
     }
   ],
   "status": "ok"
