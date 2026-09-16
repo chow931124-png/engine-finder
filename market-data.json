@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-09-15T10:45:05.886Z",
-  "updatedAtCN": "2026-09-15 18:45",
-  "isTrading": false,
+  "updatedAt": "2026-09-16T05:31:42.932Z",
+  "updatedAtCN": "2026-09-16 13:31",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3864.28",
-      "changePct": "-0.54"
+      "price": "3881.33",
+      "changePct": "0.44"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 544,
-    "fall": 1777
+    "rise": 1625,
+    "fall": 643
   },
   "sectorFlow": [
     {
+      "name": "电子",
+      "netInflow": "169.18亿",
+      "changePct": "4.19%"
+    },
+    {
+      "name": "通信设备",
+      "netInflow": "106.77亿",
+      "changePct": "8.07%"
+    },
+    {
+      "name": "通信",
+      "netInflow": "105.60亿",
+      "changePct": "7.63%"
+    },
+    {
       "name": "半导体",
-      "netInflow": "44.61亿",
-      "changePct": "2.33%"
+      "netInflow": "101.70亿",
+      "changePct": "5.27%"
     },
     {
-      "name": "通信线缆及配套",
-      "netInflow": "22.74亿",
-      "changePct": "6.05%"
-    },
-    {
-      "name": "半导体设备",
-      "netInflow": "16.81亿",
-      "changePct": "4.61%"
-    },
-    {
-      "name": "玻纤制造",
-      "netInflow": "16.08亿",
-      "changePct": "4.90%"
-    },
-    {
-      "name": "玻璃玻纤",
-      "netInflow": "15.88亿",
-      "changePct": "4.70%"
+      "name": "通信网络设备及器件",
+      "netInflow": "70.70亿",
+      "changePct": "8.58%"
     }
   ],
   "status": "ok"
