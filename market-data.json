@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-09-17T05:37:39.622Z",
-  "updatedAtCN": "2026-09-17 13:37",
-  "isTrading": true,
+  "updatedAt": "2026-09-17T10:43:36.938Z",
+  "updatedAtCN": "2026-09-17 18:43",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3880.11",
-      "changePct": "-0.30"
+      "price": "3875.60",
+      "changePct": "-0.41"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 504,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 1061,
-    "fall": 1208
+    "rise": 1062,
+    "fall": 1205
   },
-  "sectorFlow": [
-    {
-      "name": "汽车",
-      "netInflow": "34.15亿",
-      "changePct": "7.61%"
-    },
-    {
-      "name": "汽车零部件",
-      "netInflow": "28.99亿",
-      "changePct": "7.92%"
-    },
-    {
-      "name": "面板",
-      "netInflow": "24.01亿",
-      "changePct": "9.65%"
-    },
-    {
-      "name": "光学光电子",
-      "netInflow": "23.03亿",
-      "changePct": "5.10%"
-    },
-    {
-      "name": "底盘与发动机系统",
-      "netInflow": "17.63亿",
-      "changePct": "9.36%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
