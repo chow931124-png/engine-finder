@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-09-18T05:25:40.072Z",
-  "updatedAtCN": "2026-09-18 13:25",
-  "isTrading": true,
+  "updatedAt": "2026-09-18T09:57:17.519Z",
+  "updatedAtCN": "2026-09-18 17:57",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3913.09",
-      "changePct": "0.97"
+      "price": "3911.87",
+      "changePct": "0.94"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 1800,
-    "fall": 457
+    "rise": 1756,
+    "fall": 519
   },
   "sectorFlow": [
     {
       "name": "电子",
-      "netInflow": "193.85亿",
-      "changePct": "3.96%"
+      "netInflow": "198.54亿",
+      "changePct": "3.06%"
     },
     {
       "name": "半导体",
-      "netInflow": "180.75亿",
-      "changePct": "7.06%"
+      "netInflow": "182.20亿",
+      "changePct": "5.46%"
     },
     {
       "name": "数字芯片设计",
-      "netInflow": "78.36亿",
-      "changePct": "7.60%"
+      "netInflow": "75.35亿",
+      "changePct": "5.65%"
     },
     {
       "name": "通信网络设备及器件",
-      "netInflow": "64.42亿",
-      "changePct": "7.03%"
+      "netInflow": "67.53亿",
+      "changePct": "5.79%"
     },
     {
       "name": "集成电路封测",
-      "netInflow": "45.87亿",
-      "changePct": "16.49%"
+      "netInflow": "50.83亿",
+      "changePct": "14.80%"
     }
   ],
   "status": "ok"
