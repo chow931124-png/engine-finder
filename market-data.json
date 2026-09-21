@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-09-21T05:43:09.550Z",
-  "updatedAtCN": "2026-09-21 13:43",
-  "isTrading": true,
+  "updatedAt": "2026-09-21T11:34:53.813Z",
+  "updatedAtCN": "2026-09-21 19:34",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3935.32",
-      "changePct": "0.60"
+      "price": "3949.91",
+      "changePct": "0.97"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 1729,
-    "fall": 579
+    "rise": 1840,
+    "fall": 473
   },
-  "sectorFlow": [
-    {
-      "name": "医药生物",
-      "netInflow": "60.37亿",
-      "changePct": "5.01%"
-    },
-    {
-      "name": "化学制药",
-      "netInflow": "26.43亿",
-      "changePct": "6.36%"
-    },
-    {
-      "name": "化学制剂",
-      "netInflow": "25.92亿",
-      "changePct": "8.11%"
-    },
-    {
-      "name": "通信设备",
-      "netInflow": "19.94亿",
-      "changePct": "1.57%"
-    },
-    {
-      "name": "通信",
-      "netInflow": "16.47亿",
-      "changePct": "1.23%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
