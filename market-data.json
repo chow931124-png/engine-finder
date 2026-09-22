@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-09-22T05:40:30.633Z",
-  "updatedAtCN": "2026-09-22 13:40",
-  "isTrading": true,
+  "updatedAt": "2026-09-22T10:40:33.750Z",
+  "updatedAtCN": "2026-09-22 18:40",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3952.80",
-      "changePct": "0.07"
+      "price": "3952.13",
+      "changePct": "0.06"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 1066,
-    "fall": 1203
+    "rise": 1021,
+    "fall": 1259
   },
   "sectorFlow": [
     {
-      "name": "数字芯片设计",
-      "netInflow": "51.45亿",
-      "changePct": "4.01%"
+      "name": "传媒",
+      "netInflow": "28.90亿",
+      "changePct": "4.76%"
     },
     {
-      "name": "半导体",
-      "netInflow": "31.48亿",
-      "changePct": "1.22%"
+      "name": "数字芯片设计",
+      "netInflow": "26.95亿",
+      "changePct": "1.73%"
     },
     {
       "name": "计算机",
-      "netInflow": "25.22亿",
-      "changePct": "2.62%"
+      "netInflow": "24.81亿",
+      "changePct": "2.03%"
     },
     {
-      "name": "传媒",
-      "netInflow": "22.98亿",
-      "changePct": "4.73%"
+      "name": "营销代理",
+      "netInflow": "19.05亿",
+      "changePct": "8.87%"
     },
     {
-      "name": "电子",
-      "netInflow": "22.62亿",
-      "changePct": "0.44%"
+      "name": "广告营销",
+      "netInflow": "18.76亿",
+      "changePct": "8.48%"
     }
   ],
   "status": "ok"
