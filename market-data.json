@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-09-23T05:24:13.424Z",
-  "updatedAtCN": "2026-09-23 13:24",
-  "isTrading": true,
+  "updatedAt": "2026-09-23T10:10:36.578Z",
+  "updatedAtCN": "2026-09-23 18:10",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3937.66",
-      "changePct": "-0.37"
+      "price": "3936.52",
+      "changePct": "-0.39"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 877,
-    "fall": 1416
+    "rise": 861,
+    "fall": 1435
   },
   "sectorFlow": [
     {
       "name": "光学光电子",
-      "netInflow": "11.79亿",
-      "changePct": "2.93%"
+      "netInflow": "10.27亿",
+      "changePct": "1.96%"
     },
     {
-      "name": "房地产",
-      "netInflow": "11.67亿",
-      "changePct": "4.64%"
+      "name": "锂电池",
+      "netInflow": "10.18亿",
+      "changePct": "3.52%"
     },
     {
       "name": "面板",
-      "netInflow": "11.50亿",
-      "changePct": "4.89%"
+      "netInflow": "10.11亿",
+      "changePct": "3.43%"
+    },
+    {
+      "name": "房地产",
+      "netInflow": "9.21亿",
+      "changePct": "2.97%"
     },
     {
       "name": "住宅开发",
-      "netInflow": "10.35亿",
-      "changePct": "5.70%"
-    },
-    {
-      "name": "房地产开发",
-      "netInflow": "10.30亿",
-      "changePct": "4.85%"
+      "netInflow": "9.09亿",
+      "changePct": "4.03%"
     }
   ],
   "status": "ok"
