@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-09-28T06:09:39.784Z",
-  "updatedAtCN": "2026-09-28 14:09",
-  "isTrading": true,
+  "updatedAt": "2026-09-28T14:16:12.881Z",
+  "updatedAtCN": "2026-09-28 22:16",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3825.48",
-      "changePct": "-1.62"
+      "price": "3823.62",
+      "changePct": "-1.67"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 504,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 424,
-    "fall": 1884
+    "rise": 0,
+    "fall": 0
   },
-  "sectorFlow": [
-    {
-      "name": "商用车",
-      "netInflow": "5.87亿",
-      "changePct": "9.38%"
-    },
-    {
-      "name": "商用载货车",
-      "netInflow": "5.38亿",
-      "changePct": "10.31%"
-    },
-    {
-      "name": "其他酒类",
-      "netInflow": "3.61亿",
-      "changePct": "9.06%"
-    },
-    {
-      "name": "非白酒",
-      "netInflow": "3.59亿",
-      "changePct": "7.94%"
-    },
-    {
-      "name": "电力",
-      "netInflow": "3.53亿",
-      "changePct": "1.56%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
