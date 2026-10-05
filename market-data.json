@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-02T13:01:24.099Z",
-  "updatedAtCN": "2026-10-02 21:01",
-  "isTrading": false,
+  "updatedAt": "2026-10-05T06:26:51.983Z",
+  "updatedAtCN": "2026-10-05 14:26",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
@@ -13,8 +13,8 @@
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 0,
-    "fall": 0
+    "rise": 1223,
+    "fall": 1065
   },
   "sectorFlow": [
     {
