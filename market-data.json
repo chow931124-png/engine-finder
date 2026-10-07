@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-06T14:18:36.257Z",
-  "updatedAtCN": "2026-10-06 22:18",
-  "isTrading": false,
+  "updatedAt": "2026-10-07T06:44:25.027Z",
+  "updatedAtCN": "2026-10-07 14:44",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
@@ -11,11 +11,37 @@
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 504,
     "limitDown": 0,
     "rise": 1223,
     "fall": 1065
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "医药生物",
+      "netInflow": "61.91亿",
+      "changePct": "4.44%"
+    },
+    {
+      "name": "医疗服务",
+      "netInflow": "26.03亿",
+      "changePct": "6.95%"
+    },
+    {
+      "name": "医疗研发外包",
+      "netInflow": "22.28亿",
+      "changePct": "7.39%"
+    },
+    {
+      "name": "化学制药",
+      "netInflow": "19.45亿",
+      "changePct": "4.03%"
+    },
+    {
+      "name": "能源金属",
+      "netInflow": "15.71亿",
+      "changePct": "11.27%"
+    }
+  ],
   "status": "ok"
 }
