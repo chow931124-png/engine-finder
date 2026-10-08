@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-10-08T06:53:06.311Z",
-  "updatedAtCN": "2026-10-08 14:53",
-  "isTrading": true,
+  "updatedAt": "2026-10-08T14:16:04.729Z",
+  "updatedAtCN": "2026-10-08 22:16",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3808.87",
-      "changePct": "-0.87"
+      "price": "3811.90",
+      "changePct": "-0.79"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 504,
+    "limitUp": 505,
     "limitDown": 0,
-    "rise": 709,
-    "fall": 1598
+    "rise": 762,
+    "fall": 1543
   },
   "sectorFlow": [
     {
       "name": "电池",
-      "netInflow": "32.05亿",
-      "changePct": "4.48%"
+      "netInflow": "32.75亿",
+      "changePct": "4.41%"
     },
     {
       "name": "电池化学品",
-      "netInflow": "19.87亿",
-      "changePct": "8.37%"
+      "netInflow": "20.17亿",
+      "changePct": "8.21%"
     },
     {
       "name": "电力设备",
-      "netInflow": "19.02亿",
-      "changePct": "1.32%"
+      "netInflow": "19.43亿",
+      "changePct": "1.30%"
     },
     {
       "name": "基础化工",
-      "netInflow": "11.57亿",
-      "changePct": "1.29%"
+      "netInflow": "11.79亿",
+      "changePct": "1.27%"
     },
     {
       "name": "公用事业",
-      "netInflow": "11.23亿",
-      "changePct": "3.13%"
+      "netInflow": "11.57亿",
+      "changePct": "3.07%"
     }
   ],
   "status": "ok"
