@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-10-07T14:06:22.147Z",
-  "updatedAtCN": "2026-10-07 22:06",
-  "isTrading": false,
+  "updatedAt": "2026-10-08T06:53:06.311Z",
+  "updatedAtCN": "2026-10-08 14:53",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3842.19",
-      "changePct": "0.31"
+      "price": "3808.87",
+      "changePct": "-0.87"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 504,
     "limitDown": 0,
-    "rise": 0,
-    "fall": 0
+    "rise": 709,
+    "fall": 1598
   },
   "sectorFlow": [
     {
-      "name": "医药生物",
-      "netInflow": "61.91亿",
-      "changePct": "4.44%"
+      "name": "电池",
+      "netInflow": "32.05亿",
+      "changePct": "4.48%"
     },
     {
-      "name": "医疗服务",
-      "netInflow": "26.03亿",
-      "changePct": "6.95%"
+      "name": "电池化学品",
+      "netInflow": "19.87亿",
+      "changePct": "8.37%"
     },
     {
-      "name": "医疗研发外包",
-      "netInflow": "22.28亿",
-      "changePct": "7.39%"
+      "name": "电力设备",
+      "netInflow": "19.02亿",
+      "changePct": "1.32%"
     },
     {
-      "name": "化学制药",
-      "netInflow": "19.45亿",
-      "changePct": "4.03%"
+      "name": "基础化工",
+      "netInflow": "11.57亿",
+      "changePct": "1.29%"
     },
     {
-      "name": "能源金属",
-      "netInflow": "15.71亿",
-      "changePct": "11.27%"
+      "name": "公用事业",
+      "netInflow": "11.23亿",
+      "changePct": "3.13%"
     }
   ],
   "status": "ok"
