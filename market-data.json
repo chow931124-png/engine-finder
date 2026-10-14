@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-10-13T15:10:35.128Z",
-  "updatedAtCN": "2026-10-13 23:10",
-  "isTrading": false,
+  "updatedAt": "2026-10-14T05:39:52.710Z",
+  "updatedAtCN": "2026-10-14 13:39",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3800.86",
-      "changePct": "0.10"
+      "price": "3779.90",
+      "changePct": "-0.55"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 506,
     "limitDown": 0,
-    "rise": 1167,
-    "fall": 1114
+    "rise": 547,
+    "fall": 1736
   },
   "sectorFlow": [
     {
       "name": "印制电路板",
-      "netInflow": "20.88亿",
-      "changePct": "2.49%"
+      "netInflow": "27.09亿",
+      "changePct": "4.48%"
     },
     {
-      "name": "集成电路制造",
-      "netInflow": "20.52亿",
-      "changePct": "12.26%"
-    },
-    {
-      "name": "国防军工",
-      "netInflow": "19.33亿",
-      "changePct": "4.12%"
+      "name": "传媒",
+      "netInflow": "26.34亿",
+      "changePct": "4.00%"
     },
     {
       "name": "元件",
-      "netInflow": "13.67亿",
-      "changePct": "1.37%"
+      "netInflow": "25.72亿",
+      "changePct": "3.73%"
     },
     {
-      "name": "电子",
-      "netInflow": "12.84亿",
-      "changePct": "0.32%"
+      "name": "石油石化",
+      "netInflow": "9.68亿",
+      "changePct": "7.90%"
+    },
+    {
+      "name": "公用事业",
+      "netInflow": "9.38亿",
+      "changePct": "3.51%"
     }
   ],
   "status": "ok"
