@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-10-14T10:55:38.324Z",
-  "updatedAtCN": "2026-10-14 18:55",
-  "isTrading": false,
+  "updatedAt": "2026-10-15T05:25:40.698Z",
+  "updatedAtCN": "2026-10-15 13:25",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3767.23",
-      "changePct": "-0.88"
+      "price": "3679.88",
+      "changePct": "-2.32"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 506,
     "limitDown": 0,
-    "rise": 491,
-    "fall": 1807
+    "rise": 134,
+    "fall": 2219
   },
   "sectorFlow": [
     {
-      "name": "传媒",
-      "netInflow": "23.46亿",
-      "changePct": "2.87%"
+      "name": "化学制剂",
+      "netInflow": "8.33亿",
+      "changePct": "3.14%"
     },
     {
-      "name": "印制电路板",
-      "netInflow": "17.23亿",
-      "changePct": "2.19%"
+      "name": "医药生物",
+      "netInflow": "7.90亿",
+      "changePct": "0.98%"
     },
     {
-      "name": "元件",
-      "netInflow": "12.77亿",
-      "changePct": "1.42%"
+      "name": "化学制药",
+      "netInflow": "7.53亿",
+      "changePct": "2.37%"
     },
     {
-      "name": "石油石化",
-      "netInflow": "10.59亿",
-      "changePct": "6.55%"
+      "name": "白酒Ⅲ",
+      "netInflow": "6.84亿",
+      "changePct": "6.12%"
     },
     {
-      "name": "公用事业",
-      "netInflow": "8.32亿",
-      "changePct": "2.29%"
+      "name": "白酒Ⅱ",
+      "netInflow": "6.84亿",
+      "changePct": "6.12%"
     }
   ],
   "status": "ok"
