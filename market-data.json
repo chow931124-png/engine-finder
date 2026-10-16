@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-10-15T10:09:07.320Z",
-  "updatedAtCN": "2026-10-15 18:09",
-  "isTrading": false,
+  "updatedAt": "2026-10-16T05:18:23.129Z",
+  "updatedAtCN": "2026-10-16 13:18",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3707.48",
-      "changePct": "-1.59"
+      "price": "3724.18",
+      "changePct": "0.45"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 508,
     "limitDown": 0,
-    "rise": 190,
-    "fall": 2148
+    "rise": 1889,
+    "fall": 434
   },
   "sectorFlow": [
     {
-      "name": "半导体设备",
-      "netInflow": "14.44亿",
-      "changePct": "3.51%"
+      "name": "电子",
+      "netInflow": "70.55亿",
+      "changePct": "2.80%"
     },
     {
-      "name": "白酒Ⅲ",
-      "netInflow": "7.76亿",
-      "changePct": "4.92%"
+      "name": "半导体",
+      "netInflow": "57.10亿",
+      "changePct": "4.52%"
     },
     {
-      "name": "白酒Ⅱ",
-      "netInflow": "7.76亿",
-      "changePct": "4.92%"
+      "name": "数字芯片设计",
+      "netInflow": "32.41亿",
+      "changePct": "5.48%"
     },
     {
-      "name": "化学制剂",
-      "netInflow": "7.42亿",
-      "changePct": "2.12%"
+      "name": "国防军工",
+      "netInflow": "32.10亿",
+      "changePct": "7.66%"
     },
     {
-      "name": "化学制药",
-      "netInflow": "5.87亿",
-      "changePct": "1.39%"
+      "name": "汽车",
+      "netInflow": "26.98亿",
+      "changePct": "7.70%"
     }
   ],
   "status": "ok"
