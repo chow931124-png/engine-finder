@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-10-20T05:34:57.175Z",
-  "updatedAtCN": "2026-10-20 13:34",
-  "isTrading": true,
+  "updatedAt": "2026-10-20T10:43:23.859Z",
+  "updatedAtCN": "2026-10-20 18:43",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3711.46",
-      "changePct": "-0.52"
+      "price": "3735.37",
+      "changePct": "0.12"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 516,
     "limitDown": 0,
-    "rise": 1151,
-    "fall": 1120
+    "rise": 1434,
+    "fall": 857
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "消费电子",
+      "netInflow": "28.82亿",
+      "changePct": "6.19%"
+    },
+    {
+      "name": "消费电子零部件及组装",
+      "netInflow": "26.67亿",
+      "changePct": "6.29%"
+    },
+    {
+      "name": "机械设备",
+      "netInflow": "23.95亿",
+      "changePct": "2.02%"
+    },
+    {
+      "name": "自动化设备",
+      "netInflow": "14.32亿",
+      "changePct": "4.13%"
+    },
+    {
+      "name": "电子",
+      "netInflow": "10.60亿",
+      "changePct": "0.29%"
+    }
+  ],
   "status": "ok"
 }
