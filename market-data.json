@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-10-21T10:54:52.283Z",
-  "updatedAtCN": "2026-10-21 18:54",
-  "isTrading": false,
+  "updatedAt": "2026-10-22T05:38:02.472Z",
+  "updatedAtCN": "2026-10-22 13:38",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3713.03",
-      "changePct": "-0.60"
+      "price": "3654.38",
+      "changePct": "-1.58"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 516,
     "limitDown": 0,
-    "rise": 840,
-    "fall": 1405
+    "rise": 245,
+    "fall": 2093
   },
   "sectorFlow": [
     {
-      "name": "电子",
-      "netInflow": "58.35亿",
-      "changePct": "1.71%"
+      "name": "电机Ⅲ",
+      "netInflow": "9.74亿",
+      "changePct": "15.84%"
     },
     {
-      "name": "数字芯片设计",
-      "netInflow": "26.18亿",
-      "changePct": "3.32%"
+      "name": "电机Ⅱ",
+      "netInflow": "9.74亿",
+      "changePct": "15.84%"
     },
     {
-      "name": "元件",
-      "netInflow": "19.68亿",
-      "changePct": "2.39%"
+      "name": "美容护理",
+      "netInflow": "4.02亿",
+      "changePct": "11.59%"
     },
     {
-      "name": "印制电路板",
-      "netInflow": "18.51亿",
-      "changePct": "2.63%"
+      "name": "生活用纸",
+      "netInflow": "3.68亿",
+      "changePct": "29.18%"
     },
     {
-      "name": "通信设备",
-      "netInflow": "15.49亿",
-      "changePct": "1.52%"
+      "name": "个护用品",
+      "netInflow": "3.63亿",
+      "changePct": "26.09%"
     }
   ],
   "status": "ok"
