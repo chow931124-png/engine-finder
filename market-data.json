@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-10-22T10:54:49.838Z",
-  "updatedAtCN": "2026-10-22 18:54",
-  "isTrading": false,
+  "updatedAt": "2026-10-23T05:36:10.622Z",
+  "updatedAtCN": "2026-10-23 13:36",
+  "isTrading": true,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3658.03",
-      "changePct": "-1.48"
+      "price": "3639.92",
+      "changePct": "-0.50"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 516,
     "limitDown": 0,
-    "rise": 219,
-    "fall": 2121
+    "rise": 721,
+    "fall": 1579
   },
   "sectorFlow": [
     {
-      "name": "电机Ⅲ",
-      "netInflow": "10.94亿",
-      "changePct": "14.52%"
+      "name": "数字芯片设计",
+      "netInflow": "24.55亿",
+      "changePct": "2.98%"
     },
     {
-      "name": "电机Ⅱ",
-      "netInflow": "10.94亿",
-      "changePct": "14.52%"
+      "name": "半导体",
+      "netInflow": "17.09亿",
+      "changePct": "0.98%"
     },
     {
-      "name": "集成电路封测",
-      "netInflow": "10.28亿",
-      "changePct": "6.01%"
+      "name": "广告营销",
+      "netInflow": "11.84亿",
+      "changePct": "11.44%"
     },
     {
-      "name": "美容护理",
-      "netInflow": "4.39亿",
-      "changePct": "9.46%"
+      "name": "计算机",
+      "netInflow": "11.01亿",
+      "changePct": "1.23%"
     },
     {
-      "name": "生活用纸",
-      "netInflow": "4.15亿",
-      "changePct": "25.44%"
+      "name": "营销代理",
+      "netInflow": "10.44亿",
+      "changePct": "11.57%"
     }
   ],
   "status": "ok"
