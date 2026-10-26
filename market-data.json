@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-10-26T05:38:50.959Z",
-  "updatedAtCN": "2026-10-26 13:38",
-  "isTrading": true,
+  "updatedAt": "2026-10-26T11:58:26.292Z",
+  "updatedAtCN": "2026-10-26 19:58",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3692.44",
-      "changePct": "0.05"
+      "price": "3697.52",
+      "changePct": "0.19"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 516,
     "limitDown": 0,
-    "rise": 1199,
-    "fall": 1087
+    "rise": 1070,
+    "fall": 1228
   },
   "sectorFlow": [
     {
-      "name": "数字芯片设计",
-      "netInflow": "15.87亿",
-      "changePct": "2.08%"
-    },
-    {
       "name": "汽车",
-      "netInflow": "12.27亿",
-      "changePct": "2.53%"
+      "netInflow": "11.60亿",
+      "changePct": "1.83%"
     },
     {
       "name": "汽车零部件",
-      "netInflow": "11.90亿",
+      "netInflow": "10.23亿",
+      "changePct": "2.02%"
+    },
+    {
+      "name": "数字芯片设计",
+      "netInflow": "9.90亿",
+      "changePct": "0.98%"
+    },
+    {
+      "name": "医疗服务",
+      "netInflow": "7.85亿",
       "changePct": "3.06%"
     },
     {
       "name": "游戏Ⅲ",
-      "netInflow": "8.12亿",
-      "changePct": "8.42%"
-    },
-    {
-      "name": "游戏Ⅱ",
-      "netInflow": "8.12亿",
-      "changePct": "8.42%"
+      "netInflow": "7.66亿",
+      "changePct": "6.13%"
     }
   ],
   "status": "ok"
