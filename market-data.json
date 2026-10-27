@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-10-27T05:49:49.141Z",
-  "updatedAtCN": "2026-10-27 13:49",
-  "isTrading": true,
+  "updatedAt": "2026-10-27T11:19:55.689Z",
+  "updatedAtCN": "2026-10-27 19:19",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3686.12",
-      "changePct": "-0.31"
+      "price": "3648.30",
+      "changePct": "-1.33"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 516,
     "limitDown": 0,
-    "rise": 465,
-    "fall": 1841
+    "rise": 291,
+    "fall": 2037
   },
   "sectorFlow": [
     {
-      "name": "通信网络设备及器件",
-      "netInflow": "11.13亿",
-      "changePct": "2.59%"
+      "name": "银行",
+      "netInflow": "7.70亿",
+      "changePct": "2.03%"
+    },
+    {
+      "name": "银行Ⅱ",
+      "netInflow": "7.70亿",
+      "changePct": "2.03%"
     },
     {
       "name": "电机Ⅲ",
-      "netInflow": "7.35亿",
-      "changePct": "8.80%"
+      "netInflow": "7.25亿",
+      "changePct": "6.82%"
     },
     {
       "name": "电机Ⅱ",
-      "netInflow": "7.35亿",
-      "changePct": "8.80%"
-    },
-    {
-      "name": "光学元件",
-      "netInflow": "4.31亿",
-      "changePct": "4.68%"
+      "netInflow": "7.25亿",
+      "changePct": "6.82%"
     },
     {
       "name": "股份制银行Ⅲ",
-      "netInflow": "4.26亿",
-      "changePct": "4.77%"
+      "netInflow": "6.77亿",
+      "changePct": "5.05%"
     }
   ],
   "status": "ok"
