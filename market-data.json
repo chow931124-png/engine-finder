@@ -1,21 +1,47 @@
 {
-  "updatedAt": "2026-10-29T06:39:33.602Z",
-  "updatedAtCN": "2026-10-29 14:39",
-  "isTrading": true,
+  "updatedAt": "2026-10-29T13:51:38.966Z",
+  "updatedAtCN": "2026-10-29 21:51",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3649.09",
-      "changePct": "-0.88"
+      "price": "3651.43",
+      "changePct": "-0.82"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 516,
     "limitDown": 0,
-    "rise": 0,
-    "fall": 0
+    "rise": 405,
+    "fall": 1911
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "航天装备Ⅲ",
+      "netInflow": "10.00亿",
+      "changePct": "10.02%"
+    },
+    {
+      "name": "航天装备Ⅱ",
+      "netInflow": "10.00亿",
+      "changePct": "10.02%"
+    },
+    {
+      "name": "国防军工",
+      "netInflow": "8.75亿",
+      "changePct": "1.57%"
+    },
+    {
+      "name": "风电设备",
+      "netInflow": "8.19亿",
+      "changePct": "7.44%"
+    },
+    {
+      "name": "风电零部件",
+      "netInflow": "7.05亿",
+      "changePct": "8.82%"
+    }
+  ],
   "status": "ok"
 }
