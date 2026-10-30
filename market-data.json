@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-10-30T06:39:51.610Z",
-  "updatedAtCN": "2026-10-30 14:39",
-  "isTrading": true,
+  "updatedAt": "2026-10-30T13:43:48.546Z",
+  "updatedAtCN": "2026-10-30 21:43",
+  "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3602.47",
-      "changePct": "-1.34"
+      "price": "3599.02",
+      "changePct": "-1.44"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 516,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 467,
-    "fall": 1834
+    "rise": 455,
+    "fall": 1855
   },
-  "sectorFlow": [
-    {
-      "name": "医药生物",
-      "netInflow": "28.56亿",
-      "changePct": "2.55%"
-    },
-    {
-      "name": "食品饮料",
-      "netInflow": "27.15亿",
-      "changePct": "6.22%"
-    },
-    {
-      "name": "白酒Ⅲ",
-      "netInflow": "21.93亿",
-      "changePct": "9.92%"
-    },
-    {
-      "name": "白酒Ⅱ",
-      "netInflow": "21.93亿",
-      "changePct": "9.92%"
-    },
-    {
-      "name": "医疗服务",
-      "netInflow": "16.18亿",
-      "changePct": "5.05%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
