@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-11-02T16:56:11.820Z",
-  "updatedAtCN": "2026-11-03 00:56",
+  "updatedAt": "2026-11-03T07:24:35.914Z",
+  "updatedAtCN": "2026-11-03 15:24",
   "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3638.03",
-      "changePct": "1.08"
+      "price": "3608.10",
+      "changePct": "-0.82"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 531,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 1877,
-    "fall": 440
+    "rise": 989,
+    "fall": 1304
   },
-  "sectorFlow": [
-    {
-      "name": "传媒",
-      "netInflow": "55.49亿",
-      "changePct": "7.42%"
-    },
-    {
-      "name": "电子",
-      "netInflow": "53.19亿",
-      "changePct": "1.34%"
-    },
-    {
-      "name": "半导体",
-      "netInflow": "46.08亿",
-      "changePct": "2.37%"
-    },
-    {
-      "name": "非银金融",
-      "netInflow": "31.61亿",
-      "changePct": "5.64%"
-    },
-    {
-      "name": "证券Ⅲ",
-      "netInflow": "28.38亿",
-      "changePct": "6.80%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
