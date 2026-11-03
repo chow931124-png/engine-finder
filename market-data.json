@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-03T07:24:35.914Z",
-  "updatedAtCN": "2026-11-03 15:24",
+  "updatedAt": "2026-11-03T15:23:05.624Z",
+  "updatedAtCN": "2026-11-03 23:23",
   "isTrading": false,
   "indices": {
     "sh": {
@@ -11,11 +11,37 @@
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 0,
+    "limitUp": 531,
     "limitDown": 0,
     "rise": 989,
     "fall": 1304
   },
-  "sectorFlow": [],
+  "sectorFlow": [
+    {
+      "name": "电力设备",
+      "netInflow": "34.32亿",
+      "changePct": "2.52%"
+    },
+    {
+      "name": "电池",
+      "netInflow": "25.32亿",
+      "changePct": "4.30%"
+    },
+    {
+      "name": "锂电池",
+      "netInflow": "10.47亿",
+      "changePct": "3.36%"
+    },
+    {
+      "name": "电池化学品",
+      "netInflow": "8.98亿",
+      "changePct": "4.45%"
+    },
+    {
+      "name": "光伏设备",
+      "netInflow": "8.50亿",
+      "changePct": "3.21%"
+    }
+  ],
   "status": "ok"
 }
