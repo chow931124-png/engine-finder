@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-11-12T07:53:12.754Z",
-  "updatedAtCN": "2026-11-12 15:53",
+  "updatedAt": "2026-11-13T07:29:36.062Z",
+  "updatedAtCN": "2026-11-13 15:29",
   "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3655.83",
-      "changePct": "-0.67"
+      "price": "3634.35",
+      "changePct": "-0.59"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 554,
     "limitDown": 0,
-    "rise": 429,
-    "fall": 1895
+    "rise": 379,
+    "fall": 1941
   },
   "sectorFlow": [
     {
-      "name": "半导体",
-      "netInflow": "23.53亿",
-      "changePct": "0.80%"
+      "name": "影视院线",
+      "netInflow": "13.87亿",
+      "changePct": "7.14%"
     },
     {
-      "name": "营销代理",
-      "netInflow": "19.28亿",
-      "changePct": "6.31%"
+      "name": "银行",
+      "netInflow": "12.26亿",
+      "changePct": "3.18%"
     },
     {
-      "name": "广告营销",
-      "netInflow": "18.86亿",
-      "changePct": "5.89%"
+      "name": "银行Ⅱ",
+      "netInflow": "12.26亿",
+      "changePct": "3.18%"
     },
     {
       "name": "半导体设备",
-      "netInflow": "17.33亿",
-      "changePct": "3.73%"
+      "netInflow": "10.40亿",
+      "changePct": "2.83%"
     },
     {
-      "name": "医疗服务",
-      "netInflow": "9.70亿",
-      "changePct": "3.26%"
+      "name": "IT服务Ⅲ",
+      "netInflow": "9.81亿",
+      "changePct": "2.66%"
     }
   ],
   "status": "ok"
