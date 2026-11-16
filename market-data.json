@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-11-13T15:36:50.238Z",
-  "updatedAtCN": "2026-11-13 23:36",
+  "updatedAt": "2026-11-16T07:29:38.385Z",
+  "updatedAtCN": "2026-11-16 15:29",
   "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3634.35",
-      "changePct": "-0.59"
+      "price": "3602.57",
+      "changePct": "-0.87"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 554,
     "limitDown": 0,
-    "rise": 379,
-    "fall": 1941
+    "rise": 589,
+    "fall": 1718
   },
   "sectorFlow": [
     {
-      "name": "影视院线",
-      "netInflow": "13.87亿",
-      "changePct": "7.14%"
+      "name": "电视广播Ⅲ",
+      "netInflow": "6.79亿",
+      "changePct": "9.25%"
     },
     {
-      "name": "银行",
-      "netInflow": "12.26亿",
-      "changePct": "3.18%"
+      "name": "电视广播Ⅱ",
+      "netInflow": "6.79亿",
+      "changePct": "9.25%"
     },
     {
-      "name": "银行Ⅱ",
-      "netInflow": "12.26亿",
-      "changePct": "3.18%"
+      "name": "铁路公路",
+      "netInflow": "6.06亿",
+      "changePct": "10.95%"
     },
     {
-      "name": "半导体设备",
-      "netInflow": "10.40亿",
-      "changePct": "2.83%"
+      "name": "交通运输",
+      "netInflow": "5.89亿",
+      "changePct": "2.92%"
     },
     {
-      "name": "IT服务Ⅲ",
-      "netInflow": "9.81亿",
-      "changePct": "2.66%"
+      "name": "白酒Ⅲ",
+      "netInflow": "5.69亿",
+      "changePct": "3.96%"
     }
   ],
   "status": "ok"
