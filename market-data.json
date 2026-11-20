@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-11-19T08:12:52.295Z",
-  "updatedAtCN": "2026-11-19 16:12",
+  "updatedAt": "2026-11-20T07:55:27.175Z",
+  "updatedAtCN": "2026-11-20 15:55",
   "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3577.62",
-      "changePct": "-0.28"
+      "price": "3533.79",
+      "changePct": "-1.23"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 554,
     "limitDown": 0,
-    "rise": 360,
-    "fall": 1963
+    "rise": 159,
+    "fall": 2176
   },
   "sectorFlow": [
     {
-      "name": "半导体",
-      "netInflow": "30.51亿",
-      "changePct": "1.42%"
+      "name": "印制电路板",
+      "netInflow": "20.39亿",
+      "changePct": "3.47%"
     },
     {
-      "name": "集成电路制造",
-      "netInflow": "24.23亿",
-      "changePct": "8.11%"
+      "name": "元件",
+      "netInflow": "18.72亿",
+      "changePct": "2.82%"
     },
     {
-      "name": "半导体设备",
-      "netInflow": "18.55亿",
-      "changePct": "4.55%"
+      "name": "制冷空调设备",
+      "netInflow": "7.08亿",
+      "changePct": "10.82%"
     },
     {
-      "name": "电子",
-      "netInflow": "17.50亿",
-      "changePct": "0.49%"
+      "name": "其他数字媒体",
+      "netInflow": "5.08亿",
+      "changePct": "18.84%"
     },
     {
-      "name": "集成电路封测",
-      "netInflow": "14.94亿",
-      "changePct": "7.63%"
+      "name": "其他农产品加工",
+      "netInflow": "5.02亿",
+      "changePct": "23.83%"
     }
   ],
   "status": "ok"
