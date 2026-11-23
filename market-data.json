@@ -1,47 +1,21 @@
 {
-  "updatedAt": "2026-11-20T07:55:27.175Z",
-  "updatedAtCN": "2026-11-20 15:55",
+  "updatedAt": "2026-11-23T08:27:54.615Z",
+  "updatedAtCN": "2026-11-23 16:27",
   "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3533.79",
-      "changePct": "-1.23"
+      "price": "3538.95",
+      "changePct": "0.15"
     },
     "volume": null
   },
   "marketTemp": {
-    "limitUp": 554,
+    "limitUp": 0,
     "limitDown": 0,
-    "rise": 159,
-    "fall": 2176
+    "rise": 1797,
+    "fall": 483
   },
-  "sectorFlow": [
-    {
-      "name": "印制电路板",
-      "netInflow": "20.39亿",
-      "changePct": "3.47%"
-    },
-    {
-      "name": "元件",
-      "netInflow": "18.72亿",
-      "changePct": "2.82%"
-    },
-    {
-      "name": "制冷空调设备",
-      "netInflow": "7.08亿",
-      "changePct": "10.82%"
-    },
-    {
-      "name": "其他数字媒体",
-      "netInflow": "5.08亿",
-      "changePct": "18.84%"
-    },
-    {
-      "name": "其他农产品加工",
-      "netInflow": "5.02亿",
-      "changePct": "23.83%"
-    }
-  ],
+  "sectorFlow": [],
   "status": "ok"
 }
