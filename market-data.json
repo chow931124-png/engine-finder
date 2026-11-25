@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-11-24T10:35:12.115Z",
-  "updatedAtCN": "2026-11-24 18:35",
+  "updatedAt": "2026-11-25T09:24:44.932Z",
+  "updatedAtCN": "2026-11-25 17:24",
   "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3548.37",
-      "changePct": "0.27"
+      "price": "3476.47",
+      "changePct": "-2.03"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 554,
     "limitDown": 0,
-    "rise": 817,
-    "fall": 1488
+    "rise": 287,
+    "fall": 2030
   },
   "sectorFlow": [
     {
-      "name": "电子",
-      "netInflow": "64.73亿",
-      "changePct": "1.42%"
+      "name": "食品饮料",
+      "netInflow": "6.25亿",
+      "changePct": "2.02%"
     },
     {
-      "name": "印制电路板",
-      "netInflow": "33.92亿",
-      "changePct": "3.56%"
+      "name": "白酒Ⅲ",
+      "netInflow": "6.12亿",
+      "changePct": "4.61%"
     },
     {
-      "name": "元件",
-      "netInflow": "30.47亿",
-      "changePct": "2.82%"
+      "name": "白酒Ⅱ",
+      "netInflow": "6.12亿",
+      "changePct": "4.61%"
     },
     {
-      "name": "消费电子零部件及组装",
-      "netInflow": "25.62亿",
-      "changePct": "4.95%"
+      "name": "造纸",
+      "netInflow": "5.70亿",
+      "changePct": "14.70%"
     },
     {
-      "name": "消费电子",
-      "netInflow": "25.00亿",
-      "changePct": "4.41%"
+      "name": "特种纸",
+      "netInflow": "5.59亿",
+      "changePct": "18.48%"
     }
   ],
   "status": "ok"
