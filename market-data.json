@@ -1,46 +1,46 @@
 {
-  "updatedAt": "2026-11-25T09:24:44.932Z",
-  "updatedAtCN": "2026-11-25 17:24",
+  "updatedAt": "2026-11-26T09:03:31.041Z",
+  "updatedAtCN": "2026-11-26 17:03",
   "isTrading": false,
   "indices": {
     "sh": {
       "name": "上证指数",
-      "price": "3476.47",
-      "changePct": "-2.03"
+      "price": "3476.88",
+      "changePct": "0.01"
     },
     "volume": null
   },
   "marketTemp": {
     "limitUp": 554,
     "limitDown": 0,
-    "rise": 287,
-    "fall": 2030
+    "rise": 784,
+    "fall": 1488
   },
   "sectorFlow": [
     {
-      "name": "食品饮料",
-      "netInflow": "6.25亿",
-      "changePct": "2.02%"
+      "name": "元件",
+      "netInflow": "45.27亿",
+      "changePct": "5.66%"
     },
     {
-      "name": "白酒Ⅲ",
-      "netInflow": "6.12亿",
-      "changePct": "4.61%"
+      "name": "印制电路板",
+      "netInflow": "44.12亿",
+      "changePct": "6.15%"
     },
     {
-      "name": "白酒Ⅱ",
-      "netInflow": "6.12亿",
-      "changePct": "4.61%"
+      "name": "通信",
+      "netInflow": "42.22亿",
+      "changePct": "4.18%"
     },
     {
-      "name": "造纸",
-      "netInflow": "5.70亿",
-      "changePct": "14.70%"
+      "name": "通信设备",
+      "netInflow": "37.76亿",
+      "changePct": "4.23%"
     },
     {
-      "name": "特种纸",
-      "netInflow": "5.59亿",
-      "changePct": "18.48%"
+      "name": "通信网络设备及器件",
+      "netInflow": "34.68亿",
+      "changePct": "5.13%"
     }
   ],
   "status": "ok"
